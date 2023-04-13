@@ -1,0 +1,112 @@
+﻿{% extends 'baseBack.html.twig' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block body %}
+        <!-- Begin page -->
+        <div class="wrapper">            
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                            <li class="breadcrumb-item active">Product Details</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Product Details</h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <!-- Product image -->
+                                                <a href="javascript: void(0);" class="text-center d-block mb-4">
+                                                    <img src="{{ produit.productPhoto }}" class="img-fluid" style="max-width: 280px;" alt="Product-img">
+                                                </a>
+                                            </div> <!-- end col -->
+                                            <div class="col-lg-7">
+                                                <form class="ps-lg-4">
+                                                    <!-- Product title -->
+                                                    <h3 class="mt-0">{{ produit.productName }}<a href="{{path('editproduct', {'idProduct': produit.idProduct})}}" class="text-muted"><i class="mdi mdi-square-edit-outline ms-2"></i></a> </h3>
+                                                    <p class="mb-1">Added Date: {{ produit.addeddate ? produit.addeddate|date('Y-m-d') : '' }}</p>
+                                                    <p class="font-16">
+                                                        <span class="text-warning mdi mdi-star"></span>
+                                                        <span class="text-warning mdi mdi-star"></span>
+                                                        <span class="text-warning mdi mdi-star"></span>
+                                                        <span class="text-warning mdi mdi-star"></span>
+                                                        <span class="text-warning mdi mdi-star"></span>
+                                                    </p>
+
+                                                    <!-- Product stock -->
+                                                    <div class="mt-3">
+                                                        <h4><span class="badge badge-success-lighten">Instock</span></h4>
+                                                    </div>
+
+                                                    <!-- Product description -->
+                                                    <div class="mt-4">
+                                                        <h6 class="font-14">Retail Price:</h6>
+                                                        <h3> TND {{ produit.productPrice }}</h3>
+                                                    </div>
+
+                                                    <!-- Product description -->
+                                                    <div class="mt-4">
+                                                        <h6 class="font-14">Description:</h6>
+                                                        <p>{{ produit.productDescription }}</p>
+                                                    </div>
+
+                                                    <!-- Product information -->
+                                                    <div class="mt-4">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <h6 class="font-14">Number of Orders:</h6>
+                                                                <p class="text-sm lh-150">5,458</p>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <h6 class="font-14">Revenue:</h6>
+                                                                <p class="text-sm lh-150">$8,57,014</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div> <!-- end col -->
+                                            {{ include('produits_front/_delete_form.html.twig') }}
+                                        </div> <!-- end row-->            
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row-->                       
+                    </div> <!-- container -->
+                </div> <!-- content -->
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+{% endblock %}
+
+        

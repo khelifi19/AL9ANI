@@ -1,0 +1,51 @@
+﻿{% extends 'baseBack.html.twig' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block body %}
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
+                                            <li class="breadcrumb-item active">Create Product</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Create Product</h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+                            {{ include('produits_front/_form.html.twig') }}
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+{% endblock %}
