@@ -29,16 +29,6 @@ class PanierProduit
     private $quantite;
 
     /**
-     * @var \Panier
-     *
-     * @ORM\ManyToOne(targetEntity="Panier")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_pannier", referencedColumnName="id_pannier")
-     * })
-     */
-    private $idPannier;
-
-    /**
      * @var \Produits
      *
      * @ORM\ManyToOne(targetEntity="Produits")
@@ -47,6 +37,16 @@ class PanierProduit
      * })
      */
     private $idProduit;
+
+    /**
+     * @var \Panier
+     *
+     * @ORM\ManyToOne(targetEntity="Panier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pannier", referencedColumnName="id_pannier")
+     * })
+     */
+    private $idPannier;
 
     public function getId(): ?int
     {
@@ -65,18 +65,6 @@ class PanierProduit
         return $this;
     }
 
-    public function getIdPannier(): ?Panier
-    {
-        return $this->idPannier;
-    }
-
-    public function setIdPannier(?Panier $idPannier): self
-    {
-        $this->idPannier = $idPannier;
-
-        return $this;
-    }
-
     public function getIdProduit(): ?Produits
     {
         return $this->idProduit;
@@ -85,6 +73,18 @@ class PanierProduit
     public function setIdProduit(?Produits $idProduit): self
     {
         $this->idProduit = $idProduit;
+
+        return $this;
+    }
+
+    public function getIdPannier(): ?Panier
+    {
+        return $this->idPannier;
+    }
+
+    public function setIdPannier(?Panier $idPannier): self
+    {
+        $this->idPannier = $idPannier;
 
         return $this;
     }

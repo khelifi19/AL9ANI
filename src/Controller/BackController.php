@@ -55,7 +55,6 @@ class BackController extends AbstractController
             $produit->setAddeddate(new DateTime());
             $entityManager->persist($produit);
             $entityManager->flush();
-
             return $this->redirectToRoute('productList', [], Response::HTTP_SEE_OTHER);
         }
 

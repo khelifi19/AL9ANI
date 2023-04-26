@@ -6,7 +6,9 @@ use App\Entity\Produits;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use App\Entity\Categorie;
 
 
 
@@ -19,7 +21,9 @@ class ProduitsType extends AbstractType
             ->add('productDescription')
             ->add('productPhoto')
             ->add('productPrice')
-            //->add('relatedArtist')
+            ->add('category',EntityType::class,['class' => Categorie::class,
+                                            'choice_label' => 'nom' ,
+                                             'label' => 'Catégorie' ]);
         ;
     }
 

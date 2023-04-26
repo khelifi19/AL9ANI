@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Categorie;
+
 
 /**
  * Produits
  *
- * @ORM\Table(name="produits", indexes={@ORM\Index(name="related_artist", columns={"related_artist"})})
+ * @ORM\Table(name="produits", indexes={@ORM\Index(name="related_artist", columns={"related_artist"}), @ORM\Index(name="category", columns={"category"})})
  * @ORM\Entity
  */
 class Produits
@@ -55,7 +57,7 @@ class Produits
      *
      * @ORM\Column(name="addeddate", type="date", nullable=true, options={"default"="current_timestamp()"})
      */
-    private $addeddate;
+    private $addeddate = 'current_timestamp()';
 
     /**
      * @var \User
@@ -66,6 +68,16 @@ class Produits
      * })
      */
     private $relatedArtist;
+
+    /**
+     * @var \Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * })
+     */
+    private $category;
 
     public function getIdProduct(): ?int
     {
@@ -140,6 +152,18 @@ class Produits
     public function setRelatedArtist(?User $relatedArtist): self
     {
         $this->relatedArtist = $relatedArtist;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Categorie
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categorie $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

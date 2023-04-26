@@ -54,7 +54,7 @@
 
             <div class="row product-lists">
             {% for produit in produits %}
-                <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="col-lg-4 col-md-6 text-center {{ produit.category }}">
                     <div class="single-product-item">
                         <div class="product-image">
                             <a href="{{ path('single_product', {'idProduct': produit.idProduct}) }}"><img src="{{ produit.productPhoto }}" alt="photonotfound"></a>

@@ -58,6 +58,16 @@ class Commande
     private $mail;
 
     /**
+     * @var \PanierProduit
+     *
+     * @ORM\ManyToOne(targetEntity="PanierProduit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_panier", referencedColumnName="id")
+     * })
+     */
+    private $idPanier;
+
+    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -76,16 +86,6 @@ class Commande
      * })
      */
     private $idProd;
-
-    /**
-     * @var \PanierProduit
-     *
-     * @ORM\ManyToOne(targetEntity="PanierProduit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_panier", referencedColumnName="id")
-     * })
-     */
-    private $idPanier;
 
     public function getIdCommande(): ?int
     {
@@ -152,6 +152,18 @@ class Commande
         return $this;
     }
 
+    public function getIdPanier(): ?PanierProduit
+    {
+        return $this->idPanier;
+    }
+
+    public function setIdPanier(?PanierProduit $idPanier): self
+    {
+        $this->idPanier = $idPanier;
+
+        return $this;
+    }
+
     public function getIdUser(): ?User
     {
         return $this->idUser;
@@ -172,18 +184,6 @@ class Commande
     public function setIdProd(?Produits $idProd): self
     {
         $this->idProd = $idProd;
-
-        return $this;
-    }
-
-    public function getIdPanier(): ?PanierProduit
-    {
-        return $this->idPanier;
-    }
-
-    public function setIdPanier(?PanierProduit $idPanier): self
-    {
-        $this->idPanier = $idPanier;
 
         return $this;
     }
