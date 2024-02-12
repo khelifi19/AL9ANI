@@ -15,13 +15,14 @@
    {% endblock %}
     </head>
     <header>
+	<div id="main-wrapper">
     <!-- Start Navigation -->
 			<div class="header header-transparent change-logo">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
 							<a class="nav-brand static-logo"  href="#"><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png')}}" class="logo" alt="" /></a>
-							<a class="nav-brand fixed-logo" href="#"><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/logo.png')}}" class="logo" alt="" /></a>
+							<a class="nav-brand fixed-logo" href="#"><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png')}}" class="logo" alt="" /></a>
 							<div class="nav-toggle"></div>
 							<div class="mobile_nav">
 								<ul>
@@ -74,42 +75,46 @@
 							</ul>
 							
 							<ul class="nav-menu nav-menu-social align-to-right">
+							{% if app.user %}
+							<li>
+									<a href="javascript:void(0);">
+								<i class="lni lni-user me-2"></i>
+									{{ app.user.username }}</a>
+								</li>
+									<li class="add-listing gray">
+									<a href="{{ path('app_logout')}}" >
+										<i class="lni lni-power-switch mr-1"></i> Logout
+									</a> </li>
+								
+								{% else %}
 								<li>
-									<a href="#" data-bs-toggle="modal" data-bs-target="#login" class="ft-bold">
-										<i class="fas fa-sign-in-alt me-1 theme-cl"></i>Sign In
+									<a href="{{ path('app_register')}}"  class="ft-bold">
+										<i class="fas fa-sign-in-alt me-1 theme-cl"></i>Sign Up
 									</a>
 								</li>
-								<li class="add-listing">
-									<a href="add-listing.html" >
-										<i class="fas fa-plus me-2"></i>Ajouter Reservation
+								<li>
+									<a href="{{ path('app_login')}}"  class="ft-bold">
+										<i class="fas fa-sign-in-alt me-1 theme-cl"></i>Login
 									</a>
 								</li>
+								{% endif %}
+								
 							</ul>
 						</div>
 					</nav>
 				</div>
 			</div>
 			<!-- End Navigation -->
+			<div class="clearfix"></div>
     </header>
     <body>
         {% block body %}
-       
-        <script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.min.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/popper.min.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/bootstrap.min.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/slick.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.magnific-popup.min.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/dropzone.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/counterup.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/moment.min.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/daterangepicker.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>		
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jQuery.style.switcher.js')}}"></script>
-		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/custom.js')}}"></script>
+        </div>
+	 
+        
         {% endblock %}
     </body>
-<footer>
+
  <footer class="light-footer skin-light-footer style-2">
 				<div class="footer-middle">
 					<div class="container">
@@ -202,5 +207,20 @@
 					</div>
 				</div>
 			</footer>
-			<!-- ============================ Footer End ================================== --></footer>
+			
+
+			<!-- ============================ Footer End ================================== -->
+			<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/popper.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/slick.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/dropzone.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/counterup.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/moment.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/daterangepicker.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>		
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jQuery.style.switcher.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/custom.js')}}"></script>
 </html>
