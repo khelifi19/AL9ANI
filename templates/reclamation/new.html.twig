@@ -1,0 +1,32 @@
+{# templates/reclamation/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4 mb-4">Nouvelle Réclamation</h1>
+
+        {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.titreReclamation, 'Titre de la réclamation') }}
+                {{ form_widget(form.titreReclamation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.titreReclamation) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.emailReclamation, 'Email') }}
+                {{ form_widget(form.emailReclamation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.emailReclamation) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.descriptionReclamation, 'Description de la réclamation') }}
+                {{ form_widget(form.descriptionReclamation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.descriptionReclamation) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ajouter la reclamation</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

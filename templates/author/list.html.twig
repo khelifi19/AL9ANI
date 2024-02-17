@@ -1,0 +1,56 @@
+{# templates/author/list.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>List of Authors</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>List of Authors</h2>
+
+<p>Number of authors: {{ totalAuthors }}</p>
+<p>Total number of books: {{ totalBooks }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Picture</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Number of Books</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td><img src="{{ asset(author.picture) }}" alt="{{ author.username }}" width="100"></td>
+                <td>{{ author.username }}</td>
+                <td>{{ author.email }}</td>
+                <td>{{ author.nb_books }}</td>
+                <td><a href="{{ author.details_link }}">Details</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

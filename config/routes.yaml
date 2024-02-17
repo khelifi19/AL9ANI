@@ -1,0 +1,32 @@
+# config/routes.yaml
+
+app_author:
+    path: /author
+    controller: App\Controller\AuthorController::index
+    methods: ['GET']
+
+app_showAuthor:
+    path: /showauthor/{name}
+    controller: App\Controller\AuthorController::showAuthor
+    methods: ['GET']
+
+app_listAuthors:
+    path: /author/listAuthor
+    controller: App\Controller\AuthorController::list
+    methods: ['GET']
+
+app_authorDetails:
+    path: /author/details/{id}
+    controller: App\Controller\AuthorController::authorDetails
+    methods: ['GET']
+
+reclamation_new:
+    path: /reclamation/new
+    controller: App\Controller\ReclamationController::new
+    methods: [GET, POST]
+
+reclamation_success:
+    path: /reclamation/success
+    controller: App\Controller\ReclamationController::success
+
+

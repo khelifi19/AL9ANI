@@ -1,0 +1,19 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 09 Feb 2024 18:13:48 at https://themezhub.net/goodup-live/goodup/home-4.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://themezhub.net/goodup-live/goodup/home-4.html -O1 "C:\Users\kittie\OneDrive\Desktop\newfront" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+18:15:10	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/assets/img/veryfy.svg (from https://themezhub.net/goodup-live/goodup/assets/css/styles.css)
+18:15:10	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/login (from https://themezhub.net/goodup-live/goodup/add-listing.html)
+18:15:11	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/search-car.html (from https://themezhub.net/goodup-live/goodup/home-2.html)
+18:15:11	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/search-property.html (from https://themezhub.net/goodup-live/goodup/home-2.html)
+18:15:12	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/listing-detail-2.html (from https://themezhub.net/goodup-live/goodup/listing-search-v2.html)
+18:15:12	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/assets/css/plugins/fonts/slick.svg (from https://themezhub.net/goodup-live/goodup/assets/css/plugins/slick-theme.css)
+18:15:12	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/assets/css/plugins/fonts/LineIcons.eot (from https://themezhub.net/goodup-live/goodup/assets/css/plugins/line-icons.css)
+18:15:14	Error: 	"Not Found" (404) at link https://themezhub.net/goodup-live/goodup/employer-detail.html (from https://themezhub.net/goodup-live/goodup/event-detail.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 26 seconds : 310 links scanned, 301 files written (29758989 bytes overall) [24149338 bytes received at 280806 bytes/sec], 8198697 bytes transferred using HTTP compression in 119 files, ratio 29%, 19.3 requests per connection
+(8 errors, 0 warnings, 0 messages)
