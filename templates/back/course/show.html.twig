@@ -1,0 +1,58 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Détails de la course</h1>
+                </div>
+            </div>
+
+            
+
+                        <div class="col-sm-12">
+                            <dt>Destination :</dt>
+                            <dd>{{ course.destination }}</dd>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <dt>Départ :</dt>
+                            <dd>{{ course.depart }}</dd>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <dt>Date de la course :</dt>
+                            <dd>{{ course.dateCourse|date('Y-m-d') }}</dd>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <dt>Nombre de personnes :</dt>
+                            <dd>{{ course.nbPersonne }}</dd>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <dt>Type Voiture :</dt>
+                            <dd>{{ course.idVoiture.modele }}</dd>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <dt>Statut :</dt>
+                            <dd>{% if course.dateCourse > date('now') %} Pas encore {% else %} Terminée {% endif %}</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ path('course_index') }}" class="btn btn-secondary">Retour à la liste des courses</a>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

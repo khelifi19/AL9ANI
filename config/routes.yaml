@@ -1,3 +1,95 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+    methods: [GET]
+
+
+
+
+
+
+voiture_index:
+    path: /voitures
+    controller: App\Controller\VoitureController::index
+    methods: [GET]
+
+voiture_new:
+    path: /voiture/new
+    controller: App\Controller\VoitureController::new
+    methods: [GET, POST]
+
+voiture_show:
+    path: /voiture/{id}
+    controller: App\Controller\VoitureController::show
+    methods: [GET]
+
+voiture_edit:
+    path: /voiture/{id}/edit
+    controller: App\Controller\VoitureController::edit
+    methods: [GET, POST]
+
+voiture_delete:
+    path: /voiture/{id}/delete
+    controller: App\Controller\VoitureController::delete
+   
+
+
+course_index:
+    path: /courses
+    controller: App\Controller\CourseController::index
+    methods: [GET]
+
+
+   
+
+course_show:
+    path: /course/{id}
+    controller: App\Controller\CourseController::show
+    methods: [GET]
+
+
+
+course_delete:
+    path: /course/{id}/delete
+    controller: App\Controller\CourseController::delete
+   
+
+
+
+
+
+
+courseUser_index:
+    path: /user/courses
+    controller: 'App\Controller\CourseUserController::index'
+    methods: ['GET']
+
+courseUser_new:
+    path: /user/course/new
+    controller: 'App\Controller\CourseUserController::new'
+    methods: ['GET', 'POST']
+
+courseUser_show:
+    path: /user/course/{id}
+    controller: 'App\Controller\CourseUserController::show'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
+courseUser_edit:
+    path: /user/course/{id}/edit
+    controller: 'App\Controller\CourseUserController::edit'
+    methods: ['GET', 'POST']
+    requirements:
+        id: '\d+'
+
+courseUser_delete:
+    path: /user/course/{id}/delete
+    controller: 'App\Controller\CourseUserController::delete'
+    methods: ['DELETE']
+    requirements:
+        id: '\d+'
+
+
+
+
