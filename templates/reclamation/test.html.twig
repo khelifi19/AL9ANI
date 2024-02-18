@@ -31,6 +31,20 @@
 			<!-- ======================= form ======================== -->
 			
 			<div class="container">
+
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.NomReclamation, 'Votre Nom') }}
+                {{ form_widget(form.NomReclamation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.NomReclamation) }}
+            </div>
+
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.PrenomReclamation, 'Votre Prénom') }}
+                {{ form_widget(form.PrenomReclamation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.PrenomReclamation) }}
+            </div>
         
 
         {{ form_start(form, {'attr': {'class': 'form'}}) }}

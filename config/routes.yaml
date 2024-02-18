@@ -29,4 +29,3 @@ reclamation_success:
     path: /reclamation/success
     controller: App\Controller\ReclamationController::success
 
-

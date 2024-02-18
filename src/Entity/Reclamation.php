@@ -18,6 +18,12 @@ class Reclamation
     private ?string $titreReclamation = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $NomReclamation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $PrenomReclamation = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $emailReclamation = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -33,12 +39,37 @@ class Reclamation
         return $this->titreReclamation;
     }
 
+    public function getNomReclamation(): ?string
+    {
+        return $this->NomReclamation;
+    }
+
+    public function getPrenomReclamation(): ?string
+    {
+        return $this->PrenomReclamation;
+    }
+
     public function setTitreReclamation(string $titreReclamation): static
     {
         $this->titreReclamation = $titreReclamation;
 
         return $this;
     }
+
+    public function setNomReclamation(string $NomReclamation): static
+    {
+        $this->NomReclamation = $NomReclamation;
+
+        return $this;
+    }
+
+    public function setPrenomReclamation(string $PrenomReclamation): static
+{
+    $this->PrenomReclamation = $PrenomReclamation;
+
+    return $this;
+}
+
 
     public function getEmailReclamation(): ?string
     {
