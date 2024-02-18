@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+user_delete:
+    path: /self/delete/{username}
+    controller: App\Controller\SecurityController::deleteAccount
+

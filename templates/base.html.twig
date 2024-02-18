@@ -5,7 +5,7 @@
      	   <meta charset="UTF-8">
 	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	   <meta name="viewport" content="width=device-width, initial-scale=1">
-	   <title>Goodup - Business Directory & Listing HTML Template</title>
+	   <title>Al9ani</title>
 
 	   <!-- Favicon -->
 	   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/themezhub.net/goodup-live/goodup/assets/img/favicon.png') }}">
@@ -42,13 +42,10 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 							
-								<li class="active"><a href="javascript:void(0);">Home</a>
-									<ul class="nav-dropdown nav-submenu">
-										<li><a href="index.html"></a></li>
-							
-									</ul>
+								<li class="active"><a href="{{ path('app_home_page') }}">Home</a>
+									
 								</li>
-								
+							
 								<li><a href="javascript:void(0);">Etablissements</a>
 									
 										</li>
@@ -77,9 +74,14 @@
 							<ul class="nav-menu nav-menu-social align-to-right">
 							{% if app.user %}
 							<li>
-									<a href="javascript:void(0);">
-								<i class="lni lni-user me-2"></i>
+									<a >
+								<i class="fa fa-user-check me-2 theme-cl fs-sm"></i>
 									{{ app.user.username }}</a>
+									<ul class="nav-dropdown nav-submenu">
+										<li><a href="index.html"><i class="lni lni-user me-2"></i>My Profile</a></li>
+										<li><a href="{{ path('user_delete', {'username': app.user.username}) }}"> <i class="lni lni-trash-can me-2"></i>Delete Account</a></li>
+							
+									</ul>
 								</li>
 									<li class="add-listing gray">
 									<a href="{{ path('app_logout')}}" >
