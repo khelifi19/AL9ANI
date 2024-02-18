@@ -1,48 +1,83 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Reserver une Course{% endblock %}
-
 {% block content %}
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
+     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">Reserver Votre Course</div>
-                <div class="card-body">
-                    <h1 class="card-title text-center mb-4">Ajouter une Course</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            {{ form_start(form) }}
-                            <div class="mb-3">
-                                {{ form_row(form.destination, {'attr': {'class': 'form-control', 'placeholder': 'Votre destination'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.depart, {'attr': {'class': 'form-control', 'placeholder': 'Votre adresse de départ'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.dateCourse, {'attr': {'class': 'form-control', 'placeholder': 'Date de la course'}}) }}
-                                {% if form_errors(form.dateCourse) %}
-                                    <div class="alert alert-danger">{{ form_errors(form.dateCourse) }}</div>
-                                {% endif %}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.nbPersonne, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de personnes'}}) }}
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Reserver</button>
-                            </div>
-                            {{ form_end(form) }}
-                            {% if errorMessage %}
-                                <div class="alert alert-danger mt-3">{{ errorMessage }}</div>
-                            {% endif %}
+                 <div class="card-header bg-primary text-white">Reservez Une Course</div>
+                 <div class="card-body">
+          
+
+          
+                    {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_row(form.destination) }}
+                        {% if form_errors(form.destination)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.destination) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
+                        {% endif %}
                     </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.depart) }}
+                        {% if form_errors(form.depart)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.depart) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+
+
+
+                  <div class="mb-3">
+                        {{ form_row(form.date) }}
+                        {% if form_errors(form.date) %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.date) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.nbPersonne) }}
+                        {% if form_errors(form.nbPersonne)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.nbPersonne) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red;">Ajouter la course</button>
+                        <a href="{{ path('course_index') }}" </a>
+                    </div>
+
+                    {{ form_end(form) }}
                 </div>
             </div>
-        </div>
-    </div>
+  </div>
+        </div> <!-- container -->
+    </div> <!-- content -->
 </div>
-
 {% endblock %}
-

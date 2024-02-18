@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Course;
-
+use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,14 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class CourseController extends AbstractController
 {
     #[Route('/courses', name: 'course_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $courses = $entityManager->getRepository(Course::class)->findAll();
+public function index(CourseRepository $courseRepository): Response
+{
+    $courses = $courseRepository->findAll();
 
-        return $this->render('back/course/index.html.twig', [
-            'courses' => $courses,
-        ]);
-    }
+    return $this->render('back/course/index.html.twig', [
+        'courses' => $courses,
+    ]);
+}
+
 
 
     #[Route('/course/{id}', name: 'course_show', methods: ['GET'])]

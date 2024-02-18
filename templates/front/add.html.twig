@@ -1,0 +1,48 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Réserver une Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div style="margin-top: 100px;"></div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Réserver Votre Course</div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">Destination</label>
+                            <input type="text" class="form-control" id="destination" name="destination" value="{{ form_data.destination ?? '' }}" placeholder="Votre destination">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="depart" class="form-label">Départ</label>
+                            <input type="text" class="form-control" id="depart" name="depart" value="{{ form_data.depart ?? '' }}" placeholder="Votre adresse de départ">
+                        </div>
+
+                        <div class="mb-3">
+    <label for="dateTime" class="form-label">Date et Heure</label>
+    <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" value="{{ form_data.dateTime ?? '' }}" placeholder="Date et Heure">
+</div>
+
+
+                        <div class="mb-3">
+                            <label for="nbPersonne" class="form-label">Nombre de personnes</label>
+                            <input type="number" class="form-control" id="nbPersonne" name="nbPersonne" value="{{ form_data.nbPersonne ?? '' }}" placeholder="Nombre de personnes">
+                        </div>
+
+                        {% if errorMessage %}
+                            <div class="alert alert-danger">{{ errorMessage }}</div>
+                        {% endif %}
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger">Confirmer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

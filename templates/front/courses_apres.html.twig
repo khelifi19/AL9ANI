@@ -1,12 +1,12 @@
-{% extends 'back/base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 
-{% block title %}Liste des Courses{% endblock %}
+{% block title %}Courses Avant Date Système{% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Liste des Courses</h1>
+    <h1 class="text-center mb-4">Courses a venir </h1>
     <table class="table table-striped">
-        <thead class="bg-primary text-white">
+        <thead class="bg-danger text-white">
             <tr>
                 <th>Destination</th>
                 <th>Départ</th>
@@ -16,7 +16,6 @@
             </tr>
         </thead>
         <tbody>
-            {# Loop through courses and display each one #}
             {% for course in courses %}
             <tr>
                 <td>{{ course.destination }}</td>
@@ -24,16 +23,13 @@
                 <td>{{ course.date|date('Y-m-d H:i') }}</td>
                 <td>{{ course.nbPersonne }}</td>
                 <td>
-                    <a href="{{ path('course_show', {'id': course.id}) }}" class="btn btn-primary">Voir</a>
-                    <a href="{{ path('course_delete', {'id': course.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('courseUser_delete', {'id': course.id}) }}" class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <div class="text-center">
-        <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
-    </div>
+    <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Retour</a>
 </div>
 {% endblock %}

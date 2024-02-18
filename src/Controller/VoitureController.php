@@ -23,36 +23,42 @@ class VoitureController extends AbstractController
         ]);
     }
 
-    #[Route('/voiture/new', name: 'voiture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $voiture = new Voiture();
-        $form = $this->createForm(VoitureType::class, $voiture);
-        $form->handleRequest($request);
+    public function new(Request $request, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository): Response
+{
+    $voiture = new Voiture();
+    $form = $this->createForm(VoitureType::class, $voiture);
+    $form->handleRequest($request);
+    $errorMessage = '';
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
+    if ($form->isSubmitted() && $form->isValid()) {
+        $matricule = $voiture->getMatricule();
+  
+        $existingVoiture = $voitureRepository->findOneBy(['matricule' => $matricule]);
+        if ($existingVoiture) {
+            $errorMessage = 'La matricule existe déjà.';
+        } else {
             $modele = $form->get('modele')->getData();
-            
             // Assigner le nombre de places en fonction du modèle
             if ($modele === 'Bus') {
                 $voiture->setNbPlace(9);
-                
             } elseif ($modele === 'Sportive' || $modele === 'Classique') {
                 $voiture->setNbPlace(4);
             }
             
-
             $entityManager->persist($voiture);
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('voiture_index');
         }
-
-        return $this->render('back/voiture/new.html.twig', [
-            'form' => $form->createView(),
-        ]);
     }
+    
+    // Déplacer le rendu de la vue Twig à l'intérieur du bloc else
+    return $this->render('back/voiture/new.html.twig', [
+        'form' => $form->createView(),
+        'errorMessage' => $errorMessage,
+    ]);
+}
+
 
     #[Route('/voiture/{id}', name: 'voiture_show', methods: ['GET'])]
     public function show(Request $request, EntityManagerInterface $entityManager): Response
@@ -70,9 +76,10 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/voiture/{id}/edit', name: 'voiture_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, int $id, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, int $id, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository): Response
     {
         $voiture = $entityManager->getRepository(Voiture::class)->find($id);
+        $errorMessage = '';
 
         if (!$voiture) {
             throw $this->createNotFoundException('Aucune voiture trouvée pour cet identifiant : '.$id);
@@ -82,6 +89,17 @@ class VoitureController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $matricule = $voiture->getMatricule();
+
+      
+            $existingVoiture = $voitureRepository->findOneBy(['matricule' => $matricule]);
+            if ($existingVoiture) {
+                $errorMessage = 'La matricule existe déjà.';
+          
+            }
+            else{
+
             $modele = $form->get('modele')->getData();
             
             // Assigner le nombre de places en fonction du modèle
@@ -96,27 +114,27 @@ class VoitureController extends AbstractController
 
             return $this->redirectToRoute('voiture_index');
         }
+    }
 
         return $this->render('back/voiture/edit.html.twig', [
             'voiture' => $voiture,
             'form' => $form->createView(),
+            'errorMessage' => $errorMessage,
         ]);
     }
 
     #[Route('/voiture/{id}/delete', name: 'voiture_delete')]
     public function delete(VoitureRepository $voiture, EntityManagerInterface $entityManager, int $id): Response
-{
-    $voiture = $entityManager->getRepository(Voiture::class)->find($id);
+    {
+        $voiture = $entityManager->getRepository(Voiture::class)->find($id);
 
-    if (!$voiture) {
-        throw $this->createNotFoundException('Aucune voiture trouvée pour cet identifiant : '.$id);
-    }
+        if (!$voiture) {
+            throw $this->createNotFoundException('Aucune voiture trouvée pour cet identifiant : '.$id);
+        }
 
-    
         $entityManager->remove($voiture);
         $entityManager->flush();
-    
 
-    return $this->redirectToRoute('voiture_index');
-}
+        return $this->redirectToRoute('voiture_index');
+    }
 }

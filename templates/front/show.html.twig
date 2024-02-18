@@ -16,12 +16,15 @@
                     <div class="mb-3">
                         <strong>Adresse de Départ:</strong> {{ course.depart }}
                     </div>
+                
                     <div class="mb-3">
-                        <strong>Date de la Course:</strong> {{ course.dateCourse|date('Y-m-d') }}
+                        <strong>Nombre de Passagers:</strong> {{ course.nbPersonne }}
                     </div>
-                    <div class="mb-3">
-                        <strong>Nombre de Personnes:</strong> {{ course.nbPersonne }}
-                    </div>
+                       
+                 <div class="mb-3">
+    <strong>Date de la course:</strong> {{ course.date|date('Y-m-d H:i') }}
+</div>
+
                     {% if course.idVoiture %}
                         <div class="mb-3">
                             <strong>Matricule de la Voiture:</strong> {{ course.idVoiture.getMatricule() }}
@@ -32,14 +35,15 @@
                     {% else %}
                         <div class="alert alert-warning">Aucune voiture assignée pour le moment.</div>
                     {% endif %}
-                    <div class="alert alert-info">
-                        Le prix de la course sera calculé en fonction du compteur, similaire à un taxi.
-                    </div>
-                    {% if course.dateCourse >= "now"|date("Y-m-d") %}
+                  <div class="alert alert-danger">
+    Le prix de la course sera calculé en fonction du compteur, similaire à un taxi.
+</div>
+
+                   
                         <div class="text-center">
-                            <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-primary">Editer Course</a>
+                            <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Modifier Votre Course</a>
                         </div>
-                    {% endif %}
+                 
                 </div>
             </div>
         </div>

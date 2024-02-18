@@ -1,0 +1,31 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+div class="container mt-5">
+    <h1 class="text-center mb-5">Options de Course</h1> <!-- Titre centré -->
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpg') }}" class="card-img-top" alt="Image 1">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion des vehicules</h5>
+                    <p class="card-text">Gerer vos vehicules.</p>
+                    <a href="{{ path('voiture_index') }}" class="btn btn-primary">Gerer vehicules</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpeg') }}" class="card-img-top" alt="Image 3">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion des Courses</h5>
+                    <p class="card-text">Consultez les  courses </p>
+                    <a href="{{ path('course_index') }}" class="btn btn-primary">Historique des courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

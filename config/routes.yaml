@@ -92,4 +92,17 @@ courseUser_delete:
 
 
 
+courseUser_avant:
+    path: /user/courses/avant
+    controller: App\Controller\CourseUserController::coursesAvantDateSysteme
+    methods: ['GET']
 
+courseUser_apres:
+    path: /user/courses/apres
+    controller: App\Controller\CourseUserController::coursesApresOuEgaleDateSysteme
+    methods: ['GET']
+
+home:
+    path: /home
+    controller: App\Controller\HomeController::index
+    methods: ['GET']

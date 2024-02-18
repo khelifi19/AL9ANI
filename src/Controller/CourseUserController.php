@@ -25,42 +25,38 @@ class CourseUserController extends AbstractController
     }
 
     #[Route('/user/course/new', name: 'courseUser_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $course = new Course();
-        $form = $this->createForm(CourseUserForm::class, $course);
-        $form->handleRequest($request);
-        $errorMessage = '';
+public function new(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $course = new Course();
+    $form = $this->createForm(CourseUserForm::class, $course);
+    $form->handleRequest($request);
+    $errorMessage = '';
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $nbPersonne = $form->get('nbPersonne')->getData();
-            $voitureModel = ($nbPersonne > 4) ? 'bus' : 'classique';
+    if ($form->isSubmitted() && $form->isValid()) {
+        $nbPersonne = $form->get('nbPersonne')->getData();
+        $voitureModel = ($nbPersonne > 4) ? 'bus' : 'classique';
 
-            // Récupérer la voiture disponible avec le modèle correspondant
-            $voiture = $entityManager->getRepository(Voiture::class)->findOneBy([
-                'modele' => $voitureModel,
-                'disponibilite' => true
-            ]);
-
-            if ($voiture) {
-                $course->setIdVoiture($voiture);
-                $entityManager->persist($course);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('courseUser_show', ['id' => $course->getId()]);
-
-            } else {
-               
-                $errorMessage = 'Aucune voiture disponible pour le moment .Merci de  ressayer plutard';
-            }
-        }
-
-        return $this->render('front/new.html.twig', [
-            'form' => $form->createView(),
-            'errorMessage' => $errorMessage,
+        // Récupérer la voiture disponible avec le modèle correspondant
+        $voiture = $entityManager->getRepository(Voiture::class)->findOneBy([
+            'modele' => $voitureModel,
+            'disponibilite' => true
         ]);
-    }
 
+        if ($voiture) {
+            $course->setIdVoiture($voiture);
+            $entityManager->persist($course);
+            $entityManager->flush();
+            return $this->redirectToRoute('courseUser_show', ['id' => $course->getId()]);
+        } else {
+            $errorMessage = 'Aucune voiture disponible pour le moment. Merci de réessayer plus tard.';
+        }
+    } else {  $errorMessage = 'Aucune voiture disponible pour le moment. Merci de réessayer plus tard.';}
+
+    return $this->render('front/new.html.twig', [
+        'form' => $form->createView(),
+        'errorMessage' => $errorMessage,
+    ]);
+}
 
     #[Route('/user/course/{id}', name: 'courseUser_show', methods: ['GET'])]
     public function show(Course $course): Response
@@ -80,12 +76,8 @@ class CourseUserController extends AbstractController
             throw $this->createNotFoundException('Aucune course trouvée pour cet identifiant : ' . $id);
         }
     
-        // Vérifier si la date de la course est passée
-        if ($course->getDateCourse() < new \DateTime('today')) {
-            $errorMessage = 'Cette course ne peut pas être éditée car sa date est passée.';
-        } else {
-            $errorMessage = '';
-        }
+   
+
     
         // Créer le formulaire d'édition
         $form = $this->createForm(CourseUserForm::class, $course);
@@ -101,7 +93,7 @@ class CourseUserController extends AbstractController
         return $this->render('front/edit.html.twig', [
             'course' => $course,
             'form' => $form->createView(),
-            'errorMessage' => $errorMessage,
+          
         ]);
     }
     
@@ -125,7 +117,37 @@ class CourseUserController extends AbstractController
 
 
  
-
+    #[Route('/user/courses/avant', name: 'courseUser_avant', methods: ['GET'])]
+    public function coursesAvantDateSysteme(EntityManagerInterface $entityManager): Response
+    {
+        $currentDate = new \DateTime();
+        $coursesAvantDateSysteme = $entityManager->getRepository(Course::class)
+            ->createQueryBuilder('c')
+            ->where('c.date < :currentDate')
+            ->setParameter('currentDate', $currentDate)
+            ->getQuery()
+            ->getResult();
+    
+        return $this->render('front/courses_avant.html.twig', [
+            'courses' => $coursesAvantDateSysteme,
+        ]);
+    }
+    
+    #[Route('/user/courses/apres', name: 'courseUser_apres', methods: ['GET'])]
+    public function coursesApresOuEgaleDateSysteme(EntityManagerInterface $entityManager): Response
+    {
+        $currentDate = new \DateTime();
+        $coursesApresDateSysteme = $entityManager->getRepository(Course::class)
+            ->createQueryBuilder('c')
+            ->where('c.date >= :currentDate')
+            ->setParameter('currentDate', $currentDate)
+            ->getQuery()
+            ->getResult();
+    
+        return $this->render('front/courses_apres.html.twig', [
+            'courses' => $coursesApresDateSysteme,
+        ]);
+    }
 
 
 

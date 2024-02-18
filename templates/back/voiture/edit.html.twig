@@ -45,6 +45,14 @@
                         </div>
                         {% endfor %}
                     </div>
+                     <div class="mb-3">
+                        {# Affichage de errorMessage #}
+                        {% if errorMessage %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ errorMessage }}
+                            </div>
+                        {% endif %}
+                    </div>
 
                     <div class="mb-3">
                         {{ form_row(form.description) }}

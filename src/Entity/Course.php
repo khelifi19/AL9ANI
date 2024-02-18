@@ -26,7 +26,7 @@ class Course
     #[ORM\Column(length: 255)]
     #[Assert\NotNull(message: "Le départ ne doit pas être vide")]
     #[Assert\Type(type: 'string', message: "Le départ doit être une chaîne de caractères")]
-    #[Assert\Length(min: 2, max: 255, minMessage: "Le départ doit contenir au moins {{ limit }} caractères", maxMessage: "Le départ ne peut pas dépasser {{ limit }} caractères")]
+    #[Assert\Length(min: 2, max: 255, minMessage: "Le départ doit contenir au moins 4 caractères", maxMessage: "Le départ ne peut pas dépasser 30 caractères")]
     private ?string $depart = null;
 
     
@@ -37,8 +37,8 @@ class Course
         min:1,
         max:9,
         
-        minMessage: "Le nombre de personnes doit être au moins {{ limit }}",
-        maxMessage:"Le nombre de personnes ne peut pas dépasser {{ limit }}.")]
+        minMessage: "Le nombre de personnes doit être au moins 1",
+        maxMessage:"Le nombre de personnes ne peut pas dépasser 9")]
     #[Assert\Type(type: 'integer', message: "Le nombre de personnes doit être un entier")]
     private ?int $nbPersonne = null;
 
@@ -50,14 +50,13 @@ class Course
    
     private ?Voiture $idVoiture = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Assert\NotNull(message: "La date de la course ne doit pas être vide")]
-#[Assert\Type(type: '\DateTimeInterface', message: "La date de la course doit être une instance de DateTimeInterface")]
-#[Assert\GreaterThanOrEqual("today", message: "La date de la course doit être ultérieure ou égale à la date actuelle")] 
-#[Assert\LessThanOrEqual("+1 week", message:"La date de la course ne peut pas être plus d'une semaine à partir de maintenant")]
-    private ?\DateTimeInterface $dateCourse = null;
+
+
 
   
 
@@ -66,17 +65,8 @@ class Course
         return $this->id;
     }
 
-    public function getPrix(): ?float
-    {
-        return $this->prix;
-    }
+  
 
-    public function setPrix(float $prix): static
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
 
     public function getDestination(): ?string
     {
@@ -130,19 +120,21 @@ class Course
         return $this;
     }
 
-  
-
-    public function getDateCourse(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->dateCourse;
+        return $this->date;
     }
 
-    public function setDateCourse(\DateTimeInterface $dateCourse): static
+    public function setDate(\DateTimeInterface $date): static
     {
-        $this->dateCourse = $dateCourse;
+        $this->date = $date;
 
         return $this;
     }
+
+  
+
+
 
     
 }

@@ -1,0 +1,78 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block content %}
+<div class="container mt-5">
+     <div class="row justify-content-center">
+       
+           <div class="col-md-4">
+           <div class="card mb-4">
+               
+                    <img  src="{{ asset('assets/admin/images/driver.webp') }}" class="card-img-top" alt="Image 1">
+       
+            <div class="flex flex-col gap-y-4 md:ml-4">
+                <h4 class="font-semibold text-xl md:text-2xl">Drive and earn money</h4>
+                <ol class="pl-0 list-decimal">
+                    <li class="mb-4">
+                        <div>
+                            <h5 class="font-semibold text-base md:text-lg">Conduisez plus, générez plus de revenus</h5>
+                            <p class="text-sm md:text-base">Nos +150 millions de clients vous enverront beaucoup de demandes de trajets. Quand la demande est élevée, vous pouvez générer encore plus de revenus.</p>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h5 class="font-semibold text-base md:text-lg">Heures de travail flexibles</h5>
+                            <p class="text-sm md:text-base">Choisissez quand vous voulez travailler, que vous cherchiez à conduire chaque jour ou simplement les weekends.</p>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h5 class="font-semibold text-base md:text-lg">Besoin d’aide ?</h5>
+                            <p class="text-sm md:text-base">Notre équipe du service client est disponible pour vous aider tout au long de votre trajet.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Fonctionalite</h1> <!-- Titre centré -->
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpg') }}" class="card-img-top" alt="Image 1">
+                <div class="card-body">
+                    <h5 class="card-title">Réserver une course</h5>
+                    <p class="card-text">Réservez votre prochaine course dès maintenant.</p>
+                    <a href="{{ path('courseUser_new') }}" class="btn btn-danger">Réserver une course</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.webp') }}" class="card-img-top" alt="Image 2">
+                <div class="card-body">
+                    <h5 class="card-title">Gérer mes courses en cours</h5>
+                    <p class="card-text">Consultez et gérez vos courses en cours.</p>
+                    <a href="{{ path('courseUser_apres') }}" class="btn btn-danger">Gérer mes courses en cours</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpeg') }}" class="card-img-top" alt="Image 3">
+                <div class="card-body">
+                    <h5 class="card-title">Historique des courses</h5>
+                    <p class="card-text">Consultez l'historique de vos courses précédentes.</p>
+                    <a href="{{ path('courseUser_avant') }}" class="btn btn-danger">Historique des courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
