@@ -52,18 +52,22 @@ class Voiture
     )]
     private ?string $matricule = null;
 
-    #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'idVoiture')]
+    #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'idVoiture', cascade: ["remove"])]
     private Collection $courses;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "La description ne doit pas être vide")]
     #[Assert\Length(
-        min: 10,
+        min: 4,
         max: 255,
         minMessage: "La description doit comporter au moins {{ limit }} caractères",
         maxMessage: "La description ne peut pas dépasser {{ limit }} caractères"
     )]
     private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'voitures')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Chauffeur $chauffeur = null;
 
    
 
@@ -176,6 +180,18 @@ class Voiture
 public function __toString(): string
 {
     return $this->modele; // Ou toute autre propriété de la voiture que vous souhaitez afficher
+}
+
+public function getChauffeur(): ?Chauffeur
+{
+    return $this->chauffeur;
+}
+
+public function setChauffeur(?Chauffeur $chauffeur): static
+{
+    $this->chauffeur = $chauffeur;
+
+    return $this;
 }
 
 

@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Chauffeur;
 use App\Entity\Voiture;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -35,6 +37,14 @@ class VoitureType extends AbstractType
             ])
             ->add('matricule')
             ->add('description')
+            ->add('chauffeur', EntityType::class, [ // Ajout du champ chauffeur de type EntityType
+                'class' => Chauffeur::class, // Entité cible
+                'choice_label' => function ($chauffeur) { // Fonction pour définir comment afficher les choix
+                    return $chauffeur->getNom() . ' ' . $chauffeur->getPrenom(); // Affichage du nom et prénom du chauffeur
+                },
+                'placeholder' => 'Choisir un chauffeur', // Texte par défaut
+                'required' => false, // Le champ n'est pas obligatoire
+            ]);
             
         ;
     }

@@ -1,0 +1,53 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Informations sur le Chauffeur</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <dl class="row">
+                        <dt class="col-sm-3">ID :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.id }}</dd>
+
+
+                      <dt class="col-sm-3">Nom :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.nom }}</dd>
+
+                         <dt class="col-sm-3">Prenom :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.prenom }}</dd>
+
+                        <dt class="col-sm-3">Age :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.age }}</dd>
+
+                           <dt class="col-sm-3">Salaire :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.salaire }} D</dd>
+
+                 <dt class="col-sm-3">Ville :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.ville }}</dd>
+
+                     <dt class="col-sm-3">Numero :</dt>
+                        <dd class="col-sm-9">{{ chauffeur.numero }}</dd>
+                   <div class="mt-4">
+<a href="javascript:history.go(-1)" class="btn btn-secondary">Retour</a>
+
+    <a href="{{ path('app_chauffeur_edit', {'id': chauffeur.id}) }}" class="btn btn-primary">Editer</a>
+    <a href="{{ path('app_chauffeur_delete', {'id': chauffeur.id}) }}" class="btn btn-danger" >Supprimer</a>
+
+ 
+</div>
+
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

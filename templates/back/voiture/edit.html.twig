@@ -62,7 +62,19 @@
                         </div>
                         {% endfor %}
                     </div>
-
+                    
+   <div class="mb-3">
+                        {{ form_row(form.chauffeur) }}
+                        {% if form_errors(form.chauffeur)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.chauffeur) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">Modifier</button>
                         <a href="{{ path('voiture_index') }}" class="btn btn-secondary ms-2">Retour à la liste des voitures</a>

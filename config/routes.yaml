@@ -86,9 +86,7 @@ courseUser_edit:
 courseUser_delete:
     path: /user/course/{id}/delete
     controller: 'App\Controller\CourseUserController::delete'
-    methods: ['DELETE']
-    requirements:
-        id: '\d+'
+ 
 
 
 
@@ -106,3 +104,65 @@ home:
     path: /home
     controller: App\Controller\HomeController::index
     methods: ['GET']
+
+
+
+
+app_chauffeur_index:
+    path: /chauffeur
+    controller: 'App\Controller\ChauffeurController::index'
+    methods: ['GET']
+
+app_chauffeur_new:
+    path: /chauffeur/new
+    controller: 'App\Controller\ChauffeurController::new'
+    methods: ['GET', 'POST']
+
+app_chauffeur_show:
+    path: /chauffeur/{id}
+    controller: 'App\Controller\ChauffeurController::show'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
+app_chauffeur_edit:
+    path: /chauffeur/{id}/edit
+    controller: 'App\Controller\ChauffeurController::edit'
+    methods: ['GET', 'POST']
+    requirements:
+        id: '\d+'
+
+app_chauffeur_delete:
+    path: /chauffeur/{id}/delete
+    controller: 'App\Controller\ChauffeurController::delete'
+   
+  # config/routes.yaml
+
+app_postule_index:
+    path: /postule
+    controller: 'App\Controller\PostuleController::index'
+    methods: ['GET']
+
+app_postule_new:
+    path: /postule/new
+    controller: 'App\Controller\PostuleController::new'
+    methods: ['GET', 'POST']
+
+app_postule_show:
+    path: /postule/{id}
+    controller: 'App\Controller\PostuleController::show'
+    methods: ['GET']
+
+
+app_postule_edit:
+    path: /postule/{id}/edit
+    controller: 'App\Controller\PostuleController::edit'
+    methods: ['GET', 'POST']
+
+app_postule_delete:
+    path: /postule/{id}/delete
+    controller: 'App\Controller\PostuleController::delete'
+
+app_postule_delete2:
+    path: /postule/{id}/supprimer
+    controller: 'App\Controller\PostuleController::delete2'

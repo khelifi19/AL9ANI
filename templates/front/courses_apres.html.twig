@@ -1,6 +1,6 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Courses Avant Date Système{% endblock %}
+{% block title %}Courses Apres Date Système{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -24,12 +24,13 @@
                 <td>{{ course.nbPersonne }}</td>
                 <td>
                     <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-primary">Modifier</a>
-                    <a href="{{ path('courseUser_delete', {'id': course.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('courseUser_delete', {'id': course.id}) }}" class="btn btn-danger">Annuler</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Retour</a>
+<a href="javascript:history.go(-1)" class="btn btn-secondary">Retour</a>
+
 </div>
 {% endblock %}

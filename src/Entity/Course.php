@@ -51,6 +51,9 @@ class Course
     private ?Voiture $idVoiture = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThanOrEqual("now", message:"La date doit être supérieure ou égale à la date actuelle")]
+    #[ Assert\LessThanOrEqual("+1 year", message:"La date doit être inférieure ou égale à la date actuelle plus un an")]
+  
     private ?\DateTimeInterface $date = null;
 
     

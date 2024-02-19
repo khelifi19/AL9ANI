@@ -31,6 +31,11 @@ class VoitureController extends AbstractController
     $errorMessage = '';
 
     if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+
+        
         $matricule = $voiture->getMatricule();
   
         $existingVoiture = $voitureRepository->findOneBy(['matricule' => $matricule]);
@@ -77,35 +82,30 @@ class VoitureController extends AbstractController
 
     #[Route('/voiture/{id}/edit', name: 'voiture_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, int $id, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository): Response
-    {
-        $voiture = $entityManager->getRepository(Voiture::class)->find($id);
-        $errorMessage = '';
+{
+    $voiture = $entityManager->getRepository(Voiture::class)->find($id);
+    $errorMessage = '';
 
-        if (!$voiture) {
-            throw $this->createNotFoundException('Aucune voiture trouvée pour cet identifiant : '.$id);
-        }
+    if (!$voiture) {
+        throw $this->createNotFoundException('Aucune voiture trouvée pour cet identifiant : '.$id);
+    }
 
-        $form = $this->createForm(VoitureType::class, $voiture);
-        $form->handleRequest($request);
+    $form = $this->createForm(VoitureType::class, $voiture);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid()) {
+        $matricule = $voiture->getMatricule();
 
-            $matricule = $voiture->getMatricule();
-
-      
-            $existingVoiture = $voitureRepository->findOneBy(['matricule' => $matricule]);
-            if ($existingVoiture) {
-                $errorMessage = 'La matricule existe déjà.';
-          
-            }
-            else{
-
+        // Recherche d'une voiture avec le même matricule, mais excluant la voiture actuelle
+        $existingVoiture = $voitureRepository->findOneBy(['matricule' => $matricule]);
+        if ($existingVoiture && $existingVoiture->getId() !== $voiture->getId()) {
+            $errorMessage = 'La matricule existe déjà pour une autre voiture.';
+        } else {
             $modele = $form->get('modele')->getData();
             
             // Assigner le nombre de places en fonction du modèle
             if ($modele === 'Bus') {
                 $voiture->setNbPlace(9);
-                
             } elseif ($modele === 'Sportive' || $modele === 'Classique') {
                 $voiture->setNbPlace(4);
             }
@@ -116,12 +116,12 @@ class VoitureController extends AbstractController
         }
     }
 
-        return $this->render('back/voiture/edit.html.twig', [
-            'voiture' => $voiture,
-            'form' => $form->createView(),
-            'errorMessage' => $errorMessage,
-        ]);
-    }
+    return $this->render('back/voiture/edit.html.twig', [
+        'voiture' => $voiture,
+        'form' => $form->createView(),
+        'errorMessage' => $errorMessage,
+    ]);
+}
 
     #[Route('/voiture/{id}/delete', name: 'voiture_delete')]
     public function delete(VoitureRepository $voiture, EntityManagerInterface $entityManager, int $id): Response

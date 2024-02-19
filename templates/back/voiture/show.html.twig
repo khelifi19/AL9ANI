@@ -14,6 +14,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <dl class="row">
+                          <dt class="col-sm-3">ID :</dt>
+                        <dd class="col-sm-9">{{ voiture.id }}</dd>
                         <dt class="col-sm-3">Modèle :</dt>
                         <dd class="col-sm-9">{{ voiture.modele }}</dd>
 
@@ -29,6 +31,15 @@
 
                         <dt class="col-sm-3">Description :</dt>
                         <dd class="col-sm-9">{{ voiture.description }}</dd>
+
+                         <dt class="col-sm-3">Chauffeur :</dt>
+                        <dd class="col-sm-9"> 
+                        {% if voiture.chauffeur is not null %}
+        {{ voiture.chauffeur.getPrenom() }} {{ voiture.chauffeur.getNom() }}
+    {% else %}
+        Aucun chauffeur assigné
+    {% endif %}
+                        </dd>
                     </dl>
 
                     <div class="mt-4">
