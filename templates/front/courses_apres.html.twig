@@ -1,10 +1,10 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Courses Apres Date Système{% endblock %}
+{% block title %}Courses A venir{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Courses a venir </h1>
+    <h1 class="text-center mb-4"> Mes Courses a venir </h1>
     <table class="table table-striped">
         <thead class="bg-danger text-white">
             <tr>
@@ -23,8 +23,8 @@
                 <td>{{ course.date|date('Y-m-d H:i') }}</td>
                 <td>{{ course.nbPersonne }}</td>
                 <td>
-                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-primary">Modifier</a>
-                    <a href="{{ path('courseUser_delete', {'id': course.id}) }}" class="btn btn-danger">Annuler</a>
+                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-secondary">Modifier</a>
+                    <a href="{{ path('courseUser_delete2', {'id': course.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette course ?')">Annuler</a>
                 </td>
             </tr>
             {% endfor %}

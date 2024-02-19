@@ -22,6 +22,10 @@ class Chauffeur
         min: 3,
         minMessage: "Le nom doit comporter au moins 3 caractères"
     )]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: "Le nom ne peut contenir que des lettres"
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
@@ -29,6 +33,10 @@ class Chauffeur
     #[Assert\Length(
         min: 3,
         minMessage: "Le prenom doit comporter au moins 3 caractères"
+    )]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: "Le prenom ne peut contenir que des lettres"
     )]
     private ?string $prenom = null;
 

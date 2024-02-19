@@ -33,7 +33,7 @@ class PostuleController extends AbstractController
             $entityManager->persist($postule);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_postule_show', ['id' => $postule->getId()]);
+            return $this->redirectToRoute('afficher', ['id' => $postule->getId()]);
         }
 
         return $this->renderForm('front/postule/new.html.twig', [
@@ -50,7 +50,13 @@ class PostuleController extends AbstractController
         ]);
     }
     
-
+    #[Route('/{id}', name: 'afficher', methods: ['GET'])]
+    public function afficher(Postule $postule): Response
+    {
+        return $this->render('front/postule/show.html.twig', [
+            'postule' => $postule,
+        ]);
+    }
 
     #[Route('/{id}/edit', name: 'app_postule_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Postule $postule, EntityManagerInterface $entityManager): Response

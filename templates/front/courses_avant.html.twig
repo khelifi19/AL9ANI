@@ -1,6 +1,6 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Courses Avant Date Système{% endblock %}
+{% block title %} anciennes Courses {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -23,7 +23,7 @@
                 <td>{{ course.date|date('Y-m-d H:i') }}</td>
                 <td>{{ course.nbPersonne }}</td>
                     <td>
-                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Modifier</a>
+                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Reservez A Nouveau</a>
                    
                 </td>
             </tr>

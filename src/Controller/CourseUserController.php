@@ -113,7 +113,20 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
         
     }
 
+    #[Route('/user/course/{id}/delete2', name: 'courseUser_delete2', methods: ['DELETE'])]
+    public function delete2(Request $request, int $id, EntityManagerInterface $entityManager): Response
+    {
+        $course = $entityManager->getRepository(Course::class)->find($id);
+        if (!$course) {
+            throw $this->createNotFoundException('Aucune course trouvée pour cet identifiant : '.$id);
+        }
+            $entityManager->remove($course);
+            $entityManager->flush();
+            return $this->redirectToRoute('courseUser_apres');
+        
 
+        
+    }
 
 
  

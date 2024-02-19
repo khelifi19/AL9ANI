@@ -88,7 +88,9 @@ courseUser_delete:
     controller: 'App\Controller\CourseUserController::delete'
  
 
-
+courseUser_delete2:
+    path: /user/course/{id}/delete2
+    controller: 'App\Controller\CourseUserController::delete2'
 
 courseUser_avant:
     path: /user/courses/avant
@@ -153,6 +155,10 @@ app_postule_show:
     controller: 'App\Controller\PostuleController::show'
     methods: ['GET']
 
+afficher:
+    path: /postuleAfficher/{id}
+    controller: 'App\Controller\PostuleController::afficher'
+    methods: ['GET']
 
 app_postule_edit:
     path: /postule/{id}/edit

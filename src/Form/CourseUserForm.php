@@ -14,11 +14,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CourseUserForm extends AbstractType
 {
 
-   
+    
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    {$etablissements = [
+        'baguette&baguette', 'Plan B', 'KFC', 'Compoz', 'cafe 716', 'cafe 33', 'Baristas', 'Ettounsi', 'le Gourmed' ];
         $builder
-            ->add('destination')
+            ->add('destination', ChoiceType::class, [
+                'choices' => array_combine($etablissements, $etablissements),
+                'placeholder' => 'Choisir votre destination',
+            ])
             ->add('depart')
      
             ->add('nbPersonne')
