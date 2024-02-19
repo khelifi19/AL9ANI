@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -18,8 +19,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message:"username is required")]
     private ?string $username = null;
-    
+
+    #[ORM\Column]
+    #[Assert\NotBlank(message:"Phone number is required")]
+    #[Assert\Length(min:8,minMessage:" please add a valid phone number")]
+    private ?int $phone = null;
     #[ORM\Column]
     private array $roles = [];
 
@@ -27,11 +33,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Password is required")]
+
+    /**
+ * @Assert\Length(
+ *      min = 6,
+ *      minMessage = "Votre mot de passe ne contient pas {{ limit }} caractères."
+ * )
+ */
+
     private ?string $password = null;
+   
+    #[ORM\Column]
+    private ?string $img = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message:"Email is required")]
+    #[Assert\Email(message:'The email "{{ value }}" is not a valid email.')]
     private ?string $email = null;
 
+    #[ORM\Column]
+    #[Assert\NotBlank(message:"name is required")]
+    private ?string $name = null;
+    #[ORM\Column]
+    #[Assert\NotBlank(message:"lastname is required")]
+    private ?string $lastName = null;
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +70,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(?string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): static
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+    public function getImg(): ?String
+    {
+        return $this->img;
+    }
+
+    public function setImg(?String $img): static
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+    public function getName(): ?String
+    {
+        return $this->name;
+    }
+
+    public function setName(?String $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+    public function getlastName(): ?String
+    {
+        return $this->lastName;
+    }
+
+    public function setlastName(?String $lastName): static
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }

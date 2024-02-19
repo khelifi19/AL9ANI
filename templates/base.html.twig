@@ -78,7 +78,7 @@
 								<i class="fa fa-user-check me-2 theme-cl fs-sm"></i>
 									{{ app.user.username }}</a>
 									<ul class="nav-dropdown nav-submenu">
-										<li><a href="index.html"><i class="lni lni-user me-2"></i>My Profile</a></li>
+										<li><a href="{{ path('user_edit', {'username': app.user.username}) }}"><i class="lni lni-user me-2"></i>My Profile</a></li>
 										<li><a href="{{ path('user_delete', {'username': app.user.username}) }}"> <i class="lni lni-trash-can me-2"></i>Delete Account</a></li>
 							
 									</ul>

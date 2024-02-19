@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\User;
+use App\Form\EditUserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\ManagerRegistry as DoctrineManagerRegistry;
@@ -51,5 +54,25 @@ class SecurityController extends AbstractController
         }
         return $this->redirectToRoute('app_register');
 
+    }
+    #[Route(path:'/user/edit/{username}', name: 'user_edit')]
+    public function editUser(UserRepository $repo,string $username, Request $request,EntityManagerInterface $em): Response
+    {   $user=$repo->findOneBy(['username' => $username]);
+        $form = $this->createForm(EditUserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Save changes to the database
+           
+            $em->flush();
+
+            // Redirect to a success page or update the user interface
+            return $this->redirectToRoute('');
+        }
+
+        return $this->render('security/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
