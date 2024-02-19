@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block head %}
+     	   <meta charset="UTF-8">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <title>{% block title %}Al9ani - {% endblock %}</title>
+
+	   <!-- Favicon -->
+	   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/themezhub.net/goodup-live/goodup/assets/img/favicon.png') }}">
+		 
+        <!-- Custom CSS -->
+        <link href="{{ asset('front/themezhub.net/goodup-live/goodup/assets/css/styles.css')}}" rel="stylesheet">
+   {% endblock %}
+    </head>
+    <header>
+    <!-- Start Navigation -->
+			<div class="header header-transparent change-logo">
+				<div class="container">
+					<nav id="navigation" class="navigation navigation-landscape">
+						<div class="nav-header">
+							<a class="nav-brand static-logo"  href="#"><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png')}}" class="logo" alt="" /></a>
+							<a class="nav-brand fixed-logo" href="#"><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/logo.png')}}" class="logo" alt="" /></a>
+							<div class="nav-toggle"></div>
+							<div class="mobile_nav">
+								<ul>
+									<li>
+										<a href="#" data-bs-toggle="modal" data-bs-target="#login" class="theme-cl fs-lg">
+											<i class="lni lni-user"></i>
+										</a>
+									</li>
+									<li>
+										<a href="add-listing.html" class="crs_yuo12 w-auto text-white theme-bg">
+											<span class="embos_45"><i class="fas fa-plus me-2"></i>Add Listing</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="nav-menus-wrapper" style="transition-property: none;">
+							<ul class="nav-menu">
+							
+								<li class="active"><a href="javascript:void(0);">Home</a>
+									<ul class="nav-dropdown nav-submenu">
+										<li><a href="index.html"></a></li>
+							
+									</ul>
+								</li>
+								
+								<li><a href="javascript:void(0);">Etablissements</a>
+									
+										</li>
+                                      
+										<li><a href="javascript:void(0);">Events</a>
+									
+										</li>
+                                        <li><a href="javascript:void(0);">Uber</a>
+									
+										</li>
+											  <li><a href="javascript:void(0);">Reclamations</a>
+									
+										</li>
+										
+									
+									
+										
+									
+										
+								
+								
+								
+								
+							</ul>
+							
+							<ul class="nav-menu nav-menu-social align-to-right">
+								<li>
+									<a href="#" data-bs-toggle="modal" data-bs-target="#login" class="ft-bold">
+										<i class="fas fa-sign-in-alt me-1 theme-cl"></i>Sign In
+									</a>
+								</li>
+								<li class="add-listing">
+									<a href="add-listing.html" >
+										<i class="fas fa-plus me-2"></i>Ajouter Reservation
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<!-- End Navigation -->
+			<br></br>
+    		<br></br>
+    </header>
+    <body>
+        {% block body %}
+       
+        <script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/popper.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/slick.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/dropzone.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/counterup.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/moment.min.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/daterangepicker.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/lightbox.js')}}"></script>		
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/jQuery.style.switcher.js')}}"></script>
+		<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/custom.js')}}"></script>
+        {% endblock %}
+    </body>
+<footer>
+ <footer class="light-footer skin-light-footer style-2">
+				<div class="footer-middle">
+					<div class="container">
+						<div class="row">
+							
+							<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+								<div class="footer_widget">
+									<img src="assets/img/logo.png" class="img-footer small mb-2" alt="" />
+									
+									<div class="address mt-2">
+									Esprit<br>Tunisia	
+									</div>
+									<div class="address mt-3">
+										75256898<br>support@Al9ani.com
+									</div>
+									<div class="address mt-2">
+										<ul class="list-inline">
+											<li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-facebook-filled"></i></a></li>
+											<li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-twitter-filled"></i></a></li>
+											<li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-youtube"></i></a></li>
+											<li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-instagram-filled"></i></a></li>
+											<li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-linkedin-original"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+								<div class="footer_widget">
+									<h4 class="widget_title">Main Navigation</h4>
+									<ul class="footer-menu">
+										<li><a href="#">Explore Listings</a></li>
+									
+										<li><a href="#">Submit Listings</a></li>
+										<li><a href="#">Shortlisted</a></li>
+									
+									</ul>
+								</div>
+							</div>
+									
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+								<div class="footer_widget">
+									<h4 class="widget_title">Business Owners</h4>
+									<ul class="footer-menu">
+										<li><a href="#">Browse Categories</a></li>
+										<li><a href="#">Payment Links</a></li>
+										<li><a href="#">Saved Places</a></li>
+										<li><a href="#">Dashboard</a></li>
+									</ul>
+								</div>
+							</div>
+					
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+								<div class="footer_widget">
+									<h4 class="widget_title">About Company</h4>
+									<ul class="footer-menu">
+										<li><a href="#">Who We'r?</a></li>
+										<li><a href="#">Our Mission</a></li>
+										<li><a href="#">Our team</a></li>
+										<li><a href="#">Packages</a></li>
+										<li><a href="#">Dashboard</a></li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+								<div class="footer_widget">
+									<h4 class="widget_title">Helpful Topics</h4>
+									<ul class="footer-menu">
+										<li><a href="#">Site Map</a></li>
+										<li><a href="#">Security</a></li>
+										<li><a href="#">Contact</a></li>
+										<li><a href="#">FAQ's Page</a></li>
+										<li><a href="#">Privacy</a></li>
+									</ul>
+								</div>
+							</div>
+								
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer-bottom br-top">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-lg-12 col-md-12 text-center">
+								<p class="mb-0">© 2022 Al9ani.  .</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- ============================ Footer End ================================== --></footer>
+</html>

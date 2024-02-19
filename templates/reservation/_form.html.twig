@@ -1,0 +1,25 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<table>
+<tr>
+    <td>{{ form_label(form.dateReservation,"La Date De La Reservation") }}</td>
+    <td>    {{ form_widget(form.dateReservation)}}      </td>
+    <td>    {{ form_errors(form.dateReservation)}}      </td>
+
+</tr>
+
+<tr>
+    <td>{{ form_label(form.nombreDePersonnes,"Le Nombre De Personnes") }}</td>
+    <td>    {{ form_widget(form.nombreDePersonnes)}}      </td>
+    <td>    {{ form_errors(form.nombreDePersonnes)}}      </td>
+
+</tr>
+
+<tr>
+    <td>{{ form_label(form.etablissements,"L'établissement à reserver") }}</td>
+    <td>    {{ form_widget(form.etablissements)}}      </td>
+    <td>    {{ form_errors(form.etablissements)}}      </td>
+
+</tr>
+</table>
+    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

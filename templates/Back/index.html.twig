@@ -1,0 +1,121 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <img src="assets/img/cover.jpg" class="img-fluid" alt="" />
+
+    <div class="preloader"></div>
+    <div id="main-wrapper">
+        <div class="header header-light dark-text head-shadow">
+            <div class="container">
+                <nav id="navigation" class="navigation navigation-landscape">
+                    <div class="nav-header">
+                        <a class="nav-brand" href="#">
+                            <img src="assets/img/logo.png" class="logo" alt="" />
+                        </a>
+                        <div class="nav-toggle"></div>
+                        <div class="mobile_nav">
+                            <ul>
+                                <li>
+                                    <a href="login-2.html" class="crs_yuo12 w-auto text-dark gray">
+                                        <span class="embos_45"><i class="lni lni-power-switch mr-1 mr-1"></i>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-menus-wrapper" style="transition-property: none;">
+                        <ul class="nav-menu">
+                            <!-- Your navigation menu items here -->
+                        </ul>
+                        <ul class="nav-menu nav-menu-social align-to-right">
+                            <li class="add-listing gray">
+                                <a href="login.html" >
+                                    <i class="lni lni-power-switch mr-1"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <section class="bg-cover position-relative" style="background:red url(assets/img/cover.jpg) no-repeat;" data-overlay="3">
+            <div class="abs-list-sec"><a href="dashboard-add-listing.html" class="add-list-btn"><i class="fas fa-plus me-2"></i>Add Listing</a></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="dashboard-head-author-clicl">
+                            <div class="dashboard-head-author-thumb">
+                                <img src="assets/img/t-7.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="dashboard-head-author-caption">
+                                <div class="dashploio"><h4>Charles D. Robinson</h4></div>
+                                <div class="dashploio"><span class="agd-location"><i class="lni lni-map-marker me-1"></i>San Francisco, USA</span></div>
+                                <div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="goodup-dashboard-wrap gray px-4 py-5">
+            <a class="mobNavigation" data-bs-toggle="collapse" href="#MobNav" role="button" aria-expanded="false" aria-controls="MobNav">
+                <i class="fas fa-bars me-2"></i>Dashboard Navigation
+            </a>
+            <div class="collapse" id="MobNav">
+                <div class="goodup-dashboard-nav sticky-top">
+                    <div class="goodup-dashboard-inner">
+                        <ul data-submenu-title="Main Navigation">
+                            <!-- Your dashboard navigation items here -->
+                        </ul>
+                        <ul data-submenu-title="My Accounts">
+                            <!-- Your account navigation items here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="goodup-dashboard-content">
+                <div class="dashboard-tlbar d-block mb-5">
+                    <div class="row">
+                        <div class="colxl-12 col-lg-12 col-md-12">
+                            <h1 class="ft-medium">Manage Listings</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item text-muted"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item text-muted"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="#" class="theme-cl">Manage Listings</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-widg-bar d-block">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="dashboard-list-wraps bg-white rounded mb-4">
+                                <div class="dashboard-list-wraps-head br-bottom py-3 px-3">
+                                    <div class="dashboard-list-wraps-flx">
+                                        <h4 class="mb-0 ft-medium fs-md"><i class="fa fa-file-alt me-2 theme-cl fs-sm"></i>My Listings</h4>
+                                    </div>
+                                </div>
+                                <div class="dashboard-list-wraps-body py-3 px-3">
+                                    <div class="dashboard-listing-wraps">
+                                        <!-- Your listings here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="py-3">© 2022 Goodup. Designd By ThemezHub.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a id="tops-button" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+    </div>
+{% endblock %}
+
