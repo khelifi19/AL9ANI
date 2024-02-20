@@ -1,0 +1,31 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Commentaire{% endblock %}
+
+{% block body %}
+    <h1 style="margin-left:25%">Commentaire</h1>
+
+   <table class="table table-bordered" style="border-color:black;width:50%;margin-left:25%">
+        <tbody>
+            
+            <tr>
+                <th style="background-color:red;color :white;width:150px">Description</th>
+                <td>{{ commentaire.description }}</td>
+            </tr>
+            <tr>
+                <th style="background-color:red;color :white">Date</th>
+                <td>{{ commentaire.datecom ? commentaire.datecom|date('Y-m-d') : ''  }}</td>
+            </tr>
+            <tr>
+                <th style="background-color:red;color :white">Post</th>
+                <td>{{ commentaire.post.titre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+     <button class="btn btn-danger btn-sm" style="color:black;margin-left:25%"> <a style="color:white" href="{{ path('app_commentaire_index') }}">back to list</a></button>
+
+   
+
+    
+{% endblock %}

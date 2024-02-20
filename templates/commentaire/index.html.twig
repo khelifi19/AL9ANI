@@ -1,0 +1,40 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+    <h1 style="color:red;margin-left:40%;font-size:50px;">Commentaire</h1>
+<br>
+   <table class="table table-bordered" style="border-color:black;width:80%;margin-left:10%">
+        <thead>
+            <tr>
+               
+                <th style="background-color:red;color :white">Description</th>
+                <th style="background-color:red;color :white">Date</th>
+                <th style="background-color:red;color :white">POSTE</th>
+                <th style="background-color:red;color :white">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                
+                <td>{{ commentaire.description }}</td>
+                <td>{{ commentaire.datecom ? commentaire.datecom|date('Y-m-d') : '' }}</td>
+                <td>{{ commentaire.post.titre}}</td>
+                
+                <td>
+                  <button class="btn btn-primary btn-sm" style="color:black;">  <a style="color:white" href="{{ path('app_commentaire_show', {'id': commentaire.id}) }}">show</a></button>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

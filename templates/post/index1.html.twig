@@ -1,0 +1,48 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+  
+ <h1 style="color:red;margin-left:40%;font-size:50px">posts</h1>
+ <br><br>
+
+
+    <table class="table table-bordered" style="border-color:black;width:85%;margin-left:7%">
+        <thead>
+            <tr>
+                
+                <th style="background-color:red;color :white">Description</th>
+                <th style="background-color:red;color :white">Titre</th>
+                <th style="background-color:red;color :white">Date</th>
+				 <th style="background-color:red;color :white">Image</th>
+                 <th style="background-color:red;color :white">localisation</th>
+                <th style="background-color:red;color :white">actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in posts %}
+            <tr>
+                
+                <td>{{ commentaire.description }}</td>
+                <td>{{ commentaire.titre }}</td>
+                <td>{{ commentaire.datepost ? commentaire.datepost|date('Y-m-d') : '' }}</td>
+				<td><img src="{{ asset('uploads/' ~ commentaire.image) }}" alt=""width="100 px" height="100 px"></td>
+                 <td>{{ commentaire.localisation }}</td>
+                <td>
+                 <button class="btn btn-danger btn-sm" style="color:black;">   <a style="color:black;" href="{{ path('app_post_show', {'id': commentaire.id}) }}">show</a></button>
+                 <button class="btn btn-success btn-sm" style="color:black;margin-left:px;">   <a style="color:black;" href="{{ path('app_post_edit', {'id': commentaire.id}) }}">edit</a></button>
+                 
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  <button class="btn btn-primary btn-sm" style="color:black;margin-left:45%">  <a style="color:white" href="{{ path('app_post_new') }}">Create new</a>
+                    {% endblock %}

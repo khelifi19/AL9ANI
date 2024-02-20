@@ -1,0 +1,94 @@
+
+	{% extends 'base.html.twig' %}
+	
+    {% block body %}
+	<div class="article_detail_wrapss single_article_wrap format-standard">
+	<section class="about_us_area section_gap_top">
+			<div class="container">
+				<div class="row about_content align-items-center">
+					
+						<div class="section_content">
+						
+                        
+						
+						<div class="date">
+						<center><i class="fa fa-calendar" style="margin-right: 5px;"aria-hidden="true"></i>{{post.datePost.format('d/m/y')}} </center>
+						<br>
+						<center><font size ="7" color="red"<p >{{post.titre}} </p></font></center>
+						<center>	<img src="{{ asset('uploads/' ~ post.image) }}" alt="" width="850" height="450"  ></center>
+							 <br>
+					   <center > <font size ="5" color="grey"<p>{{post.description}}</p></font></center>
+					   <br>
+					   <br>
+						 <h1 style="color:red">list of comments</h1>	
+			<div class="article_detail_wrapss single_article_wrap format-standard">				
+		   
+		{% if commentaire | length == 0 %}
+			   <p> no comments yet </p>
+			   {% endif %}
+			{% for p in commentaire %}
+			  
+			
+
+				
+							
+							
+							<p style="font-size:10px">{{p.datecom ? p.datecom|date('Y-m-d') : '' }}</p>
+<h4>{{p.description}}</h4> 
+                 
+					{% endfor %}
+                    
+		              
+		             
+<div class="article_detail_wrapss single_article_wrap format-standard">
+   
+<br>
+           <h1 style="color:red">veuillez saisir un commentaire </h1>
+						{{ include('commentaire/_form.html.twig') }}
+						<br>
+						
+						<button class="btn" style="background-color:red;border-color: black; color: red"><a href="{{path('app_post_index')}}">back to Posts</a></button>
+					
+					</div>
+
+					
+				</div>
+				
+							
+							
+							
+					
+					
+					
+				</div>
+			</div>
+		</section>
+					
+							
+				
+				
+
+                      
+					     
+					
+							</div> <br>
+						</div>
+						
+					</div>
+				</div>
+				
+
+				</div>
+			</div>
+			
+        </div>
+
+			<br>
+			<br>
+
+
+
+
+
+							</div>
+	 {% endblock %}
