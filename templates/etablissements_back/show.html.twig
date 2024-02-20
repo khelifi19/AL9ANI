@@ -1,0 +1,41 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Etablissements{% endblock %}
+
+{% block body %}
+    <h1>Etablissements</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etablissement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de l'établissement</th>
+                <td>{{ etablissement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ etablissement.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ etablissement.adress }}</td>
+            </tr>
+            <tr>
+                <th>Adresse Mail</th>
+                <td>{{ etablissement.mail }}</td>
+            </tr>
+            <tr>
+                <th>Numéro de téléphone</th>
+                <td>{{ etablissement.tel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etablissements_back_index') }}">Retourner à la liste</a>
+
+
+    {{ include('etablissements_back/_delete_form.html.twig') }}
+{% endblock %}
