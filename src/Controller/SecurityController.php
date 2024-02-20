@@ -64,11 +64,13 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Save changes to the database
-           
+           // dump($form->getErrors(true, true));
+           var_dump('Form submitted and valid'); 
+           $em->persist($user);
             $em->flush();
 
             // Redirect to a success page or update the user interface
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('app_home_page');
         }
 
         return $this->render('security/edit.html.twig', [

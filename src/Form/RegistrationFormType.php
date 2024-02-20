@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +23,12 @@ class RegistrationFormType extends AbstractType
          ->add('name')
          ->add('lastName')
          ->add('phone')
-            
+         ->add('img', FileType::class, [
+            'label' => 'Your Image (JPG, JPEG, PNG file)',
+            'mapped' => false, // tells Symfony not to try to map this field to any entity property
+            'required' => false, // allow the field to be empty, so you can remove the image
+            'attr' => ['accept' => 'image/*'],
+        ])
           ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

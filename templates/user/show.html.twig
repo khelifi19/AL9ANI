@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<section style="background:#353535  url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/listing/l.jpg')}}) center center / cover no-repeat;">
+        <div class="container">
+            <div class="row align-items-start justify-content-center">
+                <div class="col-xl-5 col-lg-8 col-md-12">
+                    <div class="signup-screen-wrap">
+                        <div class="signup-screen-single">
+                            <div class="text-center mb-4">
+                                <h4 class="m-0 ft-medium">My profile</h4>
+                            </div>
+
+							<div class="author-wrap-ngh">
+								<div class="online">Online Now</div>
+								<div class="author-wrap-head-ngh">
+									<div style="text-align: center; line-height: 100px; height: 150px;">
+										<img src="{{ asset('uploads/' ~ user.img) }}" class="author-wrap-ngh-thumb" alt="" />
+									</div>
+									<div class="author-wrap-ngh-info">
+										<h5>{{ user.username }}</h5>
+										
+									</div>
+								</div>
+								
+								<div class="author-wrap-caption-ngh">
+									<div class="author-wrap-jhyu-ngh">
+										<ul>
+											<li>
+												<div class="gdup-kvty">
+													<div class="gdup-kvty-icon bg-light-sky text-sky"><i class="fas fa-file"></i></div>
+													<div class="gdup-kvty-ctr"><h6 class="count">310</h6></div>
+													<div class="gdup-kvty-text">Listings</div>
+												</div>
+											</li>
+											<li>
+												<div class="gdup-kvty">
+													<div class="gdup-kvty-icon bg-light-warning text-warning"><i class="fas fa-thumbs-up"></i></div>
+													<div class="gdup-kvty-ctr"><h6 class="count">22</h6><span>K</span></div>
+													<div class="gdup-kvty-text">Followers</div>
+												</div>
+											</li>
+											<li>
+												<div class="gdup-kvty">
+													<div class="gdup-kvty-icon bg-light-danger text-danger"><i class="fas fa-heart"></i></div>
+													<div class="gdup-kvty-ctr"><h6 class="count">206</h6></div>
+													<div class="gdup-kvty-text">Followings</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="author-wrap-yuio-ngh mt-5">
+										<div class="row g-4">
+											<div class="col-6">
+												<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="adv-btn full-width">update</a>	
+											</div>
+											<div class="col-6">
+												<a href="{{ path('user_delete', {'username': app.user.username}) }}" class="adv-btn full-width">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="author-wrap-footer-ngh">
+									<ul>
+										<li>
+											<div class="jhk-list-inf">
+												<div class="jhk-list-inf-ico"><i class="fas fa-envelope"></i></div>
+												<div class="jhk-list-inf-caption"><h5>Mail Us</h5><p>{{ user.email }}</p></div>
+											</div>
+										</li>
+										<li>
+											<div class="jhk-list-inf">
+												<div class="jhk-list-inf-ico"><i class="fas fa-phone"></i></div>
+												<div class="jhk-list-inf-caption"><h5>Make Call</h5><p>{{ user.phone }}</p></div>
+											</div>
+										</li>
+			
+										<li>
+											<div class="jhk-list-inf">
+												<div class="jhk-list-inf-ico"><i class="fas fa-globe"></i></div>
+												<div class="jhk-list-inf-caption"><h5>Live Web:</h5><p>https://www.Al9ani.com/</p></div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								
+							</div>
+						</div>
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+ </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

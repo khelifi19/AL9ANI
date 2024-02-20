@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,9 +13,23 @@ class EditUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username')
-         
-            ->add('email')
+          
+        ->add('username')
+        ->add('phone')
+    
+        ->add('password')
+        ->add('img', FileType::class, [
+            'label' => 'Your Image (JPG, JPEG, PNG file)',
+            'mapped' => false, // tells Symfony not to try to map this field to any entity property
+            'required' => false, // allow the field to be empty, so you can remove the image
+            'attr' => ['accept' => 'image/*'],
+        ])
+        ->add('email')
+        ->add('name')
+        ->add('lastname')
+       
+      
+
         ;
     }
 

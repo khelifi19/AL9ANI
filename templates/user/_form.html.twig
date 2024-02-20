@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+
 
 {% block body %}
    <section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
@@ -8,11 +8,12 @@
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								
 							<div class="dashboard-head-author-clicl">
-								<div class="dashboard-head-author-thumb">
-									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+                              {% if app.user %}
+								<div class="">
+									<img src="{{ asset('uploads/' ~ app.user.img) }}" class="author-wrap-ngh-thumb" alt="" />
 								</div>
 								<div class="dashboard-head-author-caption">
-                                 {% if app.user %}
+                               
 									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
 									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
 									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
@@ -27,22 +28,10 @@
 <div class="goodup-dashboard-wrap gray px-4 py-5">
     <div class="dashboard-widg-bar d-block">
 						<div class="row">
-							<div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-xl-last order-lg-last order-md-last">
-								<div class="d-flex bg-white rounded px-3 py-3 mb-3">
-									<div class="dash-figure">
-										<div class="dash-figure-thumb"><img src="assets/img/t-4.png" class="img-fluid rounded" alt="" /></div>
-										<div class="upload-photo-btn">
-											<div class="Uploadphoto">
-												<span><i class="fas fa-upload"></i> Upload Photo</span>
-												<input type="file" class="upload">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+						
 							<div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
-								<form class="submit-form">
-								{{ form_start(form) }}
+								{{ form_start(form) }}<form class="submit-form">
+								
 								{{ form_errors(form) }}
    
 									<div class="dashboard-list-wraps bg-white rounded mb-4">
@@ -109,8 +98,18 @@
     }) }}
 													</div>
 												</div>
-											
-													
+											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label class="mb-1">Img</label>
+													{{ form_widget(form.img, {
+        attr: {
+            class: 'form-control rounded'
+            
+        }
+    }) }}
+													</div>
+												</div>
+													{{ form_widget(form._token) }}
 												
 									
 												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -121,8 +120,10 @@
 											</div>
 										</div>
 									</div>
-									 {{ form_end(form) }}
-								</form>
+									
+								</form> 
+                                  {{ form_rest(form) }}
+                                {{ form_end(form) }}
 							</div>
 						</div>
 							

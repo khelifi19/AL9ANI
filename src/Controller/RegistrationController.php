@@ -12,18 +12,38 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, CustomerAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, CustomerAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('img')->getData();
+
+            if ($imageFile) {
+                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                 $safeFilename = $slugger->slug($originalFilename);
+                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+    
+                // Move the file to the directory where your images are stored
+                try {
+                    $imageFile->move($this->getParameter('img_directory'), // specify the directory where images should be stored
+                        $newFilename
+                    );
+                 } catch (FileException $e) {
+             // Handle the exception if something happens during the file upload
+                }
+    
+         // Update the 'image' property to store the file name instead of its contents
+                    $user->setImg($newFilename);
+            }
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

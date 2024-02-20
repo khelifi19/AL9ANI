@@ -5,4 +5,30 @@
 user_delete:
     path: /self/delete/{username}
     controller: App\Controller\SecurityController::deleteAccount
+user_edit:
+     path: /user/edit/{username}
+     controller: App\Controller\SecurityController::editUser
+app_user_index:
+    path: /user/
+    controller: App\Controller\UserController::index
+    methods: ['GET']
 
+app_user_new:
+    path: /user/new
+    controller: App\Controller\UserController::new
+    methods: ['GET', 'POST']
+
+app_user_show:
+    path: /user/{id}
+    controller: App\Controller\UserController::show
+    methods: ['GET']
+
+app_user_edit:
+    path: /user/{id}/edit
+    controller: App\Controller\UserController::edit
+    methods: ['GET', 'POST']
+
+app_user_delete:
+    path: /user/{id}
+    controller: App\Controller\UserController::delete
+    methods: ['POST']
