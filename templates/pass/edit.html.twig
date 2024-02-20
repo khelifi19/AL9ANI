@@ -1,0 +1,33 @@
+
+    {% extends "base.html.twig" %}
+{% block body %}
+    <body>
+        <br> <br> <br>
+        <section class="space min">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="sec_title position-relative text-center mb-5">
+                            <h2 class="ft-bold">Modifier le pass</h2>
+                        </div>
+
+       <div class="text-center">
+    {{ form_start(form) }}
+        {{ form_row(form.prixPass) }}
+        {{ form_row(form.type) }}
+       </div>
+
+    <div class="text-center">
+                            <button type="submit" class="btn btn-primary">
+                                Confirm
+                            </button>
+                        </div>
+
+
+    {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+{% endblock %}

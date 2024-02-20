@@ -1,0 +1,95 @@
+												
+												{% extends "base.html.twig" %}
+                                                {% block body %}<body><br> <br> <br>
+                                               
+			<section class="space min">
+				<div class="container">
+				
+					<div class="row justify-content-center">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="sec_title position-relative text-center mb-5">
+								
+								<h2 class="ft-bold">List d'evenements</h2>
+							</div>
+						</div>
+					</div>
+
+   <!DOCTYPE html>
+<html 
+<head>    
+
+    <style>
+    
+    h2{
+        color : #444444
+    }
+     .align-center {
+            text-align: center;
+        }
+
+          .align-right {
+
+            text-align: right;
+        }
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr: hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+   <thead>
+            <tr>
+                <th class="align-center"> Nom</th>
+                <th class="align-center"> Date début</th>
+                <th class="align-center"> Date fin</th>
+                <th class="align-center"> Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td class="align-center">{{ event.nomEvent }}</td>
+                    <td class="align-center">{{ event.dateDebut ? event.dateDebut|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.dateFin ? event.dateFin|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.typeEvent }}</td>
+
+            
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html><br>
+    
+   
+					
+						
+					
+				</div>
+			</section>
+			
+
+
+
+	
+
+
+</html>
+ </body>
+    {% endblock %} 
