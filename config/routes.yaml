@@ -170,5 +170,8 @@ app_postule_delete:
     controller: 'App\Controller\PostuleController::delete'
 
 app_postule_delete2:
-    path: /postule/{id}/supprimer
+    path: /contacter-postulant/{id}
     controller: 'App\Controller\PostuleController::delete2'
+
+
+    

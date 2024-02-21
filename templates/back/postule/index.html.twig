@@ -43,6 +43,9 @@
                                     <td>
                                         <a href="{{ path('app_postule_show', {'id': postule.id}) }}" class="btn btn-primary">Voir</a>
                            <a href="{{ path('app_postule_delete2', {'id': postule.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?')">Supprimer</a>
+
+    </td>
+</tr>
                                     </td>
                                 </tr>
                                 {% endfor %}
