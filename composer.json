@@ -24,8 +24,10 @@
         "symfony/runtime": "5.4.*",
         "symfony/security-csrf": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
+        "symfony/twilio-notifier": "5.4.*",
         "symfony/validator": "5.4.*",
         "symfony/yaml": "5.4.*",
+        "twilio/sdk": "^7.15",
         "vich/uploader-bundle": "^2.3",
         "willdurand/geocoder": "*"
     },

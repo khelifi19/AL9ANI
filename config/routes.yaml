@@ -39,7 +39,10 @@ course_index:
     controller: App\Controller\CourseController::index
     methods: [GET]
 
-
+calendrier_index:
+    path: /courses/calender
+    controller: App\Controller\CourseController::calendrier
+    methods: [GET]
    
 
 course_show:
