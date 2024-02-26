@@ -1,0 +1,94 @@
+{% extends "baseBack.html.twig" %}
+
+{% block head %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block css %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block navbar %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block sidebar %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block body %}
+ {{ parent() }}
+ <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+   <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Bare Table</h4>
+                                <p class="sub-header">
+                                    Your awesome text goes here.
+                                </p>
+
+                                <div class="table-responsive">
+                                    <table class="tablesaw table mb-0" data-tablesaw-mode="swipe" data-tablesaw-sortable
+                                           data-tablesaw-sortable-switch data-tablesaw-minimap
+                                           data-tablesaw-mode-switch>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">
+                                                ID
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col
+                                                data-tablesaw-sortable-default-col data-tablesaw-priority="3">Username
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Phone
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">
+                                                email
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">
+                                                name
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                       {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.phone }}</td>
+                
+            
+              
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+              
+                <td>
+                    <a href="{{ path('app_user_delete', {'id': user.id}) }}">delete</a>
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+                                       
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end .table-responsive -->
+                            </div>
+                        </div> <!-- end card -->
+                    </div> <!--end col-->
+                </div>
+                </div>
+                </div>
+                </div>
+ {% endblock %}

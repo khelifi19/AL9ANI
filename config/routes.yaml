@@ -9,7 +9,7 @@ user_edit:
      path: /user/edit/{username}
      controller: App\Controller\SecurityController::editUser
 app_user_index:
-    path: /user/
+    path: /admin/users
     controller: App\Controller\UserController::index
     methods: ['GET']
 
@@ -29,6 +29,6 @@ app_user_edit:
     methods: ['GET', 'POST']
 
 app_user_delete:
-    path: /user/{id}
+    path: /admin/{id}/delete
     controller: App\Controller\UserController::delete
     methods: ['POST']
