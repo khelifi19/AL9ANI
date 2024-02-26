@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Evenement;
 use App\Entity\Pass;
+
 use App\Form\FormPassType;
 use Symfony\Component\Form\FormTypeInterface;
 use Doctrine\DBAL\Types\Type;
@@ -25,31 +27,34 @@ public function showAllpass(): Response
     ]);
 }
    
-    
-    #[Route('/pass/create', name: 'app_pass_create')]
-    public function addPass(Request $request): Response
-    {
-        $pass = new Pass();
+#[Route('/pass/create', name: 'app_pass_create')]
+public function addPass(Request $request): Response
+{
+    $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-        $form = $this->createForm(FormPassType::class, $pass);
+    $pass = new Pass();
 
-        $form->handleRequest($request);
+    $form = $this->createForm(FormPassType::class, $pass, [
+        'evenements' => $evenements,
+    ]);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($pass);
-            $entityManager->flush();
+    $form->handleRequest($request);
 
-            // bech ken yheb yzid event ekhr wala li howa
-            return $this->redirectToRoute('app_evenement');
-        }
+    if ($form->isSubmitted() && $form->isValid()) {
+        $selectedEvenement = $form->get('evenement')->getData();
+        $pass->setEvenement($selectedEvenement);
 
-        return $this->render('pass/formpass.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($pass);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_evenement_etb');
     }
 
+    return $this->render('pass/formpass.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
     #[Route('/editpass/{id}', name: 'edit_pass')]
     public function editEvent(Pass $pass, Request $request, EntityManagerInterface $entityManager): Response
     {

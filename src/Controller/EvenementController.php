@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Entity\Pass;
 use App\Form\FormEvenementType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EvenementController extends AbstractController
 {
@@ -70,7 +73,7 @@ public function editEvent(Evenement $event, Request $request, EntityManagerInter
 
         $this->addFlash('success', 'Event updated successfully.');
 
-        return $this->redirectToRoute('app_evenement');
+        return $this->redirectToRoute('app_evenement_etb');
     }
 
     return $this->render('evenement/edit.html.twig', [
@@ -87,4 +90,5 @@ public function deleteEvent(Evenement $event, EntityManagerInterface $entityMana
 
     return $this->redirectToRoute('app_evenement_etb');
 }
+
 }
