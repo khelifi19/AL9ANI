@@ -43,9 +43,7 @@ class Post
     #[ORM\Column(type: 'date')] // Ajout de l'attribut datepost de type date
     private ?\DateTimeInterface $datepost = null;
 
-    /**
- * @Assert\NotBlank(message="Le champ  ne doit pas être vide.")
- */
+
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 

@@ -1,0 +1,30 @@
+
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+    <h1 style="margin-left:25%">Post</h1>
+
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Description</th>
+                <td>{{ post.description }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ post.titre }}</td>
+            </tr>
+            <tr>
+                <th>Datepost</th>
+                <td>{{ post.datepost ? post.datepost|date('Y-m-d') : '' }}</td>
+            </tr>
+
+             <tr>
+                <th>Localisation</th>
+                <td>{{ post.localisation }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
