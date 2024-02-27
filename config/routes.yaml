@@ -32,3 +32,8 @@ app_user_delete:
     path: /admin/{id}/delete
     controller: App\Controller\UserController::delete
     methods: ['POST']
+    
+app_user_search:
+    path: /admin/users/search
+    controller: App\Controller\UserController::search
+    methods: ['POST']

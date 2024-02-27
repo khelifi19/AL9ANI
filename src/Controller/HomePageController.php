@@ -18,6 +18,8 @@ class HomePageController extends AbstractController
     #[Route('/admin/dashboard', name: 'admin_home_page')]
     public function dashboard(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        
         return $this->render('home_page/indexBack.html.twig', [
             'controller_name' => 'HomePageController',
         ]);

@@ -1,0 +1,62 @@
+                     <div class="card-body">
+                                <h4 class="header-title">Table of users</h4>
+                              <!--search-->
+           
+                              
+                              
+                                 <!--end search-->
+                                <div class="table-responsive">
+                                    <table class="tablesaw table mb-0" data-tablesaw-mode="swipe" data-tablesaw-sortable
+                                           data-tablesaw-sortable-switch data-tablesaw-minimap
+                                           data-tablesaw-mode-switch>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">
+                                                ID
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col
+                                                data-tablesaw-sortable-default-col data-tablesaw-priority="3">Username
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Phone
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">
+                                                email
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">
+                                                name
+                                            </th>
+                                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">
+                                                lastname
+                                            </th>
+                                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">
+                                                roles
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                       {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastName }}</td>
+                <td> {% for role in user.roles %}
+                {{ role }}
+              {% endfor %}</td>
+                <td>
+                  {% include '/user/_delete_form.html.twig' %}
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+                                       
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end .table-responsive -->
+                            </div>

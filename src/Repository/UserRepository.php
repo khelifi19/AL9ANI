@@ -44,6 +44,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $entityManager->remove($user);
         $entityManager->flush();
     }
+    /**
+     * Search users based on a query. If no search term is provided, return all users.
+     *
+     * @param string|null $search
+     * @return User[]
+     */
+    public function searchUsers(?string $search): array
+    {
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        // If a search term is provided, add conditions to the query
+        if ($search !== null) {
+            $queryBuilder->where('u.username LIKE :search OR u.id LIKE :search OR u.email LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return User[] Returns an array of User objects
