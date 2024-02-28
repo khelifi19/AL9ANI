@@ -7,7 +7,10 @@
 {% endblock %}
 {% block css %}
  {{ parent() }}
-
+<link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
         
 {% endblock %}
 {% block navbar %}
@@ -30,29 +33,70 @@
    <div class="row">
                     <div class="col-12">
                         <div class="card">
-                        <input type="text" name="search" id="search" placeholder="Search..." style="width: 150px; "/>
+                         <div class="row">
+                         <div class="card-body">
+                          <div class="col-md-6" >
+                           <label class="mb-1 fw-bold text-muted">Search users</label>
+                                                <input type="search" name="search" placeholder="Search.." id="search" class="form-control" style=" z-index: 2; background: transparent; " />
+                                                <input type="text" name="username" id="autocomplete-ajax-x" disabled="disabled" class="form-control" style="display: none;" />
+                                            </div>
+                        
                      <div id="userTable">    
         {% include 'admin/listAjax.html.twig' with {'users': users} %}
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-          <script>
-              $(document).ready(function() {
-        $('#search').on('input', function() {
-            var search = $(this).val();
+        
+       <script>
+    $(document).ready(function() {
+    var dataTable;
 
-            $.ajax({
-                url: "{{ path('app_user_search') }}",
-                type: "POST",
-                data: { search: search },
-                success: function(data) {
-                    $("#userTable").html(data);
-                }
+    function initDataTable() {
+        // Destroy the existing DataTable instance
+        if (dataTable) {
+            dataTable.destroy();
+        }
+
+        // Initialize DataTable after a short delay
+        setTimeout(function() {
+            dataTable = $('#datatable-buttons').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                    // Add other DataTable options as needed
+                ],
+                searching: false
             });
+
+            // Hide the default DataTables search input
+            $('.dataTables_filter').hide();
+        }, 200); // 200 milliseconds delay
+    }
+
+    // Initial DataTable initialization
+    initDataTable();
+
+    $('#search').on('input', function() {
+        var search = $(this).val();
+
+        $.ajax({
+            url: "/admin/users/search",
+            type: "POST",
+            data: { search: search },
+            success: function(data) {
+                // Update the content
+                $("#userTable").html(data);
+
+                // Reinitialize DataTable
+                initDataTable();
+            }
         });
     });
-            </script>
+});
+
+            </script></div>
                         </div> <!-- end card -->
                     </div> <!--end col-->
+                </div>
                 </div>
                 </div>
                 </div>
