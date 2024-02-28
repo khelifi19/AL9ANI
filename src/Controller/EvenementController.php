@@ -5,13 +5,17 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Entity\Pass;
 use App\Form\FormEvenementType;
+use App\Form\ReservationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Snappy\Pdf;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Test\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvenementController extends AbstractController
 {
@@ -90,5 +94,59 @@ public function deleteEvent(Evenement $event, EntityManagerInterface $entityMana
 
     return $this->redirectToRoute('app_evenement_etb');
 }
+#[Route('/reserver', name: 'app_reserver')]
+public function reserver(Request $request): Response
+{
+    $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+    $passes = $this->getDoctrine()->getRepository(Pass::class)->findAll();
+
+    $form = $this->createForm(ReservationFormType::class, null, [
+        'evenements' => $evenements,
+        'passes' => $passes,
+    ]);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Handle form submission
+    }
+
+    return $this->render('evenement/reserver.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+#[Route('/evenement/pdf', name: 'app_evenement_pdf')]
+public function generatePdf(Pdf $pdf): Response
+{
+    $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+
+    // Render the HTML template for the PDF
+    $html = $this->renderView('evenement/eventspdf.html.twig', [
+        'events' => $events,
+        
+    ]);
+
+    // Generate a unique filename (e.g., using a timestamp)
+    $filename = 'events_' . time() . '.pdf';
+
+    // Generate PDF using KnpSnappyBundle
+    $pdf->generateFromHtml($html, $filename, [
+        'lowquality' => true,
+        'images' => true,
+    
+    ]);
+
+    // Set response headers
+    $response = new Response(file_get_contents($filename));
+    $response->headers->set('Content-Type', 'application/pdf');
+    $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+
+    // Remove temporary file after sending the response
+    register_shutdown_function(function () use ($filename) {
+        @unlink($filename);
+    });
+
+    return $response;
+}   
 
 }

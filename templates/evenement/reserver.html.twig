@@ -1,10 +1,10 @@
-{# templates/evenement/reserver.html.twig #}
 
-{{ form_start(form) }}
 
-{{ form_row(form.event) }}
-{{ form_row(form.pass) }}
+{% block body %}
+    <h1>Reservation</h1>
 
-<button type="submit">Réserver</button>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 
-{{ form_end(form) }}
+{% endblock %}
