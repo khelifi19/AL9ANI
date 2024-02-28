@@ -56,7 +56,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         // If a search term is provided, add conditions to the query
         if ($search !== null) {
-            $queryBuilder->where('u.username LIKE :search OR u.id LIKE :search OR u.email LIKE :search')
+            $queryBuilder->where('u.username LIKE :search OR u.id LIKE :search OR u.email LIKE :search OR u.phone LIKE :search')
                 ->setParameter('search', '%' . $search . '%');
         }
 

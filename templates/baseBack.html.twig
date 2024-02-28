@@ -17,6 +17,8 @@
     <link href="{{ asset('/back/coderthemes.com/adminto/layouts/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
    
     <link href="{{ asset('/back/coderthemes.com/adminto/layouts/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Sweet Alert-->
+        <link "{{ asset('/back/coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.min.css') }}"  rel="stylesheet" type="text/css" />
    {% endblock %} 
    {% endblock %}
 </head>
@@ -830,7 +832,11 @@
         <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/pdfmake.min.js")}}"></script>
         <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/vfs_fonts.js")}}"></script>
         <!-- third party js ends -->
+  <!-- Sweet Alerts js -->
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.all.min.js")}}"></script>
 
+        <!-- Sweet alert init js-->
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/js/pages/sweet-alerts.init.js")}}"></script>
         <!-- Datatables init -->
         <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/js/pages/datatables.init.js")}}"></script>
 </html>
