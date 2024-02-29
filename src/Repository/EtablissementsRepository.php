@@ -21,6 +21,15 @@ class EtablissementsRepository extends ServiceEntityRepository
         parent::__construct($registry, Etablissements::class);
     }
 
+    public function findFavoris(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.favoris = :favoris')
+            ->setParameter('favoris', true)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Etablissements[] Returns an array of Etablissements objects
 //     */

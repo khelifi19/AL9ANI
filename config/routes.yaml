@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+favoris:
+  path: /etablissements/favoris
+  controller: App\Controller\EtablissementsController::favoris
+  methods: GET

@@ -41,7 +41,7 @@ class Etablissements
     private Collection $reservation;
 
     #[ORM\Column]
-    private ?bool $favoris = null;
+    private bool $favoris = false;
 
     public function __construct()
     {

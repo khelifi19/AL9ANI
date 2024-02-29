@@ -22,6 +22,17 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
+    #[Route('/listlist', name: 'favoris')]
+public function favoris(EtablissementsRepository $etablissementsRepository): Response
+{
+    $favoris = $etablissementsRepository->findBy(['favoris' => true]);
+
+    return $this->render('etablissements/favoris.html.twig', [
+        'favoris' => $favoris,
+    ]);
+}
+
+
     #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -42,7 +53,7 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_etablissements_show', methods: ['GET'])]
+   #[Route('show/{id}', name: 'app_etablissements_show', methods: ['GET'])]
     public function show(Etablissements $etablissement): Response
     {
         return $this->render('etablissements/show.html.twig', [
@@ -78,4 +89,48 @@ class EtablissementsController extends AbstractController
 
         return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/ajouter-favoris/{id}', name: 'ajouter_favoris')]
+    public function ajouterFavoris(int $id, Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $etablissement = $entityManager->getRepository(Etablissements::class)->find($id);
+    
+        if (!$etablissement) {
+            throw $this->createNotFoundException('Etablissement non trouvée.');
+        }
+    
+        // Marquer l'établissement comme favori
+        $etablissement->setFavoris(true);
+        $entityManager->flush();
+    
+        // Rediriger vers la page des etablissements
+        return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
+    
+    }
+
+    
+    #[Route('/retirer-favoris/{id}', name: 'retirer_favoris')]
+    public function retirerFavoris(int $id, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $favori = $entityManager->getRepository(Etablissements::class)->find($id);
+    
+        if (!$favori) {
+            throw $this->createNotFoundException('Etablissement non trouvée.');
+        }
+    
+        // Retirer l'établissement des favoris
+        $favori->setFavoris(false);
+        $entityManager->flush();
+    
+        // Rediriger vers la page des favoris
+        return $this->redirectToRoute('favoris');
+    }
+    
+
+
+
+
+
 }
