@@ -40,6 +40,9 @@ class Etablissements
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'etablissements')]
     private Collection $reservation;
 
+    #[ORM\Column]
+    private ?bool $favoris = null;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
@@ -144,6 +147,18 @@ class Etablissements
                 $reservation->setEtablissements(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isFavoris(): ?bool
+    {
+        return $this->favoris;
+    }
+
+    public function setFavoris(bool $favoris): static
+    {
+        $this->favoris = $favoris;
 
         return $this;
     }
