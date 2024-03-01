@@ -10,27 +10,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 #[Route('/etablissements')]
 class EtablissementsController extends AbstractController
 {
     #[Route('/', name: 'app_etablissements_index', methods: ['GET'])]
-    public function index(EtablissementsRepository $etablissementsRepository): Response
+    public function index(EtablissementsRepository $etablissementsRepository, PaginatorInterface $paginator, Request $request): Response
+
     {
+        $etablissements = $etablissementsRepository->findAll();
+
+        $pagination = $paginator->paginate($etablissements, $request->query->getInt('page', 1), // numéro de page par défaut
+        3 // nombre d'éléments par page
+    );
         return $this->render('etablissements/index.html.twig', [
-            'etablissements' => $etablissementsRepository->findAll(),
+            'etablissements' => $pagination,
         ]);
     }
 
-    #[Route('/listlist', name: 'favoris')]
-public function favoris(EtablissementsRepository $etablissementsRepository): Response
-{
-    $favoris = $etablissementsRepository->findBy(['favoris' => true]);
 
-    return $this->render('etablissements/favoris.html.twig', [
+    #[Route('/listfavoris', name: 'favoris')]
+    public function favoris(EtablissementsRepository $etablissementsRepository): Response
+    {
+        $favoris = $etablissementsRepository->findBy(['favoris' => true]);
+
+        return $this->render('etablissements/favoris.html.twig', [
         'favoris' => $favoris,
     ]);
-}
+    }
 
 
     #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
