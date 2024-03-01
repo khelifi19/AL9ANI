@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mime\Part\File;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
@@ -145,16 +147,18 @@ class ResetPasswordController extends AbstractController
             // the lines below and change the redirect to 'app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
-            // $this->addFlash('reset_password_error', sprintf(
-            //     '%s - %s',
-            //     ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE,
-            //     $e->getReason()
-            // ));
+           $this->addFlash('reset_password_error', sprintf(
+               '%s - %s',
+                ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE,
+               $e->getReason()
+              
+            ));
 
             return $this->redirectToRoute('app_check_email');
         }
 
         $email = (new TemplatedEmail())
+        
             ->from(new Address('arij.laatigue@esprit.tn', 'Al9ani'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
@@ -163,7 +167,7 @@ class ResetPasswordController extends AbstractController
                 'resetToken' => $resetToken,
             ])
         ;
-
+        
         $mailer->send($email);
 
         // Store the token object in session for retrieval in check-email route.
