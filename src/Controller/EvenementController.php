@@ -120,33 +120,46 @@ public function generatePdf(Pdf $pdf): Response
 {
     $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-    // Render the HTML template for the PDF
     $html = $this->renderView('evenement/eventspdf.html.twig', [
         'events' => $events,
         
     ]);
 
-    // Generate a unique filename (e.g., using a timestamp)
     $filename = 'events_' . time() . '.pdf';
 
-    // Generate PDF using KnpSnappyBundle
     $pdf->generateFromHtml($html, $filename, [
         'lowquality' => true,
         'images' => true,
     
     ]);
 
-    // Set response headers
     $response = new Response(file_get_contents($filename));
     $response->headers->set('Content-Type', 'application/pdf');
     $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
 
-    // Remove temporary file after sending the response
     register_shutdown_function(function () use ($filename) {
         @unlink($filename);
     });
 
     return $response;
 }   
+#[Route('/eventdetails/{id}', name: 'app_event_details')]
+public function showEventDetails(int $id): Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+
+    $event = $entityManager->getRepository(Evenement::class)->find($id);
+
+    if (!$event) {
+        throw $this->createNotFoundException('Event not found');
+    }
+
+    $passes = $entityManager->getRepository(Pass::class)->findBy(['evenement' => $event]);
+
+    return $this->render('evenement/eventdetails.html.twig', [
+        'event' => $event,
+        'passes' => $passes,
+    ]);
+}
 
 }

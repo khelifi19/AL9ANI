@@ -1,0 +1,31 @@
+{% block body %}
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1>{{ event.nomEvent }} Details</h1>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h3>Date Début:</h3>
+        <p>{{ event.dateDebut ? event.dateDebut|date('Y-m-d') : 'N/A' }}</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h3>Date Fin:</h3>
+        <p>{{ event.dateFin ? event.dateFin|date('Y-m-d') : 'N/A' }}</p>
+    </div>
+
+    <div>
+        <h3>Passes:</h3>
+        {% if passes|length > 0 %}
+            <ul style="list-style-type: none; padding: 0;">
+                {% for pass in passes %}
+                    <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
+                        <strong>Pass Type:</strong> {{ pass.type }}<br>
+                        <strong>Price:</strong> {{ pass.prixPass }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No passes available for this event.</p>
+        {% endif %}
+    </div>
+{% endblock %}
