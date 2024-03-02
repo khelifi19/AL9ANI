@@ -31,7 +31,7 @@ class EtablissementsController extends AbstractController
     }
 
 
-    #[Route('/listfavoris', name: 'favoris')]
+    #[Route('/premium/listfavoris', name: 'favoris')]
     public function favoris(EtablissementsRepository $etablissementsRepository): Response
     {
         $favoris = $etablissementsRepository->findBy(['favoris' => true]);
@@ -42,7 +42,7 @@ class EtablissementsController extends AbstractController
     }
 
 
-    #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
+    #[Route('/gerant/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $etablissement = new Etablissements();
@@ -70,7 +70,7 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_etablissements_edit', methods: ['GET', 'POST'])]
+    #[Route('/gerant/{id}/edit', name: 'app_etablissements_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Etablissements $etablissement, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EtablissementsType::class, $etablissement);
@@ -88,7 +88,7 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_etablissements_delete', methods: ['POST'])]
+    #[Route('/gerant/{id}', name: 'app_etablissements_delete', methods: ['POST'])]
     public function delete(Request $request, Etablissements $etablissement, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$etablissement->getId(), $request->request->get('_token'))) {
@@ -99,7 +99,7 @@ class EtablissementsController extends AbstractController
         return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/ajouter-favoris/{id}', name: 'ajouter_favoris')]
+    #[Route('/premium/ajouter-favoris/{id}', name: 'ajouter_favoris')]
     public function ajouterFavoris(int $id, Request $request): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -119,7 +119,7 @@ class EtablissementsController extends AbstractController
     }
 
     
-    #[Route('/retirer-favoris/{id}', name: 'retirer_favoris')]
+    #[Route('/premium/retirer-favoris/{id}', name: 'retirer_favoris')]
     public function retirerFavoris(int $id, Request $request, EntityManagerInterface $entityManager): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
