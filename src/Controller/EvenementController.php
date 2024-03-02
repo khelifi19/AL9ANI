@@ -108,7 +108,6 @@ public function reserver(Request $request): Response
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Handle form submission
     }
 
     return $this->render('evenement/reserver.html.twig', [
