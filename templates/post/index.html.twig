@@ -18,6 +18,7 @@
 					
 						<!-- Single -->
                         {% for post in posts %}
+			            {% if post.enable==0 %}
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 							<div class="Goodup-grid-wrap">
 								<div class="Goodup-grid-upper">
@@ -56,6 +57,8 @@
 							</div>
 						</div>
 						
+{% endif %}
+
 						{% endfor %}
 					</div>
 					  {# Manual pagination controls #}
@@ -71,7 +74,7 @@
             <li class="page-item{% if page == pagination.currentPage %} active{% endif %}">
                 <a class="page-link" href="{{ path('app_post_index', {'page': page, 'q': searchQuery}) }}">{{ page }}</a>
             </li>
-        {% endfor %}
+       {% endfor %}
 
         {% if pagination.currentPage < pagination.totalPages %}
             <li class="page-item">
@@ -79,5 +82,5 @@
             </li>
         {% endif %}
     </ul>
-                    
+	                 
                     {% endblock %}

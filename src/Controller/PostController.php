@@ -18,8 +18,18 @@ use Dompdf\Options as DompdfOptions;
 #[Route('/post')]
 class PostController extends AbstractController
 {
+    private $entityManager;
+
+public function __construct(EntityManagerInterface $entityManager)
+{
+    $this->entityManager = $entityManager;
+}
+public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Contrat::class);
+    }
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
-    public function index(PostRepository $postRepository, Request $request): Response
+    public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         // Use the correct parameter name ('q' instead of 'p')
         $searchQuery = $request->query->get('q');
@@ -30,22 +40,17 @@ class PostController extends AbstractController
             // If no search query, fetch all posts
             $posts = $postRepository->findAll();
         }
-
-          // Manually paginate the posts
-          $currentPage = $request->query->getInt('page', 1); // Get current page number
-          $perPage = 5; // Items per page
-          $totalPosts = count($posts); // Total number of posts
-          $totalPages = ceil($totalPosts / $perPage); // Total number of pages
-          $offset = ($currentPage - 1) * $perPage; // Offset for pagination
-          $posts = array_slice($posts, $offset, $perPage); // Get posts for the current page
-
-          // Fetch statistics for post categories
-        $categoryStatistics = $entityManager->createQueryBuilder()
-        ->select('p.categorie, COUNT(p.id) as postCount')
-        ->from('App\Entity\Post', 'p')
-        ->groupBy('p.categorie')
-        ->getQuery()
-        ->getResult();
+    
+        // Manually paginate the posts
+        $currentPage = $request->query->getInt('page', 1); // Get current page number
+        $perPage = 5; // Items per page
+        $totalPosts = count($posts); // Total number of posts
+        $totalPages = ceil($totalPosts / $perPage); // Total number of pages
+        $offset = ($currentPage - 1) * $perPage; // Offset for pagination
+        $posts = array_slice($posts, $offset, $perPage); // Get posts for the current page
+    
+        // Fetch statistics for post categories
+       
     
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
@@ -57,7 +62,8 @@ class PostController extends AbstractController
             ],
         ]);
     }
-    #[Route('/back', name: 'app_postback_index', methods: ['GET'])]
+    
+       #[Route('/back', name: 'app_postback_index', methods: ['GET'])]
     
     public function indexback(PostRepository $postRepository, Request $request): Response
     {
@@ -195,37 +201,54 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/generate-pdf', name: 'post_generate_pdf')]
-public function generatePdf(Post $post): Response
-{
-    // Get the HTML content of the page you want to convert to PDF
-    $html = $this->renderView('post/show-pdf.html.twig', [
-        // Pass any necessary data to your Twig template
-        'post' => $post,
-    ]);
+    public function printPdf(): Response
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
 
-// Configure Dompdf options
-$options = new Options();
-$options->set('isHtml5ParserEnabled', true);
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $contrats = $this->transactionRepository->findAll();
+        
+        // Generate the HTML content
+        $html = $this->renderView('contrat/print.html.twig', ['contrats' => $contrats]);
 
-// Instantiate Dompdf with the configured options
-$dompdf = new Dompdf($options);
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait'); // Setup the paper size and orientation
+        $dompdf->render(); // Render the HTML as PDF
 
-// Load HTML content into Dompdf
-$dompdf->loadHtml($html);
+        $filename = sprintf('contrat-%s.pdf', date('Y-m-d_H-i-s'));
 
-// Set paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
+        // Output the generated PDF to Browser (force download)
+        return new Response($dompdf->stream($filename, ["Attachment" => true]));
+    }
+/**
+     * @Route("/{idPost}/afficher", name="afficher_evenement")
+     */
+    public function afficherEvent($idPost):Response
+    {
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($idPost);
+        $post->setEnable(1);
+        $entityManager = $this->getDoctrine()->getManager();
 
-// Render the HTML as PDF
-$dompdf->render();
+        $entityManager->persist($post);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_postback_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/{idPost}/masquer", name="masquer_evenement")
+     */
+    public function masquerEvent($idPost): Response
+    {
+        $post= $this->getDoctrine()->getRepository(Post::class)->find($idPost);
+        $post->setEnable(0);
+        $entityManager = $this->getDoctrine()->getManager();
 
-    // Set response headers for PDF download
-    $response = new Response($dompdf->output());
-    $response->headers->set('Content-Type', 'application/pdf');
-    $response->headers->set('Content-Disposition', 'attachment; filename="post.pdf"');
-
-    return $response;
-}
-
+        $entityManager->persist($post);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_postback_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

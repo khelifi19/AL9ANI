@@ -1,30 +1,82 @@
-
-
-{% block title %}Post{% endblock %}
-
-{% block body %}
-    <h1 style="margin-left:25%">Post</h1>
-
-    <table class="table">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contrat Print</title>
+    <link rel="stylesheet" href="/style.css" media="all" />
+</head>
+<body>
+<header class="clearfix">
+    
+    <h1 align="center"> Liste des Contrats </h1>
+    <hr></hr>
+    
+    <table class="table table-bordered" style="border-color:black;width:70%;margin-left:15%">
+        <thead>
+            <tr>
+                
+                <th style="background-color:green;color :white">Nom_client</th>
+                <th style="background-color:green;color :white">Date_contrat</th>
+                <th style="background-color:green;color :white">Montant</th>
+                <th style="background-color:green;color :white">Description</th>
+                
+            </tr>
+        </thead>
         <tbody>
-           
+        {% for contrat in contrats %}
             <tr>
-                <th>Description</th>
-                <td>{{ post.description }}</td>
+                <td>{{ contrat.nomClient }}</td>
+                <td>{{ contrat.dateContrat ? contrat.dateContrat|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat.montant }}</td>
+                <td>{{ contrat.description }}</td>
+                
             </tr>
+        {% else %}
             <tr>
-                <th>Titre</th>
-                <td>{{ post.titre }}</td>
+                <td colspan="6">no records found</td>
             </tr>
-            <tr>
-                <th>Datepost</th>
-                <td>{{ post.datepost ? post.datepost|date('Y-m-d') : '' }}</td>
-            </tr>
-
-             <tr>
-                <th>Localisation</th>
-                <td>{{ post.localisation }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
-{% endblock %}
+</header>
+</main>
+<footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>SKILLHUB</h3>
+            <p>
+              Ghazela,Ariana,Tunisia <br>
+              <strong>Phone:</strong> +216 52724070<br>
+              <strong>Email:</strong> SKILLHUB@esprit.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>SKILLHUB</span></strong>. All Rights Reserved
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End F
+
+</body>

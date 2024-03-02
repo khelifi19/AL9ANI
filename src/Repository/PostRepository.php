@@ -23,7 +23,7 @@ class PostRepository extends ServiceEntityRepository
     public function searchPosts($searchQuery)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.titre LIKE :query OR p.description LIKE :query')
+            ->andWhere('p.titre LIKE :query ')
             ->setParameter('query', '%' . $searchQuery . '%')
             ->getQuery()
             ->getResult();

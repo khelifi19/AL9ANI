@@ -43,9 +43,12 @@ class Post
     #[ORM\Column(type: 'date')] // Ajout de l'attribut datepost de type date
     private ?\DateTimeInterface $datepost = null;
 
-
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\Column(type: "boolean", nullable: true)]
+    #[Groups("post:read")]
+    private bool $enable = false;
 
     public function getId(): ?int
     {
@@ -120,5 +123,16 @@ class Post
 
     public function __toString() {
         return $this->getId(); // or any other logic to represent the object as a string
+    }
+    public function getEnable(): ?bool
+    {
+        return $this->enable;
+    }
+
+    public function setEnable(?bool $enable): self
+    {
+        $this->enable = $enable;
+
+        return $this;
     }
 }

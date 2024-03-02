@@ -3,106 +3,117 @@
 {% block title %}Post index{% endblock %}
 
 {% block body %}
-  
- <h1 style="color:red;margin-left:40%;font-size:50px">posts</h1>
- <br><br>
+    <h1 style="color:red; margin-left:40%; font-size:50px">Posts</h1>
+    <br><br>
 
-<form action="{{ path('app_postback_index') }}" method="get">
-    <input type="text" name="q" placeholder="Search..." value="{{ searchQuery }}">
-    <button class="btn btn-primary btn-sm" type="submit">Search</button>
-</form>
+    <form action="{{ path('app_postback_index') }}" method="get">
+        <input type="text" name="q" placeholder="Search..." value="{{ searchQuery }}">
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+    </form>
+    
     <table class="table table-bordered" style="border-color:black;width:85%;margin-left:7%">
         <thead>
             <tr>
-                
-                <th style="background-color:red;color :white">Description</th>
-                <th style="background-color:red;color :white">Titre</th>
-                <th style="background-color:red;color :white">Date</th>
-				 <th style="background-color:red;color :white">Image</th>
-                 <th style="background-color:red;color :white">localisation</th>
-                <th style="background-color:red;color :white">actions</th>
-
+                <th style="background-color:red;color:white">Description</th>
+                <th style="background-color:red;color:white">Titre</th>
+                <th style="background-color:red;color:white">Date</th>
+                <th style="background-color:red;color:white">Image</th>
+                <th style="background-color:red;color:white">Localisation</th>
+                <th style="background-color:red;color:white">Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for commentaire in posts %}
-            <tr>
-                
-                <td>{{ commentaire.description }}</td>
-                <td>{{ commentaire.titre }}</td>
-                <td>{{ commentaire.datepost ? commentaire.datepost|date('Y-m-d') : '' }}</td>
-				<td><img src="{{ asset('uploads/' ~ commentaire.image) }}" alt=""width="100 px" height="100 px"></td>
-                 <td>{{ commentaire.localisation }}</td>
-                <td>
-                 <button class="btn btn-danger btn-sm" style="color:black;">   <a style="color:black;" href="{{ path('app_post_show', {'id': commentaire.id}) }}">show</a></button>
-                 <button class="btn btn-success btn-sm" style="color:black;margin-left:px;">   <a style="color:black;" href="{{ path('app_post_edit', {'id': commentaire.id}) }}">edit</a></button>
-                 
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
+            {% for commentaire in posts %}
+                <tr>
+                    <td>{{ commentaire.description }}</td>
+                    <td>{{ commentaire.titre }}</td>
+                    <td>{{ commentaire.datepost ? commentaire.datepost|date('Y-m-d') : '' }}</td>
+                    <td><img src="{{ asset('uploads/' ~ commentaire.image) }}" alt="" width="100px" height="100px"></td>
+                    <td>{{ commentaire.localisation }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" style="color:black;">
+                            <a style="color:black;" href="{{ path('app_post_show', {'id': commentaire.id}) }}">show</a>
+                        </button>
+                        <button class="btn btn-success btn-sm" style="color:black; margin-left:px;">
+                            <a style="color:black;" href="{{ path('app_post_edit', {'id': commentaire.id}) }}">edit</a>
+                        </button>
+                        {% if commentaire.enable == 1 %} <a href="{{ path('masquer_evenement', {'idPost' : commentaire.id})}}" class="btn btn-success text-white" href="#">Afficher</a>
+                            {% else %}<a href="{{ path('afficher_evenement', {'idPost' : commentaire.id})}}" class="btn btn-primary text-white"
+                                         href="#">Masquer</a> {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No records found</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
     {# Manual pagination controls #}
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if pagination.currentPage > 1 %}
-            <li class="page-item">
-                <a class="page-link" href="{{ path('app_postback_index', {'page': pagination.currentPage - 1, 'q': searchQuery}) }}">Previous</a>
-            </li>
-        {% endif %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if pagination.currentPage > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('app_postback_index', {'page': pagination.currentPage - 1, 'q': searchQuery}) }}">Previous</a>
+                </li>
+            {% endif %}
 
-        {% for page in 1..pagination.totalPages %}
-            <li class="page-item{% if page == pagination.currentPage %} active{% endif %}">
-                <a class="page-link" href="{{ path('app_postback_index', {'page': page, 'q': searchQuery}) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if pagination.currentPage < pagination.totalPages %}
-            <li class="page-item">
-                <a class="page-link" href="{{ path('app_postback_index', {'page': pagination.currentPage + 1, 'q': searchQuery}) }}">Next</a>
-            </li>
-        {% endif %}
-    </ul>
-</nav>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <br>
-  <h2>Category Statistics</h2>
-<div class="category-statistics">
-    <canvas id="categoryChart" width="400" height="400"></canvas>
-</div>
-
-<script>
-    var ctx = document.getElementById('categoryChart').getContext('2d');
-    var colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8000', '#8000ff', '#0080ff', '#80ff00'];
-
-    var data = {
-        labels: [
-            {% for stat in categoryStatistics %}
-                '{{ stat.categorie }}',
+            {% for page in 1..pagination.totalPages %}
+                <li class="page-item{% if page == pagination.currentPage %} active{% endif %}">
+                    <a class="page-link" href="{{ path('app_postback_index', {'page': page, 'q': searchQuery}) }}">{{ page }}</a>
+                </li>
             {% endfor %}
-        ],
-        datasets: [{
-            data: [
+
+            {% if pagination.currentPage < pagination.totalPages %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('app_postback_index', {'page': pagination.currentPage + 1, 'q': searchQuery}) }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <button class="btn btn-primary btn-sm" style="color:black; margin-left:45%">
+        <a style="color:white" href="{{ path('app_post_new') }}">Create new</a>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <br>
+    <h2>Category Statistics</h2>
+    <div class="category-statistics">
+        <canvas id="categoryChart" width="500" height="500"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('categoryChart').getContext('2d');
+        var colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8000', '#8000ff', '#0080ff', '#80ff00'];
+
+        var data = {
+            labels: [
                 {% for stat in categoryStatistics %}
-                    {{ stat.postCount }},
+                    '{{ stat.categorie }}',
                 {% endfor %}
             ],
-            backgroundColor: colors
-        }]
-    };
+            datasets: [{
+                data: [
+                    {% for stat in categoryStatistics %}
+                        {{ stat.postCount }},
+                    {% endfor %}
+                ],
+                backgroundColor: colors
+            }]
+        };
 
-    var categoryChart = new Chart(ctx, {
-        type: 'pie',
-        data: data
-    });
-</script>
+        var categoryChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Set to false to allow manual size control
+                width: 150, // Set the desired width
+                height: 150, // Set the desired height
+            }
+        });
+    </script>
+{% endblock %}
 
-
-  <button class="btn btn-primary btn-sm" style="color:black;margin-left:45%">  <a style="color:white" href="{{ path('app_post_new') }}">Create new</a>
-                    {% endblock %}
