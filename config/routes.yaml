@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_reponse_pdf:
+    path: '/back/pdf'
+    controller: 'App\Controller\ReponseController::generatePdf'
+    methods: ['GET']

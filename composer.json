@@ -11,7 +11,13 @@
         "doctrine/doctrine-bundle": "^2.9",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
+        "endroid/qr-code-bundle": "^4.3",
+        "knplabs/knp-paginator-bundle": "^5.9",
+        "knplabs/knp-snappy-bundle": "^1.10",
+        "lexik/form-filter-bundle": "^8.0",
+        "mercuryseries/flashy-bundle": "^5.1",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "phpoffice/phpspreadsheet": "^1.23",
         "phpstan/phpdoc-parser": "^1.16",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.4.*",
@@ -29,7 +35,7 @@
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "5.4.*",
         "symfony/process": "5.4.*",
-        "symfony/property-access": "5.4.*",   
+        "symfony/property-access": "5.4.*",
         "symfony/property-info": "5.4.*",
         "symfony/runtime": "5.4.*",
         "symfony/security-bundle": "5.4.*",
@@ -37,18 +43,21 @@
         "symfony/string": "5.4.*",
         "symfony/translation": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
+        "symfony/ux-chartjs": "^2.11",
         "symfony/validator": "5.4.*",
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^2.1"
     },
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "php-http/discovery": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "endroid/installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -101,5 +110,8 @@
         "symfony/phpunit-bridge": "^6.2",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"
+    },
+    "platform": {
+        "php": "7.4"
     }
 }

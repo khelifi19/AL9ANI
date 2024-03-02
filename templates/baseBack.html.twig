@@ -14,6 +14,14 @@
         <link href="{{ asset('assetsB/css/icons.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assetsB/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
         <link href="{{ asset('assetsB/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style">
+        
+
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+                                     <!-- Flashy depends on jQuery -->
+                                    <script src="//code.jquery.com/jquery.js"></script>
+                                    <!-- Load Flashy default JavaScript -->
+                                    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+                                    <!-- Include Flashy default partial -->
     {% endblock %}
 
     {% block javascripts %}
@@ -86,13 +94,13 @@
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
                                 <i class="uil-store"></i>
-                                <span> Ecommerce </span>
+                                <span> Reclamation </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <div class="collapse" id="sidebarEcommerce">
                                 <ul class="side-nav-second-level">
                                     <li>
-                                        <a href="{{path('productList')}}">Products</a>
+                                        <a href="">Products</a>
                                     </li>
                                     <li>
                                         <a href="apps-ecommerce-orders.html">Orders</a>
@@ -830,7 +838,7 @@
                                         <img src="{{asset('assetsB/images/users/avatar-1.jpg')}}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Soeng Souy</span>
+                                        <span class="account-user-name">Beha Eddine Jaouadi</span>
                                         <span class="account-position">Founder</span>
                                     </span>
                                 </a>

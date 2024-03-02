@@ -1,0 +1,13 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                                        <div class="billing-address-form">
+                                                <p>
+    {{ form_widget(form.objet,{ 'attr':{'placeholder':'Enter l objet de la reclamation ..', 'class': 'form-control'}}) }}
+    {{ form_errors(form.objet) }}
+</p>
+<p>
+    {{ form_widget(form.text,{ 'attr':{'placeholder':'exprimez-vous .. ', 'class': 'form-control'}}) }}
+    {{ form_errors(form.text) }}
+</p>
+                                        </div>
+                                        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

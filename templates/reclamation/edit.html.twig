@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reclamation{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Bienvenue dans votre</p>
+                        <h1>Espace reclamation</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+    <div class="card single-accordion">
+                                
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="billing-address-form">
+    {{ include('reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    <a class="btn btn-primary" href="{{ path('reclamation_new') }}">back to list</a>
+{% endblock %}

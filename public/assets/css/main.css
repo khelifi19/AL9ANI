@@ -425,6 +425,20 @@ a.bordered-btn {
   padding: 7px 20px;
 }
 
+button.read-more-btn {
+  display: inline-block;
+  margin-top: 15px;
+  color: #051922;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  font-weight: 700;
+}
+
+button.read-more-btn:hover {
+  color: #F28123;
+}
+
 a.read-more-btn {
   display: inline-block;
   margin-top: 15px;
