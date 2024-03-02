@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/user')]
@@ -20,9 +21,18 @@ class UserController extends AbstractController
     #[Route('/admin/users', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+        
         return $this->render('admin/listUsers.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
+    }
+    #[Route('/handle', name: 'app_404')]
+    public function handle(): Response
+    {
+        
+        return $this->render('user/404.html.twig');
+          
+        
     }
     #[Route('/admin/users/search', name: 'app_user_search', methods: ['POST'])]
 public function search(Request $request, UserRepository $userRepository): Response

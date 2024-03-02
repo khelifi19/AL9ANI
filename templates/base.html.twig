@@ -80,14 +80,27 @@
 									<ul class="nav-dropdown nav-submenu">
 										<li><a href="{{ path('app_user_show', {'id': app.user.id}) }}"><i class="lni lni-user me-2"></i>My Profile</a></li>
 										<li><a href="{{ path('user_delete', {'username': app.user.username}) }}"> <i class="lni lni-trash-can me-2"></i>Delete Account</a></li>
-							
+										<li><a href="{{path('app_forgot_password_request')}}"> <i class="lni lni-lock-alt me-2"></i>Change Password</a></li>
 									</ul>
 								</li>
+                              
 									<li class="add-listing gray">
 									<a href="{{ path('app_logout')}}" >
 										<i class="lni lni-power-switch mr-1"></i> Logout
 									</a> </li>
-								
+								{% if 'ROLE_ADMIN' in app.user.roles %}
+                    <li class="add-listing gray">
+                        <a href="{{ path('app_user_index') }}">
+                            <i class="lni lni-dashboard mr-1"></i> Dashboard
+                        </a>
+                    </li>
+                {% elseif 'ROLE_GERANT' in app.user.roles %}
+                    <li class="add-listing gray">
+                        <a href="#">
+                            <i class="fas fa-plus me-1"></i> Add Listing
+                        </a>
+                    </li>
+                {% endif %}
 								{% else %}
 								<li>
 									<a href="{{ path('app_register')}}"  class="ft-bold">

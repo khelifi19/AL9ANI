@@ -37,3 +37,7 @@ app_user_search:
     path: /admin/users/search
     controller: App\Controller\UserController::search
     methods: ['POST']
+
+app_404:
+    path: /handle
+    controller: App\Controller\UserController::handle
