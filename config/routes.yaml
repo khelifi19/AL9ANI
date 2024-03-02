@@ -61,3 +61,8 @@ cancel_premium:
     path: /cancel-url/{id}
     controller: App\Controller\PaymentController::cancelUrl
     methods: ['GET'] 
+favoris:
+  path: /etablissements/favoris
+  controller: App\Controller\EtablissementsController::favoris
+  methods: GET
+

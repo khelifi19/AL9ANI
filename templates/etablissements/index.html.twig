@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+   <section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+                                 {% if app.user %}
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								{% endif %}
+                                </div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+    <h1>Etablissements </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Categorie</th>
+                <th>Adress</th>
+                <th>Mail</th>
+                <th>Numéro de téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etablissement in etablissements %}
+            <tr>
+                <td>{{ etablissement.id }}</td>
+                <td>{{ etablissement.nom }}</td>
+                <td>{{ etablissement.categorie }}</td>
+                <td>{{ etablissement.adress }}</td>
+                <td>{{ etablissement.mail }}</td>
+                <td>{{ etablissement.tel }}</td>
+               <td>
+                    <a href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Afficher</a> <br></br>
+
+                    <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">Modifier</a> <br></br>
+                    <a href="{{ path('ajouter_favoris', {'id': etablissement.id}) }}">Ajouter aux favoris</a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etablissements_new') }}">Créer Etablissement</a> 
+    <a href="{{ path('favoris') }}">View Favorites</a>
+
+    
+    <div style="display: flex; justify-content: center; align-items: center; ">
+        <div style="border: 5px solid #000; padding: 5px;  background-color: #f8f8f8;
+                border: 2px solid 	#9f9f9f;
+                border-radius: 10px;
+                padding: 10px; ">
+            {{ knp_pagination_render(etablissements) }}
+        </div>
+    </div>
+
+
+
+{% endblock %}

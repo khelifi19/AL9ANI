@@ -3,6 +3,7 @@ twig:
     paths: 
          '%kernel.project_dir%/public/email-photo': images
 
+
 when@test:
     twig:
         strict_variables: true

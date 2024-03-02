@@ -1,0 +1,92 @@
+<section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+                                 {% if app.user %}
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								{% endif %}
+                                </div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+<div class="goodup-dashboard-wrap gray px-4 py-5">
+    <div class="goodup-dashboard-content">
+
+    
+        <div class="dashboard-widg-bar d-block">
+            <div class="row">
+                <div class="col-xl-12 col-lg-2 col-md-12 col-sm-12">
+                    <div class="submit-form">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <!-- Listing Info -->
+                        <div class="dashboard-list-wraps bg-white rounded mb-4">
+                            <div class="dashboard-list-wraps-head br-bottom py-3 px-3">
+                                <div class="dashboard-list-wraps-flx">
+                                    <h2 class="mb-0 ft-medium fs-md"><i class="fa fa-file me-2 theme-cl fs-sm"></i>Créer Etablissement</h2>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-list-wraps-body py-3 px-3">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="mb-1">Nom de l'établissement</label>
+                                            {{ form_widget(form.nom, {'attr': {'class': 'form-control rounded'}}) }}
+                                            {{ form_errors(form.nom) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="mb-1">Categorie</label>
+                                            {{ form_widget(form.categorie, {'attr': {'class': 'form-control rounded'}}) }}
+                                            {{ form_errors(form.categorie) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="mb-1">Adresse</label>
+                                            {{ form_widget(form.adress, {'attr': {'class': 'form-control rounded'}}) }}
+                                            {{ form_errors(form.adress) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="mb-1">Adresse mail</label>
+                                            {{ form_widget(form.mail, {'attr': {'class': 'form-control rounded'}}) }}
+                                            {{ form_errors(form.mail) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="mb-1">Numéro de téléphone</label>
+                                            {{ form_widget(form.tel, {'attr': {'class': 'form-control rounded'}}) }}
+                                            {{ form_errors(form.tel) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

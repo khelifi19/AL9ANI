@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+ 
+
+    {{ include('etablissements/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('app_etablissements_index') }}">Retourner à la liste</a>
+
+    {{ include('etablissements/_delete_form.html.twig') }}
+{% endblock %}

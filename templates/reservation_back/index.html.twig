@@ -1,0 +1,35 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Reservation {% endblock %}
+
+{% block body %}
+    <h1>Liste Des Reservations </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date De La Reservation</th>
+                <th>Nombre De Personnes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation.nombreDePersonnes }}</td>
+                <td>
+                    <a href="{{ path('app_reservation_back_show', {'id': reservation.id}) }}">Afficher</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+   
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etablissement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de l'établissement</th>
+                <td>{{ etablissement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ etablissement.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ etablissement.adress }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ etablissement.mail }}</td>
+            </tr>
+            <tr>
+                <th>Numéro de téléphone</th>
+                <td>{{ etablissement.tel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etablissements_index') }}">Retourner à la liste</a>
+    <br> </br>
+
+    <a href="{{ path('app_reservation_new') }}">Reserver</a>
+    <br> </br>
+
+    <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">Modifier</a>
+
+    {{ include('etablissements/_delete_form.html.twig') }}
+{% endblock %}

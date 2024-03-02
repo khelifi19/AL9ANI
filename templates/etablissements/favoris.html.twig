@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center mb-5">Vos établissements favoris</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for favori in favoris %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ favori.nom }}</h5>
+                            <p class="card-text">{{ favori.adress }}</p>
+                            <p class="card-text">{{ favori.mail }}</p>
+                            <p class="card-text">{{ favori.tel }}</p>
+                            <form action="{{ path('retirer_favoris', { 'id': favori.id }) }}" method="POST">
+                                <button type="submit" class="btn btn-danger">Retirer des favoris</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

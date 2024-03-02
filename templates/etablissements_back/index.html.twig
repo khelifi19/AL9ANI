@@ -1,0 +1,42 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Etablissements {% endblock %}
+
+{% block body %}
+    <h1>Liste Des Etablissements </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Categorie</th>
+                <th>Adress</th>
+                <th>Mail</th>
+                <th>Numéro de téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etablissement in etablissements %}
+            <tr>
+                <td>{{ etablissement.id }}</td>
+                <td>{{ etablissement.nom }}</td>
+                <td>{{ etablissement.categorie }}</td>
+                <td>{{ etablissement.adress }}</td>
+                <td>{{ etablissement.mail }}</td>
+                <td>{{ etablissement.tel }}</td>
+                <td>
+                    <a href="{{ path('app_etablissements_back_show', {'id': etablissement.id}) }}">Afficher</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+
+{% endblock %}
