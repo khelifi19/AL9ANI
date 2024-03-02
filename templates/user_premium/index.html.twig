@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+                                 {% if app.user %}
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								{% endif %}
+                                </div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+	<!-- =========================== Price Box ======================= -->
+			<section class="space min gray">
+				<div class="container">
+				
+					<div class="row justify-content-center">
+						<div class="col-xl-5 col-lg-7 col-md-9 col-sm-12">
+							<div class="sec_title position-relative text-center mb-5">
+								<h6 class="theme-cl mb-0">Our Pricing</h6>
+								<h2 class="ft-bold">Choose Your Package</h2>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+					
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+							<div class="Goodup-price-wrap" hidden>
+								
+							</div>
+						</div>
+						
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+							<div class="Goodup-price-wrap">
+								<div class="Goodup-author-header">
+									<div class="Goodup-price-currency">
+										<h3><span class="Goodup-new-price theme-cl">DT<del>40</del></span><span class="Goodup-old-price">DT<del>80</del></span></h3>
+									</div>
+									<div class="Goodup-price-title">
+										<div class="Goodup-price-tlt"><h4>Platinum</h4></div><div class="Goodup-price-ribbon"><span class="Goodup-ribbon-offer">50% Off</span></div>
+									</div>
+									<div class="Goodup-price-subtitle">Best Choice for Individuals </div>
+								</div>
+								<div class="Goodup-price-body">
+									<ul class="price__features">
+										
+										<li><i class="fa fa-angle-right"></i>12 Months with  &amp; Al9ani Premium</li>
+										<li><i class="fa fa-angle-right"></i>Uber</li>
+										<li><i class="fa fa-angle-right"></i>Reservation</li>
+										<li><i class="fa fa-angle-right"></i>Reclamation</li>
+									</ul>
+								</div>
+								<div class="Goodup-price-bottom">
+									<a class="Goodup-price-btn active" href="{{ path('app_subscription_new', {'id': app.user.id}) }}"><i class="fas fa-shopping-basket"></i> Purchase Now</a>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+							<div class="Goodup-price-wrap" hidden>
+								
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+			</section>
+			<!-- ===========================  Price Box End ===================== -->
+{% endblock %}

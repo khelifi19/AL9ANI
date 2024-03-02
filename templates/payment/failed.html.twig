@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section>
+				<div class="container">
+				
+					<div class="row justify-content-center">
+						<div class="col-12 col-md-10 col-lg-8 col-xl-6 text-center">
+
+							<!-- Icon -->
+							<div class=""><img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/404.png')}}" class="img-fluid" alt="" /></div>
+							<!-- Heading -->
+							<h1 class="mb-3 ft-bold">Whoops! payment failed .</h1>
+							<!-- Text -->
+							<h5 class="ft-medium fs-md mb-5">Please try again</h5>
+							<!-- Button -->
+							<a class="btn rounded theme-bg text-light" href="{{ path('app_home_page') }}">Go To Home Page</a>
+                           
+						</div>
+					</div>
+					
+				</div>
+			</section>
+            {% endblock %}

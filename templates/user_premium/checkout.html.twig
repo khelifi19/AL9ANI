@@ -1,0 +1,141 @@
+
+{% extends 'base.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block body %}
+  <section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+                                 {% if app.user %}
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								{% endif %}
+                                </div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+<!-- ======================= Booking page Design ======================== -->
+			<section class="gray space min">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+							<div class="d-block"><h4 class="ft-medium">Payment Methode</h4></div>
+							<div class="single-form-item">
+								<div class="accordion accordion-flush" id="acdflush">
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="paypalhead">
+										  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#colpaypal" aria-expanded="true" aria-controls="colpaypal">
+											Pay via Paypal<img src="assets/img/paypal.png" class="img-fluid" alt="">
+										  </button>
+										</h2>
+										<div id="colpaypal" class="accordion-collapse collapse show" aria-labelledby="paypalhead" data-bs-parent="#acdflush">
+										  <div class="accordion-body">
+											<p>You will be redirected to PayPal to complete payment.</p>
+										  </div>
+										</div>
+									</div>
+		<div class="accordion-item">
+    <h2 class="accordion-header" id="creditheading">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colcredit" aria-expanded="false" aria-controls="colcredit">
+            Pay Via Stripe<img src="assets/img/debit.png" class="img-fluid" alt="">
+        </button>
+    </h2>
+    <div id="colcredit" class="accordion-collapse collapse" aria-labelledby="creditheading" data-bs-parent="#acdflush">
+        <div class="accordion-body">
+            <div class="row submit-form">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="mb-1">Card Number</label>
+                        <div id="card-element"></div>
+                    </div>
+                </div>
+                <!-- Add other input fields as needed -->
+
+                <div class="col-lg-12">
+                    <button id="stripe-button" class="btn theme-bg text-light ft-medium rounded">Confirm & Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+								</div>
+							</div>
+							
+							<div class="single-form-item mb-4">
+								<div class="d-block"><button type="button" class="btn theme-bg text-light ft-medium rounded">Confirm & Pay</button></div>
+							</div>
+						</div>
+						
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+							<div class="biiling-wrap mb-4">
+								<div class="billing-item">
+									<div class="Goodup-grid-wrap mb-0">
+										<div class="Goodup-grid-upper">
+											<div class="Goodup-grid-thumb">
+												<a href="single-listing-detail-3.html" class="d-block text-center m-auto"><img src="assets/img/listing/l-3.jpg" class="img-fluid" alt=""></a>
+											</div>
+											<div class="Goodup-rating overlay">
+												<div class="Goodup-pr-average high">5.0</div>
+												<div class="Goodup-aldeio">
+													<div class="Goodup-rates">
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+														<i class="fas fa-star"></i>
+													</div>
+													<div class="Goodup-all-review"><span>10 Reviews</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="billing-item-head">
+									<h5 class="ft-medium mb-1">The Gold Hotel Lalit</h5>
+									<div class="Goodup-location"><i class="fas fa-map-marker-alt text-muted me-2"></i>Montreal, Australia</div>
+								</div>
+								<div class="billing-item-middle">
+									<div class="billing-its-title"><h4>Booking Details</h4></div>
+									<div class="billing-item-lists">
+										<ul>
+											<li><span class="prt-title">Check In:</span><span class="prt-value">10 Jul 2022</span></li>
+											<li><span class="prt-title">Check Out:</span><span class="prt-value">30 Sep 2022</span></li>
+											<li><span class="prt-title">Adults:</span><span class="prt-value">2 Adults, 1 Child</span></li>
+											<li><span class="prt-title">V.A.T</span><span class="prt-value">$30</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="billing-item-foot">
+									<div class="blg-fgty">
+										<h5 class="ft-medium">Cost:</h5>
+										<h6 class="theme-cl ft-bold">$316 USD</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</section>
+			<!-- ======================= Booking page Design End ======================== -->
+            <script>
+  
+    </script>
+            {% endblock %}

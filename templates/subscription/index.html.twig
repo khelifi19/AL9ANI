@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subscription index{% endblock %}
+
+{% block body %}
+    <h1>Subscription index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subscription in subscriptions %}
+            <tr>
+                <td>{{ subscription.id }}</td>
+                <td>{{ subscription.DateDebut ? subscription.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.dateFin ? subscription.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.price }}</td>
+                <td>
+                    <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">show</a>
+                    <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_subscription_new') }}">Create new</a>
+{% endblock %}

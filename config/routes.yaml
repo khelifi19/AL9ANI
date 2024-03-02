@@ -41,3 +41,23 @@ app_user_search:
 app_404:
     path: /handle
     controller: App\Controller\UserController::handle
+
+app_subscription_new:
+    path: '/new/{id}'
+    controller: 'App\Controller\SubscriptionController::new'
+    methods: ['GET', 'POST']
+    
+checkout_premium:
+    path: '/user/checkout/{id}'
+    controller: App\Controller\PaymentController::checkout
+
+
+success_premium:
+    path: /success-url
+    controller: App\Controller\PaymentController::successUrl
+    methods: ['GET']
+
+cancel_premium:
+    path: /cancel-url/{id}
+    controller: App\Controller\PaymentController::cancelUrl
+    methods: ['GET'] 

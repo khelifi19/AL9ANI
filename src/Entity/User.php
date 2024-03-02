@@ -49,6 +49,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     #[Assert\NotBlank(message:"lastname is required")]
     private ?string $lastName = null;
+
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Subscription $id_subscription = null;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -187,4 +192,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getIdSubscription(): ?Subscription
+    {
+        return $this->id_subscription;
+    }
+
+    public function setIdSubscription(?Subscription $id_subscription): static
+    {
+        $this->id_subscription = $id_subscription;
+
+        return $this;
+    }
+
+  
 }

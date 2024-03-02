@@ -88,6 +88,13 @@
 									<a href="{{ path('app_logout')}}" >
 										<i class="lni lni-power-switch mr-1"></i> Logout
 									</a> </li>
+									{% if 'ROLE_GERANT' not in app.user.roles and 'ROLE_ADMIN' not in app.user.roles and 'ROLE_PREMIUM' not in app.user.roles %} 
+									<li class="add-listing gray">
+                        <a href="{{ path('app_user_premium') }}">
+                            <i class="lni lni-dashboard mr-1"></i> upgrade Account
+                        </a>
+                    </li>
+									{% endif %}
 								{% if 'ROLE_ADMIN' in app.user.roles %}
                     <li class="add-listing gray">
                         <a href="{{ path('app_user_index') }}">
