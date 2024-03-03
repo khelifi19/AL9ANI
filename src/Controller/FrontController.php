@@ -97,7 +97,7 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/back", name="back", methods={"GET","POST"})
+     * @Route("/admin/back", name="back", methods={"GET","POST"})
      */
     public function indexback(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
     {
@@ -119,7 +119,7 @@ class FrontController extends AbstractController
         ]);
     }
     /**
-     * @Route("/addreponse", name="addreponse", methods={"GET","POST"})
+     * @Route("admin/addreponse", name="addreponse", methods={"GET","POST"})
      */
     public function addreponse(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -134,9 +134,7 @@ class FrontController extends AbstractController
             $reponse->setIdRec($reclamations);
             $entityManager->persist($reponse);
             $entityManager->flush();
-            // Update the price field
             $reclamations->setEtat(1);
-            // Persist and flush the changes
             $entityManager->persist($reclamations);
             $entityManager->flush();
             return $this->redirectToRoute('back', [], Response::HTTP_SEE_OTHER);

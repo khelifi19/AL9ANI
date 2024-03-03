@@ -35,7 +35,7 @@ class ReponseController extends AbstractController
     }
 
 
-    #[Route('/new', name: 'app_reponse_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_reponse_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reponse = new Reponse();
@@ -63,7 +63,7 @@ class ReponseController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_reponse_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/{id}/edit', name: 'app_reponse_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reponse $reponse, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReponseType::class, $reponse);
@@ -81,7 +81,7 @@ class ReponseController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_reponse_delete', methods: ['POST', 'GET'])]
+    #[Route('/admin/{id}', name: 'app_reponse_delete', methods: ['POST', 'GET'])]
     public function delete(Request $request, Reponse $reponse, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $reponse->getId(), $request->request->get('_token'))) {
@@ -103,7 +103,7 @@ class ReponseController extends AbstractController
 
 
 
-    #[Route('/back/pdf', name: 'app_reponse_pdf')]
+    #[Route('/admin/back/pdf', name: 'app_reponse_pdf')]
 public function generatePdf(Pdf $pdf): Response
 {
     $reclamations = $this->getDoctrine()->getRepository(Reclamation::class)->findAll();
