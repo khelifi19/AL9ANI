@@ -1,0 +1,39 @@
+
+
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Details de la postule{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div>
+            <h1 class="text-center mb-4">Détails de la Postule</h1>
+                <div class="mb-3">
+                <strong>Nom:</strong> {{ postule.nom }}
+            </div>
+                  <div class="mb-3">
+                <strong>Prenom:</strong> {{ postule.prenom }}
+            </div>
+                   <div class="mb-3">
+                <strong>Age:</strong> {{ postule.age }}
+            </div>
+                  <div class="mb-3">
+                <strong>Ville:</strong> {{ postule.ville}}
+            </div>
+                 <div class="mb-3">
+                <strong>Numero:</strong> {{ postule.numero }}
+            </div>
+                <div class="mb-3">
+                <strong>Email:</strong> {{ postule.email }}
+            </div>
+               
+                
+                        </dd>
+            <div class="text-center">
+                <a href="{{ path('app_postule_index') }}" class="btn btn-primary">Retour</a>
+                <a href="{{ path('app_postule_delete2', {'id': postule.id}) }}" class="btn btn-danger">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

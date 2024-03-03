@@ -1,0 +1,57 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Détails de la Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Détails de la Course</div>
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Détails de la Course</h1>
+                    <div class="mb-3">
+                        <strong>Destination:</strong> {{ course.destination }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Adresse de Départ:</strong> {{ course.depart }}
+                    </div>
+                
+                    <div class="mb-3">
+                        <strong>Nombre de Passagers:</strong> {{ course.nbPersonne }}
+                    </div>
+                       
+                 <div class="mb-3">
+    <strong>Date de la course:</strong> {{ course.date|date('Y-m-d H:i') }}
+</div>
+ <div class="mb-3">
+    <strong>Prix de la course:</strong> {{ course.prix}} D
+</div>
+
+
+                    {% if course.idVoiture %}
+                        <div class="mb-3">
+                            <strong>Matricule de la Voiture:</strong> {{ course.idVoiture.getMatricule() }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Type de Voiture:</strong> {{ course.idVoiture.getModele() }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">Aucune voiture assignée pour le moment.</div>
+                    {% endif %}
+
+
+                   
+                        <div class="text-center">
+                            <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Modifier Votre Course</a>
+       <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Continuer</a>
+
+
+                        </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

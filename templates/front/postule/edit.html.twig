@@ -1,0 +1,63 @@
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Modifier votre postule{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Modifier Votre postule</div>
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Modifier votre postule</h1>
+                    {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom'}}) }}
+                            {% if form_errors(form.nom) %}
+                        <div class="alert alert-danger">{{ form_errors(form.nom) }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Votre prenom'}}) }}
+                            {% if form_errors(form.prenom) %}
+                        <div class="alert alert-danger">{{ form_errors(form.prenom) }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.age, {'attr': {'class': 'form-control', 'placeholder': 'votre age'}}) }}
+                        {% if form_errors(form.age) %}
+                        <div class="alert alert-danger">{{ form_errors(form.age) }}</div>
+                        {% endif %}
+                    </div>
+                      <div class="mb-3">
+                        {{ form_row(form.ville, {'attr': {'class': 'form-control', 'placeholder': 'votre ville'}}) }}
+                        {% if form_errors(form.ville) %}
+                        <div class="alert alert-danger">{{ form_errors(form.ville) }}</div>
+                        {% endif %}
+                    </div>
+                          <div class="mb-3">
+                        {{ form_row(form.numero, {'attr': {'class': 'form-control', 'placeholder': 'votre numero'}}) }}
+                        {% if form_errors(form.numero) %}
+                        <div class="alert alert-danger">{{ form_errors(form.numero) }}</div>
+                        {% endif %}
+                    </div>
+                          <div class="mb-3">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'votre email'}}) }}
+                        {% if form_errors(form.email) %}
+                        <div class="alert alert-danger">{{ form_errors(form.email) }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger">Enregistrer les modifications</button>
+
+       <a href="{{ path('courseUser_index') }}" class="btn btn-danger">Retour</a>
+                    </div>
+                    {{ form_end(form) }}
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

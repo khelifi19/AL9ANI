@@ -1,0 +1,67 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Liste des Postules{% endblock %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Liste des postules</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                   
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Age</th>
+                                    <th>Ville</th>
+                                    <th>Numero</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+                                {% for postule in postules %}
+                                <tr>
+                                   
+                                    <td>{{ postule.nom }}</td>
+                                      <td>{{ postule.prenom }}</td>
+                                     <td>{{ postule.age }}</td>
+                                    <td>{{ postule.ville }}</td>
+                                     <td>{{ postule.numero }}</td>
+                                   <td>{{ postule.email }}</td>
+                                    <td>
+                                        <a href="{{ path('app_postule_show', {'id': postule.id}) }}" class="btn btn-primary">Voir</a>
+                           <a href="{{ path('app_postule_delete2', {'id': postule.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?')">Supprimer</a>
+
+    </td>
+</tr>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

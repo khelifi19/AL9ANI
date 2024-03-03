@@ -1,0 +1,38 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Courses A venir{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4"> Mes Courses a venir </h1>
+    <table class="table table-striped">
+        <thead class="bg-danger text-white">
+            <tr>
+                <th>Destination</th>
+                <th>Départ</th>
+                <th>Date</th>
+                <th>Nombre de personnes</th>
+                  <th>Prix</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.destination }}</td>
+                <td>{{ course.depart }}</td>
+                <td>{{ course.date|date('Y-m-d H:i') }}</td>
+                <td>{{ course.nbPersonne }}</td>
+                  <td>{{ course.prix }} D</td>
+                <td>
+                    <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-secondary">Modifier</a>
+                    <a href="{{ path('courseUser_delete2', {'id': course.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette course ?')">Annuler</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+       <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Retour</a>
+
+</div>
+{% endblock %}

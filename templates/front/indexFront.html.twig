@@ -1,0 +1,111 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block content %}
+
+
+
+<!-- Bloc pour la section "Fonctionnalités" -->
+<div class="container mt-5">
+ {% if app.user %}
+    <h1 class="text-center mb-5">Fonctionnalités</h1>
+    <div class="row justify-content-center">
+    
+        <!-- Carte pour "Réserver une course" -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpg') }}" class="card-img-top" alt="Réserver une course">
+                <div class="card-body">
+                    <h5 class="card-title">Réserver une course</h5>
+                    <p class="card-text">Réservez votre prochaine course dès maintenant.</p>
+                    <!-- Bouton pour réserver une course -->
+                   
+                    <div class="text-center">
+                        <a href="{{ path('courseUser_new' , {'user': app.user.id}) }}"  class="btn btn-danger">Réserver une course</a>
+                    </div>
+             
+                </div>
+            </div>
+        </div>
+        <!-- Carte pour "Gérer mes courses en cours" -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.webp') }}" class="card-img-top" alt="Gérer mes courses en cours">
+                <div class="card-body">
+                    <h5 class="card-title">Gérer mes courses en cours</h5>
+                    <p class="card-text">Consultez et gérez vos courses en cours.</p>
+                    <!-- Bouton pour gérer les courses en cours -->
+                    <div class="text-center">
+                        <a href="{{ path('courseUser_apres', {'user': app.user.id}) }}"class="btn btn-danger">Gérer mes courses en cours</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carte pour "Historique des courses" -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ asset('assets/admin/images/uber.jpeg') }}" class="card-img-top" alt="Historique des courses">
+                <div class="card-body">
+                    <h5 class="card-title">Historique des courses</h5>
+                    <p class="card-text">Consultez l'historique de vos courses précédentes.</p>
+                    <!-- Bouton pour consulter l'historique des courses -->
+                    <div class="text-center">
+                        <a href="{{ path('courseUser_avant', {'user': app.user.id}) }}"class="btn btn-danger">Historique des courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+           {% endif %}
+     
+    </div>
+        <!-- Bloc pour la section "Drive and earn money" -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+         <h1 class="text-center mb-5">Postuler pour un poste de Chauffeur</h1>
+            <div class="card mb-4">
+                <!-- Image pour "Drive and earn money" -->
+                <img src="{{ asset('assets/admin/images/driver.webp') }}" class="card-img-top" alt="Drive and earn money">
+                <div class="card-body">
+                    <!-- Titre pour "Drive and earn money" -->
+                    <h3 class="card-title mb-4">Drive and earn money</h3>
+                    <ul class="list-unstyled">
+                        <!-- Listes des avantages -->
+                        <li>
+                            <h4 class="card-subtitle mb-2">Conduisez plus, générez plus de revenus</h4>
+                            <p class="card-text">Nos +150 millions de clients vous enverront beaucoup de demandes de trajets. Quand la demande est élevée, vous pouvez générer encore plus de revenus.</p>
+                        </li>
+                        <li>
+                            <h4 class="card-subtitle mb-2">Heures de travail flexibles</h4>
+                            <p class="card-text">Choisissez quand vous voulez travailler, que vous cherchiez à conduire chaque jour ou simplement les weekends.</p>
+                        </li>
+                      
+                    </ul>
+                    <!-- Bouton pour postuler -->
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_postule_new') }}" class="btn ">Postulez !</a>
+                    </div>
+                </div>
+            </div>
+     
+        </div>
+    </div>
+    
+  
+</div>
+<section class="dzt39l1 dzt39l0 tfhr102x tfhr10dh tfhr10vt tfhr1016n _1vv40pv1s ywoakd4 tfhr106o tfhr107q tfhr109f tfhr10h8 tfhr10ia tfhr10jz _1wkwa2n1">
+    <h1 class="h1 _1ns8g1j1 scnj8741 tfhr10xc tfhr10l4 scnj87p scnj871n scnj872s scnj8736">Comment fonctionne AL9ANI-UBER</h1>
+    <div class="_6m2qlz1 tfhr10xc scnj87f scnj872i">Fiable et facile à utiliser, avec tout ce dont vous avez besoin est de réserver votre course.</div>
+    <div class="_1wkwa2n2 xpq400a xpq40019 xpq4003m tfhr1011d tfhr1012u tfhr10oq tfhr10l7">
+        <div data-gatsby-image-wrapper="" class="gatsby-image-wrapper gatsby-image-wrapper-constrained _1wkwa2n3">
+            <div style="max-width:928px;display:block" class="d-flex align-items-center justify-content-center">
+                <div class="col-md-11">
+                    <div class="mt-3"> <!-- Ajout de l'espace avec une classe de marge Bootstrap -->
+                        <img src="{{ asset('assets/admin/images/a.jpeg') }}" class="img-fluid" alt="Image illustrative">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock %}

@@ -1,3 +1,4 @@
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
@@ -49,20 +50,213 @@ app_subscription_new:
     
 checkout_premium:
     path: '/user/checkout/{id}'
-    controller: App\Controller\PaymentController::checkout
+    controller: App\Controller\PayerController::checkout
 
 
 success_premium:
     path: /success-url
-    controller: App\Controller\PaymentController::successUrl
+    controller: App\Controller\PayerController::successUrl
     methods: ['GET']
 
 cancel_premium:
     path: /cancel-url/{id}
-    controller: App\Controller\PaymentController::cancelUrl
+    controller: App\Controller\PayerController::cancelUrl
     methods: ['GET'] 
 favoris:
   path: /etablissements/favoris
   controller: App\Controller\EtablissementsController::favoris
   methods: GET
+
+
+index:
+    path: /admin/uber
+    controller: App\Controller\HomeController::index
+    methods: [GET]
+
+
+
+
+
+
+voiture_index:
+    path: /admin/voitures
+    controller: App\Controller\VoitureController::index
+    methods: [GET]
+
+voiture_new:
+    path: /admin/voiture/new
+    controller: App\Controller\VoitureController::new
+    methods: [GET, POST]
+
+voiture_show:
+    path: /admin/voiture/{id}
+    controller: App\Controller\VoitureController::show
+    methods: [GET]
+
+voiture_edit:
+    path: /admin/voiture/{id}/edit
+    controller: App\Controller\VoitureController::edit
+    methods: [GET, POST]
+
+voiture_delete:
+    path: /admin/voiture/{id}/delete
+    controller: App\Controller\VoitureController::delete
+   
+
+
+course_index:
+    path: /admin/courses
+    controller: App\Controller\CourseController::index
+    methods: [GET]
+
+calendrier_index:
+    path: /adin/courses/calender
+    controller: App\Controller\CourseController::calendrier
+    methods: [GET]
+   
+
+course_show:
+    path: /admin/course/{id}
+    controller: App\Controller\CourseController::show
+    methods: [GET]
+
+
+
+course_delete:
+    path: /admin/course/{id}/delete
+    controller: App\Controller\CourseController::delete
+   
+
+
+
+
+
+
+
+courseUser_index:
+    path: /premium/courses
+    controller: 'App\Controller\CourseUserController::index'
+    methods: ['GET']
+
+courseUser_new:
+    path: /premium/course/new/{user}
+    controller: 'App\Controller\CourseUserController::new'
+    methods: ['GET', 'POST']
+
+courseUser_show:
+    path: /premium/course/{id}
+    controller: 'App\Controller\CourseUserController::show'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
+courseUser_edit:
+    path: /premium/course/{id}/edit
+    controller: 'App\Controller\CourseUserController::edit'
+    methods: ['GET', 'POST']
+    requirements:
+        id: '\d+'
+
+courseUser_delete:
+    path: /premium/course/{id}/delete
+    controller: 'App\Controller\CourseUserController::delete'
+ 
+
+courseUser_delete2:
+    path: /premium/course/{id}/delete2
+    controller: 'App\Controller\CourseUserController::delete2'
+
+courseUser_avant:
+    path: /premium/courses/avant/{user}
+    controller: App\Controller\CourseUserController::coursesAvantDateSysteme
+    methods: ['GET']
+
+courseUser_apres:
+    path: /premium/courses/apres/{user}
+    controller: App\Controller\CourseUserController::coursesApresOuEgaleDateSysteme
+    methods: ['GET']
+
+home:
+    path: /admin/uber/home
+    controller: App\Controller\HomeController::index
+    methods: ['GET']
+
+success_url:
+        path: /premium/courses/success-url/{course}
+        controller:  App\Controller\PaymentController::successUrl
+
+
+cancel_url:
+        path: /premium/courses/cancel-url/{course}
+        controller: App\Controller\PaymentController::cancelUrl
+
+checkout:
+        path: /premium/checkout/{id}
+        controller: App\Controller\PaymentController::checkout
+
+app_chauffeur_index:
+    path: /admin/chauffeur
+    controller: 'App\Controller\ChauffeurController::index'
+    methods: ['GET']
+
+app_chauffeur_new:
+    path: /admin/chauffeur/new
+    controller: 'App\Controller\ChauffeurController::new'
+    methods: ['GET', 'POST']
+
+app_chauffeur_show:
+    path: /admin/chauffeur/{id}
+    controller: 'App\Controller\ChauffeurController::show'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
+app_chauffeur_edit:
+    path: /admin/chauffeur/{id}/edit
+    controller: 'App\Controller\ChauffeurController::edit'
+    methods: ['GET', 'POST']
+    requirements:
+        id: '\d+'
+
+app_chauffeur_delete:
+    path: /admin/chauffeur/{id}/delete
+    controller: 'App\Controller\ChauffeurController::delete'
+   
+  # config/routes.yaml
+
+app_postule_index:
+    path: /admin/postule
+    controller: 'App\Controller\PostuleController::index'
+    methods: ['GET']
+
+app_postule_new:
+    path: /premium/postule/new
+    controller: 'App\Controller\PostuleController::new'
+    methods: ['GET', 'POST']
+
+app_postule_show:
+    path: /admin/postule/{id}
+    controller: 'App\Controller\PostuleController::show'
+    methods: ['GET']
+
+afficher:
+    path: /premium/postuleAfficher/{id}
+    controller: 'App\Controller\PostuleController::afficher'
+    methods: ['GET']
+
+app_postule_edit:
+    path: /premium/postule/{id}/edit
+    controller: 'App\Controller\PostuleController::edit'
+    methods: ['GET', 'POST']
+
+app_postule_deleteAdmin:
+    path: /premuim/postule/{id}/delete
+    controller: 'App\Controller\PostuleController::delete'
+
+app_postule_delete2:
+    path: /admin/contacter-postulant/{id}
+    controller: 'App\Controller\PostuleController::delete2'
+
+
+    
 

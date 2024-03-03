@@ -1,0 +1,110 @@
+
+{% extends 'baseFront.html.twig' %}
+
+{% block content %}
+
+<div class="container mt-5">
+     <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                 <div class="card-header bg-primary text-white">Postuler pour un poste de chauffeur</div>
+                 <div class="card-body">
+          
+
+          
+                    {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_row(form.nom) }}
+                        {% if form_errors(form.nom)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.nom) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.prenom) }}
+                        {% if form_errors(form.prenom)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.prenom) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+
+
+
+                  <div class="mb-3">
+                        {{ form_row(form.age) }}
+                        {% if form_errors(form.age) %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.age) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.ville) }}
+                        {% if form_errors(form.ville)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.ville) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                          <div class="mb-3">
+                        {{ form_row(form.numero) }}
+                        {% if form_errors(form.numero) %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.numero) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                          <div class="mb-3">
+                        {{ form_row(form.email) }}
+                        {% if form_errors(form.email) %}
+                        <div class="alert alert-danger">
+                            <ul style="color: white;">
+                                {% for error in form_errors(form.email) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                 <div class="mt-4">
+    <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red;">Postuler</button>
+
+       <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Retour</a>
+</div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+  </div>
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

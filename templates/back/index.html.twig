@@ -1,0 +1,57 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="max-w-[944px] mx-auto">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Gestion Uber</h1> <!-- Titre centré -->
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('assets/admin/images/images.jpeg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des véhicules</h5>
+                        <p class="card-text">Gérez vos véhicules.</p>
+                        <a href="{{ path('voiture_index') }}" class="btn btn-primary">Gérer véhicules</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('assets/admin/images/c.jpeg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des chauffeurs</h5>
+                        <p class="card-text">Gérez vos chauffeurs.</p>
+                        <a href="{{ path('app_chauffeur_index') }}" class="btn btn-primary">Gérer vos chauffeurs</a>
+                    </div>
+                </div>
+            </div>
+  </div>
+    <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('assets/admin/images/post.jpeg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des postules</h5>
+                        <p class="card-text">Gérez les postulés des chauffeurs.</p>
+                        <a href="{{ path('app_postule_index') }}" class="btn btn-primary">Gérer postulés</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('assets/admin/images/uber.jpeg') }}" class="card-img-top" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des Courses</h5>
+                        <p class="card-text">Consultez les courses.</p>
+                        <a href="{{ path('course_index') }}" class="btn btn-primary">Historique des courses</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

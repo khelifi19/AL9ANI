@@ -1,0 +1,66 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Liste des Courses{% endblock %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Liste des Courses</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Destination</th>
+                                    <th>Départ</th>
+                                    <th>Date</th>
+                                    <th>Nombre de personnes</th>
+                                         <th>Prix</th>
+                                    <th>Voiture</th>
+                                    <th>Chauffeur</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {# Loop through courses and display each one #}
+                                {% for course in courses %}
+                                <tr>
+                                    <td>{{ course.id }}</td>
+                                    <td>{{ course.destination }}</td>
+                                    <td>{{ course.depart }}</td>
+                                    <td>{{ course.date|date('Y-m-d H:i') }}</td>
+                                    <td>{{ course.nbPersonne }}</td>
+                                      <td>{{ course.prix}}</td>
+                                    <td>{{ course.idVoiture.getMatricule() }}</td>
+                                    <td>{% if course.idVoiture.getChauffeur() %}{{ course.idVoiture.getChauffeur().getNom() }} {{ course.idVoiture.getChauffeur().getPrenom()  }}{% else %}Aucun chauffeur assigné{% endif %}</td>
+                                    <td>
+                                        <a href="{{ path('course_show', {'id': course.id}) }}" class="btn btn-primary">Voir</a>
+                                        <a href="{{ path('course_delete', {'id': course.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette course ?')">Supprimer</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

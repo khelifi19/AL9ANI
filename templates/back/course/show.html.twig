@@ -1,0 +1,47 @@
+
+
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Details de la course{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div>
+            <h1 class="text-center mb-4">Détails de la Course</h1>
+                <div class="mb-3">
+                <strong>ID:</strong> {{ course.id }}
+            </div>
+            <div class="mb-3">
+                <strong>Destination :</strong> {{ course.destination }}
+            </div>
+            <div class="mb-3">
+                <strong>Départ :</strong> {{ course.depart }}
+            </div>
+            <div class="mb-3">
+                <strong>Date :</strong> {{ course.date|date('Y-m-d H:i') }}
+            </div>
+            <div class="mb-3">
+                <strong>Nombre de personnes :</strong> {{ course.nbPersonne }}
+            </div>
+                <div class="mb-3">
+                <strong>Prix :</strong> {{ course.prix }}
+            </div>
+                <div class="mb-3">
+                <strong>Matricule de la Voiture :</strong> {{ course.idVoiture.getMatricule() }}
+            </div>
+                <div class="mb-3">
+                <strong>Chauffeur  :</strong> <dd class="col-sm-9"> 
+                        {% if course.idVoiture.getChauffeur() is not null %}
+        {{course.idVoiture.getChauffeur() .getPrenom() }} {{course.idVoiture.getChauffeur() .getNom() }}
+    {% else %}
+       pas d'informations sur le chauffeur
+    {% endif %}
+                        </dd>
+            <div class="text-center">
+                <a href="{{ path('course_index') }}" class="btn btn-primary">Retour</a>
+                <a href="{{ path('courseUser_delete', {'id': course.id}) }}" class="btn btn-danger">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

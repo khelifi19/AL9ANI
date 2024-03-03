@@ -1,0 +1,104 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Ajouter une nouvelle voiture</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_row(form.modele) }}
+                        {% if form_errors(form.modele)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.modele) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.disponibilite) }}
+                        {% if form_errors(form.disponibilite)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.disponibilite) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.matricule) }}
+                        {% if form_errors(form.matricule)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.matricule) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                     <div class="mb-3">
+                        {# Affichage de errorMessage #}
+                        {% if errorMessage %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ errorMessage }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.description) }}
+                        {% if form_errors(form.description)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.description) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.chauffeur) }}
+                        {% if form_errors(form.chauffeur)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.chauffeur) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                 
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">Ajouter la voiture</button>
+                        <a href="{{ path('voiture_index') }}" class="btn btn-secondary ms-2">Retour à la liste des voitures</a>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

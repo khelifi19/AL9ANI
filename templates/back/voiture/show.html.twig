@@ -1,0 +1,56 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Détails de la voiture</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <dl class="row">
+                          <dt class="col-sm-3">ID :</dt>
+                        <dd class="col-sm-9">{{ voiture.id }}</dd>
+                        <dt class="col-sm-3">Modèle :</dt>
+                        <dd class="col-sm-9">{{ voiture.modele }}</dd>
+
+
+                        <dt class="col-sm-3">Nombre de places :</dt>
+                        <dd class="col-sm-9">{{ voiture.nbPlace }}</dd>
+
+                        <dt class="col-sm-3">Disponibilité :</dt>
+                        <dd class="col-sm-9">{{ voiture.disponibilite ? 'Disponible' : 'Non disponible' }}</dd>
+
+                        <dt class="col-sm-3">Matricule :</dt>
+                        <dd class="col-sm-9">{{ voiture.matricule }}</dd>
+
+                        <dt class="col-sm-3">Description :</dt>
+                        <dd class="col-sm-9">{{ voiture.description }}</dd>
+
+                         <dt class="col-sm-3">Chauffeur :</dt>
+                        <dd class="col-sm-9"> 
+                        {% if voiture.chauffeur is not null %}
+        {{ voiture.chauffeur.getPrenom() }} {{ voiture.chauffeur.getNom() }}
+    {% else %}
+        Aucun chauffeur assigné
+    {% endif %}
+                        </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                        <a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="btn btn-primary">Éditer</a>
+                        <a href="{{ path('voiture_delete', {'id': voiture.id}) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('voiture_index') }}" class="btn btn-secondary ms-2">Retour à la liste des voitures</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

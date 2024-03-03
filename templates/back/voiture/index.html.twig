@@ -1,0 +1,75 @@
+
+
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Liste des voitures</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="table-responsive">
+                   <table class="table table-striped">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                             <th>ID</th>
+                                <th>Modèle</th>
+                               
+                                <th>Nombre de places</th>
+                                <th>Disponibilité</th>
+                                <th>Matricule</th>
+                                <th>Description</th>
+                                <th>Chauffeur</th> 
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for voiture in voitures %}
+                            <tr>
+                                <td>{{ voiture.id }}</td>
+                                <td>{{ voiture.modele }}</td>
+                          
+                                <td>{{ voiture.nbPlace }}</td>
+                                <td>{{ voiture.disponibilite ? 'Disponible' : 'Non disponible' }}</td>
+                                <td>{{ voiture.matricule }}</td>
+                                <td>{{ voiture.description }}</td>
+                                   
+                                    {% if voiture.chauffeur %}
+                             <td>{{ voiture.chauffeur.getPrenom()  }} {{ voiture.chauffeur.getNom()  }}</td>
+                                 {% else %}
+    <td>Aucun chauffeur assigné</td>  
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}" class="btn btn-info">Afficher</a>
+                                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="btn btn-primary">Editer</a>
+                                    <a href="{{ path('voiture_delete', {'id': voiture.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?')">Supprimer</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+ </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ path('voiture_new') }}" class="btn btn-primary">Ajouter une voiture</a>
+                  
+        <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+
+                </div>
+            </div>
+ 
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

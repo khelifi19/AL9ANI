@@ -1,0 +1,111 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Ajouter un Chauffeur</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_row(form.nom) }}
+                        {% if form_errors(form.nom)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.nom) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.prenom) }}
+                        {% if form_errors(form.prenom)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.prenom) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(form.ville) }}
+                        {% if form_errors(form.ville)|length > 0 %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.ville) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                   
+
+                    <div class="mb-3">
+                        {{ form_row(form.age) }}
+                        {% if form_errors(form.age) %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.age) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                        <div class="mb-3">
+                        {{ form_row(form.salaire) }}
+                        {% if form_errors(form.salaire) %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.salaire) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                         <div class="mb-3">
+                        {{ form_row(form.numero) }}
+                        {% if form_errors(form.numero) %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form_errors(form.numero) %}
+                                <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                 
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">Ajouter le Chauffeur</button>
+                        <a href="{{ path('app_chauffeur_index') }}" class="btn btn-secondary ms-2">Retour à la liste des Chauffeurs</a>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}

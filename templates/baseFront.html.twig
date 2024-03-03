@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AL9ANI-UBER</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/themezhub.net/goodup-live/goodup/assets/img/favicon.png') }}">
+    
+    <!-- Custom CSS -->
+    <link href="{{ asset('front/themezhub.net/goodup-live/goodup/assets/css/styles.css')}}" rel="stylesheet">
+</head>
+<body>
+
+<div id="main-wrapper">
+    <!-- Start Navigation -->
+    <div class="header header-transparent change-logo">
+        <div class="container">
+            <nav id="navigation" class="navigation navigation-landscape">
+                <div class="nav-header">
+                    <a class="nav-brand static-logo"  href="#"><img src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png') }}" class="logo" alt="" /></a>
+                    <a class="nav-brand fixed-logo" href="#"><img src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png') }}" class="logo" alt="" /></a>
+                    <div class="nav-toggle"></div>
+                    <div class="mobile_nav">
+                        <ul>
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#login" class="theme-cl fs-lg">
+                                    <i class="lni lni-user"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('course_index') }}" class="crs_yuo12 w-auto text-white theme-bg">
+                                    <span class="embos_45"><i class="fas fa-plus me-2"></i>Add Listing</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-menus-wrapper" style="transition-property: none;">
+                    <ul class="nav-menu">
+                        <li><a href="javascript:void(0);">Home</a></li>
+                        <li><a href="javascript:void(0);">Etablissements</a></li>
+                        <li><a href="javascript:void(0);">Events</a></li>
+                        <li class="active"><a href="javascript:void(0);">Uber</a></li>
+                        <li><a href="javascript:void(0);">Reclamations</a></li>
+                    </ul>
+                    <ul class="nav-menu nav-menu-social align-to-right">
+                        {% if app.user %}
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i class="lni lni-user me-2"></i>
+                                    {{ app.user.username }}
+                                </a>
+                            </li>
+                            <li class="add-listing gray">
+                                <a href="{{ path('app_logout')}}" >
+                                    <i class="lni lni-power-switch mr-1"></i> Logout
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('voiture_index')}}"  class="ft-bold">
+                                    <i class="fas fa-sign-in-alt me-1 theme-cl"></i>Sign Up
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('voiture_index')}}"  class="ft-bold">
+                                    <i class="fas fa-sign-in-alt me-1 theme-cl"></i>Login
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- End Navigation -->
+	
+
+<!-- Ajout de l'image sous la barre de menu -->
+<div class="image-under-menu" style="position: relative;">
+    <figure>
+        <img src="{{ asset('assets/admin/images/hero.webp') }}" alt="Description de l'image" style="width: 100%; height: auto;">
+        <figcaption style="position: absolute; bottom: 200px; left: 580px; color: red; font-size: 110px;">AL9ANI-UBER</figcaption>
+    </figure>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Start Content -->
+    <div id="content">
+        {% block content %}
+        <!-- Votre contenu HTML ici -->
+        {% endblock %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">A PROPOS</h1> <!-- Titre centré -->
+	<div class="max-w-[944px] mx-auto">
+	<p class="mt-0 text-base leading-6 font-normal mb-0 md:text-xl !mb-8">AL9ANI vous offre la posiblite de visiter et d'exploiter les differents resto ,cafe etc...  . Nous luttons pour des villes pour l'humain en offrant de meilleures alternatives à la voiture individuelle, dont les voitures de transport avec chauffeur.</p></div>
+	<img src="{{ asset('assets/admin/images/tunisia.jpeg') }}" alt="Carte du monde des pays où Bolt est disponible" loading="lazy" style="width: 1200px; height: 400px;">
+
+	
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Start Footer -->
+<footer class="light-footer skin-light-footer style-2" style="border-top: 2px solid red;">
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <div class="footer_widget">
+                        <img src="{{ asset('assets/img/logo.png') }}" class="img-footer small mb-2" alt="" />
+                        <div class="address mt-2">Esprit<br>Tunisia</div>
+                        <div class="address mt-3">75256898<br>support@Al9ani.com</div>
+                        <div class="address mt-2">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/yassin.khelifi.311?locale=fr_FR" class="theme-cl"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-twitter-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-youtube"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-instagram-filled"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="theme-cl"><i class="lni lni-linkedin-original"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div class="footer_widget">
+                        <h4 class="widget_title">Main Navigation</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">Explore Listings</a></li>
+                            <li><a href="#">Submit Listings</a></li>
+                            <li><a href="#">Shortlisted</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div class="footer_widget">
+                    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+</footer>
+<!-- End Footer -->
+</div>
+<!-- End main-wrapper -->
+
+<!-- JavaScripts -->
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Custom JS -->
+<script src="{{ asset('front/themezhub.net/goodup-live/goodup/assets/js/custom.js')}}"></script>
+<!-- jQuery UI -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- Placez ce code juste avant la balise de fermeture </body> -->
+
+<script>
+    $(document).ready(function() {
+        // Initialisation du sélecteur de date avec jQuery UI Datepicker
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy', // Format de la date
+            autoclose: true, // Fermeture automatique du calendrier après la sélection
+            todayHighlight: true // Mise en surbrillance de la date actuelle
+            // Vous pouvez également ajouter d'autres options personnalisées ici
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

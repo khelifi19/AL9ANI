@@ -1,0 +1,71 @@
+
+
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <h1>Liste des chauffeurs</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="table-responsive">
+                   <table class="table table-striped">
+                      <thead class="bg-primary text-white">
+                            <tr>
+                               
+                                <th>ID</th>
+                               
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Age</th>
+                                 <th>Salaire</th>
+                                <th>Ville</th>
+                                  <th>Num</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for chauffeur in chauffeurs %}
+                            <tr>
+                                <td>{{ chauffeur.id}}</td>
+                          
+                                 <td>{{ chauffeur.nom}}</td>
+                                 <td>{{ chauffeur.prenom}}</td>
+                               <td>{{ chauffeur.age}}</td>
+                                 <td>{{ chauffeur.salaire}} D</td>
+                                 <td>{{ chauffeur.ville}}</td>
+                                   <td>{{ chauffeur.numero}}</td>
+                                <td>
+                                    <a href="{{ path('app_chauffeur_show', {'id': chauffeur.id}) }}" class="btn btn-info">Afficher</a>
+                                    <a href="{{ path('app_chauffeur_edit', {'id': chauffeur.id}) }}" class="btn btn-primary">Editer</a>
+                <a href="{{ path('app_chauffeur_delete', {'id': chauffeur.id}) }}" class="btn btn-danger">Supprimer</a>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+  </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ path('app_chauffeur_new') }}" class="btn btn-primary">Ajouter un chauffeur</a>
+                  
+        <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+
+                </div>
+            </div>
+ 
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+</div>
+{% endblock %}
