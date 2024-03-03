@@ -15,18 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Options as DompdfOptions;
+use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/post')]
 class PostController extends AbstractController
 {
-    private $entityManager;
+    private $transactionRepository;
 
-public function __construct(EntityManagerInterface $entityManager)
-{
-    $this->entityManager = $entityManager;
-}
-public function __construct(ManagerRegistry $registry)
+    public function __construct(PostRepository $transactionRepository)
     {
-        parent::__construct($registry, Contrat::class);
+        $this->transactionRepository = $transactionRepository;
     }
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response
@@ -210,17 +207,17 @@ public function __construct(ManagerRegistry $registry)
 
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
-        $contrats = $this->transactionRepository->findAll();
+        $posts = $this->transactionRepository->findAll();
         
         // Generate the HTML content
-        $html = $this->renderView('contrat/print.html.twig', ['contrats' => $contrats]);
+        $html = $this->renderView('post/print.html.twig', ['posts' => $posts]);
 
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait'); // Setup the paper size and orientation
         $dompdf->render(); // Render the HTML as PDF
 
-        $filename = sprintf('contrat-%s.pdf', date('Y-m-d_H-i-s'));
+        $filename = sprintf('post-%s.pdf', date('Y-m-d_H-i-s'));
 
         // Output the generated PDF to Browser (force download)
         return new Response($dompdf->stream($filename, ["Attachment" => true]));
@@ -251,4 +248,55 @@ public function __construct(ManagerRegistry $registry)
         $entityManager->flush();
         return $this->redirectToRoute('app_postback_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/searchByTitre', name: 'search_by_titre', methods: ['GET'])]
+    public function searchByTitre(Request $request, PostRepository $contratRepository): JsonResponse
+    {
+        $titre = $request->query->get('titre');
+    
+        // Recherche des logements par adresse
+        $contrats = $contratRepository->findByTitre($titre);
+    
+        // Convertir les entités Logement en tableau pour la réponse JSON
+        $results = [];
+        foreach ($contrats as $contrat) {
+            $results[] = [
+                'id' => $contrat->getId(),
+                'description' => $contrat->getDescription(),
+                'datepost' => $contrat->getDatepost(),
+                'titre' => $contrat->getTitre(),
+                'image' => $contrat->getImage(),
+                'localisation' => $contrat->getLocalisation(),
+            ];
+        }
+    
+        return $this->json($results);
+    }
+    #[Route('/loadAllPosts', name: 'load_all_posts', methods: ['GET'])]
+public function loadAllLogements(PostRepository $contratRepository): JsonResponse
+{
+    // Récupérer tous les logements depuis le repository
+    $contrats = $contratRepository->findAll();
+
+    // Convertir les entités Logement en tableau pour la réponse JSON
+    $results = [];
+    foreach ($contrats as $contrat) {
+        $results[] = [
+                'id' => $contrat->getId(),
+                'description' => $contrat->getDescription(),
+                'titre' => $contrat->getTitre(),
+                'datepost' => $contrat->getDatepost(),
+                'image' => $this->generateUrl('uploads', ['path' => 'uploads/' . $contrat->getImage()]),
+            
+                'localisation' => $contrat->getLocalisation(),
+                
+                // Assuming you have a route named 'uploads'
+                'showPath' => $router->generate('app_post_show', ['id' => $contrat->getId()]),
+                'editPath' => $router->generate('app_post_edit', ['id' => $contrat->getId()]),
+        ];
+    }
+
+    return $this->json($results);
+}
+
 }

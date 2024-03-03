@@ -6,11 +6,8 @@
     <h1 style="color:red; margin-left:40%; font-size:50px">Posts</h1>
     <br><br>
 
-    <form action="{{ path('app_postback_index') }}" method="get">
-        <input type="text" name="q" placeholder="Search..." value="{{ searchQuery }}">
-        <button class="btn btn-primary btn-sm" type="submit">Search</button>
-    </form>
-    
+     <input type="text" id="search_by_titre" placeholder="Rechercher par titre..." class="form-control" style="width: 50%; margin: 0 auto; display: block;">
+    <div id="search-results"></div>
     <table class="table table-bordered" style="border-color:black;width:85%;margin-left:7%">
         <thead>
             <tr>
@@ -22,7 +19,9 @@
                 <th style="background-color:red;color:white">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody 
+id="post-table-body">
+
             {% for commentaire in posts %}
                 <tr>
                     <td>{{ commentaire.description }}</td>
@@ -49,6 +48,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <button class="btn" style="background-color:#2E4053;border-color: black;color: purple;margin-left:80%">
+        <a href="{{ path('print_pdf') }}" style="color:white;">print</a>
+    </button>
 
     {# Manual pagination controls #}
     <nav aria-label="Page navigation">
@@ -113,6 +115,77 @@
                 width: 150, // Set the desired width
                 height: 150, // Set the desired height
             }
+        });
+    </script>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Define URLs for AJAX requests
+            var loadAllContratsUrl = "{{ path('load_all_posts') }}";
+            var searchByNomClientUrl = "{{ path('search_by_titre') }}";
+
+            // Initialize initial table content
+            var initialTableContent = $('#post-table-body').html();
+
+            function loadAllContrats() {
+                $.ajax({
+                    type: 'GET',
+                    url: loadAllContratsUrl,
+                    success: function(data){
+                        updateTable(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            function updateTable(results) {
+                var html = '';
+
+                if (Array.isArray(results) && results.length > 0) {
+                    results.forEach(function(contrat) {
+                        html += '<tr>';
+                        html += '<td>' + contrat.description + '</td>';
+                         html += '<td>' + contrat.titre + '</td>';
+                        html += '<td>' + contrat.datepost + '</td>';
+
+                       
+                        
+                     html += '<td><img src="/uploads/' + contrat.image + '" width="100" height="100"></td>';
+                     html += '<td>' + contrat.localisation + '</td>';
+                        html += '<td><button class="btn btn-success btn-sm"><a href="' + contrat.showPath + '" style="color:white;">afficher</a></button><button class="btn btn-primary btn-sm"><a href="' + contrat.editPath + '" style="color:white;">modifier</a></button></td>';
+                        html += '</tr>';
+                    });
+                } else {
+                    html += '<tr><td colspan="6">Aucun contrat trouvé pour ce nom du client.</td></tr>';
+                }
+
+                $('#post-table-body').html(html);
+            }
+
+            $('#search_by_titre').keyup(function(){
+                var titre = $(this).val();
+
+                if(titre != ""){
+                    $.ajax({
+                        type: 'GET',
+                        url: searchByNomClientUrl,
+                        data: {'titre': titre},
+                        success: function(data){
+                            updateTable(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    loadAllContrats();
+                }
+            });
         });
     </script>
 {% endblock %}

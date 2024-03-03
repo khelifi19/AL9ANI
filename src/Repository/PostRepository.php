@@ -28,6 +28,21 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByTitre(string $titre): array
+    {
+        try {
+            return $this->createQueryBuilder('l')
+                ->andWhere('l.titre LIKE :titre')
+                ->setParameter('titre', '%'.$titre.'%')
+                ->getQuery()
+                ->getResult();
+        } catch (\Doctrine\ORM\ORMException $e) {
+            // Log l'erreur ou gérer selon le besoin
+            throw new \Exception("Une erreur est survenue lors de la recherche par titre");
+        }
+    }
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

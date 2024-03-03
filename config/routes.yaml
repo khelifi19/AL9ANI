@@ -1,3 +1,9 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+print_pdf:
+    path: /printpdf
+    controller: App\Controller\PostController::printPdf
+search_by_titre:
+    path: /searchByTitre
+    controller: App\Controller\PostController::searchByTitre
