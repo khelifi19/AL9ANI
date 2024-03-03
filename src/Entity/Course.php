@@ -56,6 +56,9 @@ class Course
   
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column]
+    private ?float $prix = null;
+
     
 
 
@@ -135,9 +138,32 @@ class Course
         return $this;
     }
 
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
   
 
-
+    public function isCarAvailableNow(): bool
+    {
+        $currentHour = $this->getDate()->format('H');
+  
+    
+        // Vérifier si l'heure actuelle est en dehors des heures de bureau (9h à 17h) en semaine
+        if ($currentHour < 9 || $currentHour > 21 ) {
+            return false; // La voiture n'est pas disponible en dehors des heures de bureau ou le week-end
+        }
+    
+        return true;
+    }
 
     
 }

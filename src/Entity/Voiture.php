@@ -196,6 +196,33 @@ public function setChauffeur(?Chauffeur $chauffeur): static
 
 
 
+public function isDisponibleAtDate(\DateTime $date): bool
+{
+    // Créer une copie de la date spécifiée
+    $DC = new \DateTime($date->format('Y-m-d H:i:s'));
+
+    // Ajouter deux heures à la date modifiée
+    $FC = new \DateTime($DC->format('Y-m-d H:i:s'));
+    $FC->add(new \DateInterval("PT2H"));
+
+    // Parcourir les courses associées à cette voiture
+    foreach ($this->courses as $course) {
+        // Créer un objet DateTime à partir de la date de début de la course
+        $DD = new \DateTime($course->getDate()->format('Y-m-d H:i:s'));
+
+        // Ajouter deux heures à la date de début de la course pour obtenir la date de fin
+        $DF = new \DateTime($DD->format('Y-m-d H:i:s'));
+        $DF->add(new \DateInterval("PT2H"));
+        
+        // Vérifier si les plages horaires des réservations se chevauchent
+        if (($DC >= $DD && $DC < $DF) || ($FC > $DD && $FC <= $DF)) {
+            // La voiture n'est pas disponible à cette date
+            return false;
+        }
+    }
+    
+    return true; // La voiture est disponible à cette date
+}
 
 
 }

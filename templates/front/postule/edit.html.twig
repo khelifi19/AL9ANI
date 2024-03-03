@@ -50,8 +50,8 @@
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-danger">Enregistrer les modifications</button>
-                        <a href="{{ path('app_postule_delete', {'id': postule.id}) }}" class="btn btn-secondary" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette postule ?')">Annuler Postule</a>
-                            <a href="javascript:history.go(-1);" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
+
+       <a href="{{ path('courseUser_index') }}" class="btn btn-danger">Retour</a>
                     </div>
                     {{ form_end(form) }}
                   

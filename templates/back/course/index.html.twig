@@ -24,6 +24,7 @@
                                     <th>Départ</th>
                                     <th>Date</th>
                                     <th>Nombre de personnes</th>
+                                         <th>Prix</th>
                                     <th>Voiture</th>
                                     <th>Chauffeur</th>
                                     <th>Action</th>
@@ -38,6 +39,7 @@
                                     <td>{{ course.depart }}</td>
                                     <td>{{ course.date|date('Y-m-d H:i') }}</td>
                                     <td>{{ course.nbPersonne }}</td>
+                                      <td>{{ course.prix}}</td>
                                     <td>{{ course.idVoiture.getMatricule() }}</td>
                                     <td>{% if course.idVoiture.getChauffeur() %}{{ course.idVoiture.getChauffeur().getNom() }} {{ course.idVoiture.getChauffeur().getPrenom()  }}{% else %}Aucun chauffeur assigné{% endif %}</td>
                                     <td>

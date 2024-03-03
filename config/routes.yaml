@@ -1,5 +1,5 @@
 index:
-    path: /
+    path: /admin/uber
     controller: App\Controller\HomeController::index
     methods: [GET]
 
@@ -9,51 +9,51 @@ index:
 
 
 voiture_index:
-    path: /voitures
+    path: /admin/voitures
     controller: App\Controller\VoitureController::index
     methods: [GET]
 
 voiture_new:
-    path: /voiture/new
+    path: /admin/voiture/new
     controller: App\Controller\VoitureController::new
     methods: [GET, POST]
 
 voiture_show:
-    path: /voiture/{id}
+    path: /admin/voiture/{id}
     controller: App\Controller\VoitureController::show
     methods: [GET]
 
 voiture_edit:
-    path: /voiture/{id}/edit
+    path: /admin/voiture/{id}/edit
     controller: App\Controller\VoitureController::edit
     methods: [GET, POST]
 
 voiture_delete:
-    path: /voiture/{id}/delete
+    path: /admin/voiture/{id}/delete
     controller: App\Controller\VoitureController::delete
    
 
 
 course_index:
-    path: /courses
+    path: /admin/courses
     controller: App\Controller\CourseController::index
     methods: [GET]
 
 calendrier_index:
-    path: /courses/calender
+    path: /adin/courses/calender
     controller: App\Controller\CourseController::calendrier
     methods: [GET]
    
 
 course_show:
-    path: /course/{id}
+    path: /admin/course/{id}
     controller: App\Controller\CourseController::show
     methods: [GET]
 
 
 
 course_delete:
-    path: /course/{id}/delete
+    path: /admin/course/{id}/delete
     controller: App\Controller\CourseController::delete
    
 
@@ -62,118 +62,129 @@ course_delete:
 
 
 
+
 courseUser_index:
-    path: /user/courses
+    path: /premium/courses
     controller: 'App\Controller\CourseUserController::index'
     methods: ['GET']
 
 courseUser_new:
-    path: /user/course/new
+    path: /premium/course/new
     controller: 'App\Controller\CourseUserController::new'
     methods: ['GET', 'POST']
 
 courseUser_show:
-    path: /user/course/{id}
+    path: /premium/course/{id}
     controller: 'App\Controller\CourseUserController::show'
     methods: ['GET']
     requirements:
         id: '\d+'
 
 courseUser_edit:
-    path: /user/course/{id}/edit
+    path: /premium/course/{id}/edit
     controller: 'App\Controller\CourseUserController::edit'
     methods: ['GET', 'POST']
     requirements:
         id: '\d+'
 
 courseUser_delete:
-    path: /user/course/{id}/delete
+    path: /premium/course/{id}/delete
     controller: 'App\Controller\CourseUserController::delete'
  
 
 courseUser_delete2:
-    path: /user/course/{id}/delete2
+    path: /premium/course/{id}/delete2
     controller: 'App\Controller\CourseUserController::delete2'
 
 courseUser_avant:
-    path: /user/courses/avant
+    path: /premium/courses/avant
     controller: App\Controller\CourseUserController::coursesAvantDateSysteme
     methods: ['GET']
 
 courseUser_apres:
-    path: /user/courses/apres
+    path: /premium/courses/apres
     controller: App\Controller\CourseUserController::coursesApresOuEgaleDateSysteme
     methods: ['GET']
 
 home:
-    path: /home
+    path: /admin/uber/home
     controller: App\Controller\HomeController::index
     methods: ['GET']
 
+success_url:
+        path: /premium/courses/success-url/{course}
+        controller:  App\Controller\PaymentController::successUrl
 
 
+cancel_url:
+        path: /premium/courses/cancel-url/{course}
+        controller: App\Controller\PaymentController::cancelUrl
+
+checkout:
+        path: /premium/checkout/{id}
+        controller: App\Controller\PaymentController::checkout
 
 app_chauffeur_index:
-    path: /chauffeur
+    path: /admin/chauffeur
     controller: 'App\Controller\ChauffeurController::index'
     methods: ['GET']
 
 app_chauffeur_new:
-    path: /chauffeur/new
+    path: /admin/chauffeur/new
     controller: 'App\Controller\ChauffeurController::new'
     methods: ['GET', 'POST']
 
 app_chauffeur_show:
-    path: /chauffeur/{id}
+    path: /admin/chauffeur/{id}
     controller: 'App\Controller\ChauffeurController::show'
     methods: ['GET']
     requirements:
         id: '\d+'
 
 app_chauffeur_edit:
-    path: /chauffeur/{id}/edit
+    path: /admin/chauffeur/{id}/edit
     controller: 'App\Controller\ChauffeurController::edit'
     methods: ['GET', 'POST']
     requirements:
         id: '\d+'
 
 app_chauffeur_delete:
-    path: /chauffeur/{id}/delete
+    path: /admin/chauffeur/{id}/delete
     controller: 'App\Controller\ChauffeurController::delete'
    
   # config/routes.yaml
 
 app_postule_index:
-    path: /postule
+    path: /admin/postule
     controller: 'App\Controller\PostuleController::index'
     methods: ['GET']
 
 app_postule_new:
-    path: /postule/new
+    path: /premium/postule/new
     controller: 'App\Controller\PostuleController::new'
     methods: ['GET', 'POST']
 
 app_postule_show:
-    path: /postule/{id}
+    path: /admin/postule/{id}
     controller: 'App\Controller\PostuleController::show'
     methods: ['GET']
 
 afficher:
-    path: /postuleAfficher/{id}
+    path: /premium/postuleAfficher/{id}
     controller: 'App\Controller\PostuleController::afficher'
     methods: ['GET']
 
 app_postule_edit:
-    path: /postule/{id}/edit
+    path: /premium/postule/{id}/edit
     controller: 'App\Controller\PostuleController::edit'
     methods: ['GET', 'POST']
 
-app_postule_delete:
-    path: /postule/{id}/delete
+app_postule_deleteAdmin:
+    path: /premuim/postule/{id}/delete
     controller: 'App\Controller\PostuleController::delete'
 
 app_postule_delete2:
-    path: /contacter-postulant/{id}
+    path: /admin/contacter-postulant/{id}
     controller: 'App\Controller\PostuleController::delete2'
 
 

@@ -1,0 +1,18 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="text-center">
+                <h1 class="display-4">Votre commande n'a pas abouti</h1>
+                <p class="lead">Nous vous remercions pour votre intérêt, mais malheureusement, votre paiement a échoué.</p>
+                <p class="lead">Votre commande a été annulée.</p>
+       <a href="{{ path('courseUser_index') }}" class="btn btn-danger">Retour</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

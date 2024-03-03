@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Course;
 use App\Entity\Voiture;
 use App\Form\CourseUserForm;
+use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +27,7 @@ class CourseUserController extends AbstractController
     }
 
     #[Route('/user/course/new', name: 'courseUser_new', methods: ['GET', 'POST'])]
-public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
 {
     $course = new Course();
     $form = $this->createForm(CourseUserForm::class, $course);
@@ -36,28 +38,59 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
         $nbPersonne = $form->get('nbPersonne')->getData();
         $voitureModel = ($nbPersonne > 4) ? 'bus' : 'classique';
 
-        // Récupérer la voiture disponible avec le modèle correspondant
-        $voiture = $entityManager->getRepository(Voiture::class)->findOneBy([
-            'modele' => $voitureModel,
-            'disponibilite' => true
-        ]);
+        // Vérifie si une voiture est disponible dès maintenant
+        if ($course->isCarAvailableNow()) {
+            $voiture = null;
+            $date = $course->getDate();
 
-        if ($voiture) {
-            $course->setIdVoiture($voiture);
-            $entityManager->persist($course);
-            $entityManager->flush();
-            return $this->redirectToRoute('courseUser_show', ['id' => $course->getId()]);
+            // Tant qu'aucune voiture n'est trouvée et qu'il reste des voitures à vérifier
+            while (!$voiture) {
+                $voituresDisponibles = $entityManager->getRepository(Voiture::class)->findBy([
+                    'modele' => $voitureModel,
+                    'disponibilite' => true
+                ]);
+
+                foreach ($voituresDisponibles as $voitureDisponible) {
+                    if ($voitureDisponible->isDisponibleAtDate($date) ) {
+                        $voiture = $voitureDisponible;
+                        break;
+                    }
+                }
+
+                if (!$voiture) {
+                    // Si aucune voiture n'est trouvée, sortir de la boucle
+                    break;
+                }
+            }
+
+            if ($voiture) {
+                $prix_base = 50;
+                $frais_passagers = $nbPersonne * 0.5; 
+                $frais_chauffeur = 10; 
+                $frais_vehicule = ($voiture->getModele() === 'Bus') ? 50 : 30;
+                $prix_total = $prix_base + $frais_passagers + $frais_vehicule + $frais_chauffeur;
+
+                $course->setIdVoiture($voiture);
+                $course->setPrix($prix_total);
+
+                $entityManager->persist($course);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('checkout', ['id' => $course->getId()]);
+            } else {
+                $errorMessage = 'Aucune voiture disponible pour le moment. Merci de réessayer plus tard.';
+            }
         } else {
             $errorMessage = 'Aucune voiture disponible pour le moment. Merci de réessayer plus tard.';
         }
-    } else {  $errorMessage = 'Aucune voiture disponible pour le moment. Merci de réessayer plus tard.';}
+    }
 
     return $this->render('front/new.html.twig', [
         'form' => $form->createView(),
         'errorMessage' => $errorMessage,
     ]);
 }
-
+    
     #[Route('/user/course/{id}', name: 'courseUser_show', methods: ['GET'])]
     public function show(Course $course): Response
     {
@@ -68,7 +101,8 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
 
     #[Route('/user/course/{id}/edit', name: 'courseUser_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, EntityManagerInterface $entityManager, int $id): Response
-    {
+    {   
+       
         $course = $entityManager->getRepository(Course::class)->find($id);
     
         // Vérifier si la course existe
@@ -76,7 +110,7 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
             throw $this->createNotFoundException('Aucune course trouvée pour cet identifiant : ' . $id);
         }
     
-   
+    
 
     
         // Créer le formulaire d'édition
@@ -86,8 +120,8 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
         // Traiter la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-    
-            return $this->redirectToRoute('courseUser_index');
+            return $this->redirectToRoute('courseUser_show', ['id' => $course->getId()]);
+
         }
     
         return $this->render('front/edit.html.twig', [
@@ -97,7 +131,7 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
         ]);
     }
     
-
+    
     #[Route('/user/course/{id}/delete', name: 'courseUser_delete', methods: ['DELETE'])]
     public function delete(Request $request, int $id, EntityManagerInterface $entityManager): Response
     {
@@ -166,6 +200,12 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
 
 
 
+   
 
+
+  
+
+
+    
 
 }

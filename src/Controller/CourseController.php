@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Notifier\Message\SmsMessage;
-
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class CourseController extends AbstractController
 {
@@ -73,7 +74,7 @@ public function calendrier(CourseRepository $courseRepository): Response
          // Récupérez le numéro de téléphone, le nom et le texte du message à partir de la requête
          $number = '+21653360028'; // Remplacez par la variable qui contient le numéro de téléphone destinataire
          $name = $request->request->get('name'); // Si vous avez besoin du nom, sinon vous pouvez le retirer
-         $text = ' chere client votre vers  '.$course->getDestination().' est annulee';
+         $text = ' chere client votre vers  ' .$course->getDestination().' est annulee';
     
         // Supprimez l'entité Course
         $entityManager->remove($course);
@@ -92,9 +93,7 @@ public function calendrier(CourseRepository $courseRepository): Response
  
 
 
-
-
-
+  
 
 
 

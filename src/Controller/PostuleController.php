@@ -115,7 +115,7 @@ $email = (new TemplatedEmail())
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('courseUser_index');
+            return $this->redirectToRoute('afficher', ['id' => $postule->getId()]);
         }
 
         return $this->renderForm('front/postule/edit.html.twig', [
@@ -123,16 +123,7 @@ $email = (new TemplatedEmail())
             'form' => $form,
         ]);
     }
-    #[Route('/{id}', name: 'app_postule_delete', methods: ['POST'])]
-    public function delete(Postule $postule, EntityManagerInterface $entityManager): Response
-    {
-        // Supprime l'entité postule de la base de données
-        $entityManager->remove($postule);
-        $entityManager->flush();
 
-        // Redirige vers la page de liste des postules après la suppression
-        return $this->redirectToRoute('courseUser_index');
-    }
 
     #[Route('/{id}', name: 'app_postule_delete2', methods: ['POST'])]
     public function delete2(Postule $postule, EntityManagerInterface $entityManager): Response

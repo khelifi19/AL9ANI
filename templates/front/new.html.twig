@@ -9,7 +9,11 @@
                  <div class="card-header bg-primary text-white">Reservez Une Course</div>
                  <div class="card-body">
           
-
+    {% if errorMessage %}
+                    <div class="alert alert-danger">
+                        <p>{{ errorMessage }}</p>
+                    </div>
+                    {% endif %}
           
                     {{ form_start(form) }}
 

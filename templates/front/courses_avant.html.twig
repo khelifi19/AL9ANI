@@ -12,6 +12,7 @@
                 <th>Départ</th>
                 <th>Date-Heure</th>
                 <th>Nombre de personnes</th>
+                  <th>Prix</th>
                   <th>Reservez</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ course.depart }}</td>
                 <td>{{ course.date|date('Y-m-d H:i') }}</td>
                 <td>{{ course.nbPersonne }}</td>
+                  <td>{{ course.prix }} D</td>
                     <td>
                     <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Reservez A Nouveau</a>
                    

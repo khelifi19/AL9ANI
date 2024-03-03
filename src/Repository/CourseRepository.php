@@ -20,6 +20,45 @@ class CourseRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Course::class);
     }
+    
+    public function countCoursesByWeek(): array
+    {
+
+    $courses = $this->createQueryBuilder('c')
+            ->select('c.date')
+            ->getQuery()
+            ->getResult();
+
+        $courseCountByWeek = [];
+        foreach ($courses as $course) {
+            $weekNumber = (int)$course['date']->format('W');
+            if (!isset($courseCountByWeek[$weekNumber])) {
+                $courseCountByWeek[$weekNumber] = 0;
+            }
+            $courseCountByWeek[$weekNumber]++;
+        }
+
+        return $courseCountByWeek;
+    }
+
+    public function countCoursesByMonth(): array
+    {
+        $courses = $this->createQueryBuilder('c')
+            ->select('c.date')
+            ->getQuery()
+            ->getResult();
+
+        $courseCountByMonth = [];
+        foreach ($courses as $course) {
+            $monthNumber = (int)$course['date']->format('n');
+            if (!isset($courseCountByMonth[$monthNumber])) {
+                $courseCountByMonth[$monthNumber] = 0;
+            }
+            $courseCountByMonth[$monthNumber]++;
+        }
+
+        return $courseCountByMonth;
+    }
 
 //    /**
 //     * @return Course[] Returns an array of Course objects

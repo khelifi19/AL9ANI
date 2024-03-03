@@ -24,6 +24,10 @@
                  <div class="mb-3">
     <strong>Date de la course:</strong> {{ course.date|date('Y-m-d H:i') }}
 </div>
+ <div class="mb-3">
+    <strong>Prix de la course:</strong> {{ course.prix}} D
+</div>
+
 
                     {% if course.idVoiture %}
                         <div class="mb-3">
@@ -35,14 +39,14 @@
                     {% else %}
                         <div class="alert alert-warning">Aucune voiture assignée pour le moment.</div>
                     {% endif %}
-                  <div class="alert alert-danger">
-    Le prix de la course sera calculé en fonction du compteur, similaire à un taxi.
-</div>
+
 
                    
                         <div class="text-center">
                             <a href="{{ path('courseUser_edit', {'id': course.id}) }}" class="btn btn-danger">Modifier Votre Course</a>
        <a href="{{ path('courseUser_index') }}" class="btn btn-secondary">Continuer</a>
+
+
                         </div>
                  
                 </div>
