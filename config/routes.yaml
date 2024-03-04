@@ -258,5 +258,7 @@ app_postule_delete2:
     controller: 'App\Controller\PostuleController::delete2'
 
 
-    
-
+app_reponse_pdf:
+    path: '/back/pdf'
+    controller: 'App\Controller\ReponseController::generatePdf'
+    methods: ['GET']

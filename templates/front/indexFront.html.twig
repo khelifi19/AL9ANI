@@ -1,8 +1,33 @@
-{% extends 'baseFront.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
 
-
+   <section class="bg-cover position-relative" style="background:red url({{asset('assets/admin/images/hero.webp')}}) no-repeat;" data-overlay="3">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+                              {% if app.user %}
+								<div class="dashboard-head-author-thumb">
+                          <img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="img-fluid" alt="" />
+                                   </div>
+								<div class="dashboard-head-author-caption">
+                              
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+							
+                                
+                                </div>
+                                	{% endif %}
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
 
 <!-- Bloc pour la section "Fonctionnalités" -->
 <div class="container mt-5">

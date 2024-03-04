@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Bienvenue dans votre</p>
+                        <h1>Espace reclamation</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- check out section -->
+    <div class="checkout-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="checkout-accordion-wrap">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Ecrire une reclamation
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="billing-address-form">
+                                                                    {{ include('reclamation/_form.html.twig') }}   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Consulter mes reclamation
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shipping-address-form">
+                                            {% for reclamation in reclamations %}
+                                            <div class="single-latest-news">
+                                                <div class="news-text-box">
+                                                    <h3 style="color : red ">{{ reclamation.objet }}</h3>
+                                                    
+                                                    <h6>{{ reclamation.text }}</h6>
+                                                    <br>
+                                                    {% if reclamation.etat == 1 %}
+                                                                {% for reponse in reponses %}
+                                                                    {% if reclamation == reponse.idrec %}
+                                                                        <h5  style="color : red ">La reponse a votre reclamation : </h5>
+                                                                      <h6> {{reponse.text}} </h6>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                        <h5  style="color : blue ">Encore pas de reponse</h5>
+                                                            {% endif %}
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            {{ include('reclamation/_delete_form.html.twig') }}
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" class="btn btn-success">Modifier</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="single-latest-news">
+                                                <div class="news-text-box">
+                                                    vous avez pas de reclamation
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end check out section -->
+
+{% endblock %}

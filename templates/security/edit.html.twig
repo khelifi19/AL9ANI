@@ -1,23 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   <section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+     <section class="bg-cover position-relative" style="background:red url({{asset('assets/admin/images/hero.webp')}}) no-repeat;" data-overlay="3">
 			
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								
 							<div class="dashboard-head-author-clicl">
+                              {% if app.user %}
 								<div class="dashboard-head-author-thumb">
-									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
-								</div>
+                          <img src="{{ asset('uploads/images/' ~ app.user.img) }}" class="img-fluid" alt="" />
+                                   </div>
 								<div class="dashboard-head-author-caption">
-                                 {% if app.user %}
+                              
 									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
 									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
 									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
-								{% endif %}
+							
+                                
                                 </div>
+								
+                                	{% endif %}
 							</div>
 						
 						</div>

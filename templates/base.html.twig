@@ -54,12 +54,12 @@
 									
 										</li>
                                         <li><a href="{{ path('courseUser_index')}}">Uber</a>
-									
-										</li>
-											  <li><a href="javascript:void(0);">Reclamations</a>
-									
-										</li>
 										
+										</li>{% if app.user %}
+											  <li><a href="{{ path('reclamation_new', {'user': app.user.id})}}">Reclamations</a>
+									 {% endif %}
+										</li>
+										  
 									
 									
 										

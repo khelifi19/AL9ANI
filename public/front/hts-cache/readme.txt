@@ -10,6 +10,7 @@ DO NOT delete this folder unless you do not want to update the mirror in the fut
 note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
 	such as username/password authentication for websites mirrored in this project
 	do not share these files/folders if you want these information to remain private
+<<<<<<< HEAD
 
 What's in this folder?
 
@@ -23,3 +24,5 @@ DO NOT delete this folder unless you do not want to update the mirror in the fut
 note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
 	such as username/password authentication for websites mirrored in this project
 	do not share these files/folders if you want these information to remain private
+=======
+>>>>>>> Gestion_Reclamation

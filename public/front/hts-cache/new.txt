@@ -309,6 +309,7 @@ date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,C
 18:15:11	58112/58112	---M--	200	added ('OK')	image/jpeg	etag:%22e300-6444ea43-6b8dedb1d5b5fbd9;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-2.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-2.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
 18:15:11	37109/37109	---M--	200	added ('OK')	image/jpeg	etag:%2290f5-6444ea43-d6f17ce1617df0a2;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-4.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-4.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
 18:15:12	65923/65923	---M--	200	added ('OK')	image/jpeg	etag:%2210183-6444ea43-91ca3f993f5ade69;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-5.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-5.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
+<<<<<<< HEAD
 
 date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
 18:13:49	62698/62698	---M-Z	200	added ('OK')	text/html	etag:%22f4ea-6444ea43-caa0dff0b324d9ca;gz%22	https://themezhub.net/goodup-live/goodup/home-4.html	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/home-4.html	(from )
@@ -621,3 +622,5 @@ date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,C
 18:15:11	58112/58112	---M--	200	added ('OK')	image/jpeg	etag:%22e300-6444ea43-6b8dedb1d5b5fbd9;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-2.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-2.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
 18:15:11	37109/37109	---M--	200	added ('OK')	image/jpeg	etag:%2290f5-6444ea43-d6f17ce1617df0a2;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-4.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-4.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
 18:15:12	65923/65923	---M--	200	added ('OK')	image/jpeg	etag:%2210183-6444ea43-91ca3f993f5ade69;;;%22	https://themezhub.net/goodup-live/goodup/assets/img/user-5.jpg	C:/Users/kittie/OneDrive/Desktop/newfront/themezhub.net/goodup-live/goodup/assets/img/user-5.jpg	(from https://themezhub.net/goodup-live/goodup/blog-detail.html)
+=======
+>>>>>>> Gestion_Reclamation

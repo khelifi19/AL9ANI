@@ -1,0 +1,13 @@
+{% extends 'baseback1.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+  
+ <h1 style="color:red;margin-left:40%;font-size:50px">Reclamations</h1>
+ <br><br>
+
+
+    {{ include('reponse/_form.html.twig', {'button_label': 'Update'}) }}
+                                                                        {{ include('reponse/_delete_form.html.twig') }}
+                                                    {% endblock %}

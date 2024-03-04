@@ -1,0 +1,72 @@
+{% extends 'baseback1.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+
+<h1 style="color:red;margin-left:40%;font-size:50px">Reclamations</h1>
+<br><br>
+        <a href="{{ path('app_reponse_pdf') }}" class="btn btn-primary">Download PDF</a>
+<div class="text-center mt-4">
+    <div class="table-responsive">
+        <table class="table table-centered w-100 dt-responsive nowrap" id="Reclamation-datatable">
+            <thead class="table-light">
+                <tr>
+                    <th>Objet</th>
+                    <th class="all">Content</th>
+                    <th>Status</th>
+                    <th>Reponse</th>
+                    <th style="width: 85px;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="reponseTableBody">
+                {% for reclamation in reclamationsp %}
+                <tr>
+                    <td>
+                        <p class="m-0 d-inline-block align-middle font-16">
+                            {{ reclamation.objet }}
+                        </p>
+                    </td>
+                    <td>
+                        {{ reclamation.text }}
+                    </td>
+
+                    <td>
+                        {% if reclamation.etat == 0 %}
+                        <span class="badge bg-danger">En attente</span>
+                        {% else %}
+                        <span class="badge bg-success">Valide</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% for r in reponses %}
+                        {% if r.idRec == reclamation %}
+                        {{ r.text }}
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="table-action">
+                        {% if reclamation.etat == 0 %}
+                        <a href="addreponse?id={{ reclamation.id }}"  class="btn btn-primary">Repondre</a>
+                        {% else %}
+                        {% for r in reponses %}
+                        {% if r.idRec == reclamation %}
+                        <a href={{ path('app_reponse_edit', {'id': r.id}) }} style=" font-size: 15px;"  class="btn btn-primary"> Modifier reponse</a>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div>
+
+        <a href="{{ path('app_reponse_pdf') }}" class="btn btn-primary">Download PDF</a>
+</div>
+
+{% endblock %}

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Gestion_Reclamation
 date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
 17:33:01	91410/91410	---M-Z	200	added ('OK')	text/html	etag:%2216512-5d8bfda365ab9-gzip%22	https://coderthemes.com/adminto/layouts/index.html	C:/Users/kittie/OneDrive/Desktop/back/coderthemes.com/adminto/layouts/index.html	(from )
 17:33:03	278/278	---M--	404	error ('Not%20Found')	text/html	date:Fri,%2009%20Feb%202024%2016:32:58%20GMT	https://coderthemes.com/robots.txt		(from )
@@ -353,6 +356,7 @@ date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,C
 17:35:49	509/509	---M--	200	added ('OK')	image/png	etag:%221fd-5d5bf40455567%22	https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/img/clear.png	C:/Users/kittie/OneDrive/Desktop/back/coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/img/clear.png	(from https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css)
 17:35:50	709/709	---M--	200	added ('OK')	image/png	etag:%2211a0cce-2c5-6097aa341bef8%22	https://www.datatables.net/examples/resources/details_open.png	C:/Users/kittie/OneDrive/Desktop/back/www.datatables.net/examples/resources/details_open.png	(from https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css)
 17:35:50	686/686	---M--	200	added ('OK')	image/png	etag:%2211a0ccd-2ae-6097aa341bef8%22	https://www.datatables.net/examples/resources/details_close.png	C:/Users/kittie/OneDrive/Desktop/back/www.datatables.net/examples/resources/details_close.png	(from https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css)
+<<<<<<< HEAD
 =======
 date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
 17:33:01	91410/91410	---M-Z	200	added ('OK')	text/html	etag:%2216512-5d8bfda365ab9-gzip%22	https://coderthemes.com/adminto/layouts/index.html	C:/Users/kittie/OneDrive/Desktop/back/coderthemes.com/adminto/layouts/index.html	(from )
@@ -709,3 +713,5 @@ date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,C
 17:35:50	709/709	---M--	200	added ('OK')	image/png	etag:%2211a0cce-2c5-6097aa341bef8%22	https://www.datatables.net/examples/resources/details_open.png	C:/Users/kittie/OneDrive/Desktop/back/www.datatables.net/examples/resources/details_open.png	(from https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css)
 17:35:50	686/686	---M--	200	added ('OK')	image/png	etag:%2211a0ccd-2ae-6097aa341bef8%22	https://www.datatables.net/examples/resources/details_close.png	C:/Users/kittie/OneDrive/Desktop/back/www.datatables.net/examples/resources/details_close.png	(from https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css)
 >>>>>>> gestion-uber
+=======
+>>>>>>> Gestion_Reclamation
