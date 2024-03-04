@@ -15,43 +15,31 @@
    {% endblock %}
     </head>
     <header>
-	<div class="home-banner margin-bottom-0" style="background:#f41b3b url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/banner-3.jpg')}}) no-repeat;" data-overlay="5">
+<section class="bg-cover position-relative" style="background:red url({{asset('front/themezhub.net/goodup-live/goodup/assets/img/cover.jpg')}}) no-repeat;" data-overlay="3">
+			
 				<div class="container">
-				<div class="row justify-content-center">
-						<div class="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
-							
-							<div class="banner_caption text-center mb-5">
-								<h1 class="banner_title ft-bold mb-1">Find Great Place in Your Areas</h1>
-								<p class="fs-md ft-medium">Explore wonderful place to visit local areas.</p>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/t-7.png')}}" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+                                 {% if app.user %}
+									<div class="dashploio"><h4>{{app.user.userIdentifier}}</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-envelope me-2"></i>{{app.user.email}}</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								{% endif %}
+                                </div>
 							</div>
-							
-							<form class="main-search-wrap fl-wrap">
-								<div class="main-search-item">
-									<span class="search-tag"><i class="lni lni-keyboard"></i></span>
-									<input type="text" class="form-control radius" placeholder="fastFood, restaurant, takeout..." />
-								</div>
-								<div class="main-search-item">
-									<span class="search-tag"><i class="lni lni-map-marker"></i></span>
-									<input type="text" class="form-control" placeholder="Tunisia, Ariana" />
-								</div>
-								<div class="main-search-item">
-									<span class="search-tag"><i class="lni lni-briefcase"></i></span>
-									<select class="form-control">
-										<option value="">Choose Categories</option>
-										<option value="1">Restaurants</option>
-										<option value="2">Cafe</option>
-										<option value="3">takeout</option>
-									
-									</select>
-								</div>
-								<div class="main-search-button">
-									<button class="btn full-width theme-bg text-white" type="button">Search</button>
-								</div>
-							</form>
-							
+						
 						</div>
 					</div>
 				</div>
+			</section>
+				<div class="container">
+			
 			</div>
 	<div id="main-wrapper">
     <!-- Start Navigation -->

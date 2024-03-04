@@ -49,6 +49,7 @@ class Post
     #[ORM\Column(type: "boolean", nullable: true)]
     #[Groups("post:read")]
     private bool $enable = false;
+    
 
     public function getId(): ?int
     {

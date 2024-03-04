@@ -15,11 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Options as DompdfOptions;
+use App\Mailer\MyEmail;
 use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/post')]
 class PostController extends AbstractController
 {
     private $transactionRepository;
+    private $myEmail;
+
 
     public function __construct(PostRepository $transactionRepository)
     {
@@ -104,7 +107,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/new', name: 'app_post_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager , MyEmail $myEmail): Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
@@ -123,6 +126,11 @@ class PostController extends AbstractController
 
             $entityManager->persist($post);
             $entityManager->flush();
+
+            $recipient = 'mohamed.sandid@esprit.tn';
+            $subject = 'New Post';
+            $context = ['postTitle' => $post->getTitre(), 'postContent' => $post->getDescription()]; 
+            $myEmail->sendEmail($recipient, $subject, $context);
 
             return $this->redirectToRoute('app_postback_index', [], Response::HTTP_SEE_OTHER);
         }
