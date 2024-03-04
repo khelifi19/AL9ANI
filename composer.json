@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.2.12",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^2.0",
@@ -17,7 +17,7 @@
         "endroid/qr-code-bundle": "^5.0",
         "karser/karser-recaptcha3-bundle": "*",
         "knplabs/knp-paginator-bundle": "*",
-        "knplabs/knp-snappy-bundle": "*",
+        "knplabs/knp-snappy-bundle": "^1.10",
         "sensio/framework-extra-bundle": "^6.2",
         "stripe/stripe-php": "^13.13",
         "symfony/asset": "5.4.*",

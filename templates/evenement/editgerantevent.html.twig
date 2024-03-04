@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {# Add your CSS stylesheets for the third form here #}
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    {# Add your additional CSS styles for the third form here #}
+{% endblock %}
+
+{% block navbar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <br><br><br><br><br><br><br>
+    <div class="text-center">
+        {{ form_start(form) }}
+        {{ form_row(form.nomEvent, {'attr': {'class': 'form-control mb-3 text-center'}}) }}
+        {{ form_row(form.typeEvent, {'attr': {'class': 'form-control mb-3 text-center'}}) }}
+        {{ form_row(form.nbrParticipants, {'attr': {'class': 'form-control mb-3 text-center'}}) }}
+        {{ form_row(form.dateDebut, {'attr': {'class': 'mb-3 text-center'}}) }}
+        {{ form_row(form.dateFin, {'attr': {'class': 'mb-3 text-center'}}) }}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                Confirm
+            </button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

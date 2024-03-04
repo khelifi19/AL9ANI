@@ -1,0 +1,111 @@
+{% extends "baseBack.html.twig" %}
+
+{% block head %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block css %}
+ {{ parent() }}
+<link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css")}}" rel="stylesheet" type="text/css" />
+        <style>
+    
+    h2{
+        color : #444444
+    }
+     .align-center {
+            text-align: center;
+        }
+
+          .align-right {
+
+            text-align: right;
+        }
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 7px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr: hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+{% endblock %}
+{% block navbar %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block sidebar %}
+ {{ parent() }}
+
+        
+{% endblock %}
+{% block body %}
+ {{ parent() }}
+ <br><br>
+                                        <div class="content-page">
+                <div class="content">
+    <table class="align-right">
+        <thead>
+            <tr>
+                <th class="align-center"> Id</th>
+                <th class="align-center"> Nom</th>
+                <th class="align-center"> Date début</th>
+                <th class="align-center"> Date fin</th>
+                <th class="align-center"> Type</th>
+                <th class="align-center"> Participants</th>
+                <th class="align-center"> Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td class="align-center">{{ event.id }}</td>
+                    <td class="align-center">{{ event.nomEvent }}</td>
+                    <td class="align-center">{{ event.dateDebut ? event.dateDebut|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.dateFin ? event.dateFin|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.typeEvent }}</td>
+                    <td class="align-center">{{ event.nbrParticipants }}</td>
+                    <td class="align-center">
+                        <form action="{{ path('edit_event', {'id': event.id}) }}" method="get">
+                            <button type="submit">Modifier</button>
+                        </form>
+                        <div>
+                        <form action="{{ path('delete_event', {'id': event.id}) }}" method="post" onsubmit="return confirm('Supprimer l'evenement?');">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+    
+        <form action="{{ path('app_evenement_create')}}" method="get">
+            <button type="submit">Ajouter</button>
+                                    </div>
+    
+                                </div>
+                               
+                            </div>
+
+                           
+               
+
+            </div>
+ 
+
+
+ {% endblock %}

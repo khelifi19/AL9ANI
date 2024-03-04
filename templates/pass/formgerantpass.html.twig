@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+                                                {% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Symfony App</title>
+    <!-- Include your CSS files and other head content here -->
+
+    <style>
+        h2 {
+            color: #444444
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer; /* lpointeur nhoto 3la header eli nnzl alih */
+        }
+
+        
+    </style>
+</head>
+<body>
+    <br> <br> <br><br><br>
+<div class="row justify-content-center">
+                <div class="col-md-6">
+                    {{ form_start(form, {'attr': {'class': 'text-center'}}) }}
+                    {{ form_errors(form) }}
+
+                    {{ form_row(form.prixPass, {'attr': {'class': 'form-control mb-3'}}) }}
+                    {{ form_row(form.type, {'attr': {'class': 'form-control mb-3'}}) }}
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">
+                            Confirm
+                        </button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+       {% endblock %} 

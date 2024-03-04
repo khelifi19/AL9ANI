@@ -49,10 +49,17 @@
 								<li><a href="{{ path('app_etablissements_index')}}">Etablissements</a>
 									
 										</li>
-                                      
-										<li><a href="javascript:void(0);">Events</a>
+                                      {% if app.user %}
+									  {% if 'ROLE_GERANT' in app.user.roles %}
+										<li><a href="{{ path('app_gerantevenement')}}">Events</a>
 									
 										</li>
+										  {% elseif 'ROLE_GERANT' not in app.user.roles %}
+										  	<li><a href="{{ path('app_evenement')}}">Events</a>
+	
+										</li>
+										  {% endif %}
+										{% endif %}
                                         <li><a href="{{ path('courseUser_index')}}">Uber</a>
 										
 										</li>{% if app.user %}

@@ -1,0 +1,174 @@
+{% extends "base.html.twig" %}
+
+
+
+{% block head %}
+{{parent()}}
+
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Symfony App</title>
+        <!-- Include your CSS files and other head content here -->
+
+        <style>
+            h2 {
+                color: #444444
+            }
+
+            .align-center {
+                text-align: center;
+            }
+
+            .align-right {
+                text-align: right;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+                cursor: pointer;
+            }
+
+            .qr-code-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <br> <br> <br>
+        <section class="space min">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="sec_title position-relative text-center mb-5">
+                            <h2 class="ft-bold">List d'evenements</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="events-table">
+                    <thead>
+                        <tr>
+                            <th class="align-center sort" data-column="nomEvent" data-order="asc"> Nom</th>
+                            <th class="align-center sort" data-column="dateDebut" data-order="asc"> Date début</th>
+                            <th class="align-center sort" data-column="dateFin" data-order="asc"> Date fin</th>
+                            <th class="align-center sort" data-column="typeEvent" data-order="asc"> Type</th>
+                            <th class="align-center"> QR Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                            <tr>
+                                <td class="align-center">{{ event.nomEvent }}</td>
+                                <td class="align-center">{{ event.dateDebut ? event.dateDebut|date('d-m-Y') : '' }}</td>
+                                <td class="align-center">{{ event.dateFin ? event.dateFin|date('d-m-Y') : '' }}</td>
+                                <td class="align-center">{{ event.typeEvent }}</td>
+                                <td class="align-center qr-code-container" id="qr-code-{{ event.id }}"></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                <button onclick="generatePDF()">Generate PDF</button>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                <script src="https://cdn.rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+                <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+                <script>
+                    $(document).ready(function () {
+
+                        function sortEvents(column, order) {
+                            $.ajax({
+                                url: '{{ path('app_evenement_sort') }}',
+                                method: 'GET',
+                                data: { column: column, order: order },
+                                success: function (response) {
+                                    $('#events-table').html(response.html);
+
+                                    {% for event in events %}
+                                        var eventId = {{ event.id }};
+                                        var baseUrl = "http://127.0.0.1:8000";
+                                        var link = "{{ path('generate_qr_code', {'eventId': event.id}) }}";
+                                        var absoluteLink = baseUrl + link;
+
+                                        $.ajax({
+                                            url: absoluteLink,
+                                            method: 'GET',
+                                            success: function (qrCodeData) {
+                                                var qrcode{{ event.id }} = new QRCode(document.getElementById("qr-code-{{ event.id }}"), {
+                                                    text: qrCodeData,
+                                                    width: 100,
+                                                    height: 100
+                                                });
+                                            },
+                                        });
+                                    {% endfor %}
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error sorting events:", error);
+                                }
+                            });
+                        }
+
+                        $('.sort').click(function () {
+                            var column = $(this).data('column');
+                            var currentOrder = $(this).data('order') || 'asc';
+
+                            var newOrder = (currentOrder === 'asc') ? 'desc' : 'asc';
+                            $(this).data('order', newOrder);
+
+                            // method mta3 sort
+                            sortEvents(column, newOrder);
+                        });
+
+                        {% for event in events %}
+                            var eventId = {{ event.id }};
+                            var baseUrl = "http://127.0.0.1:8000";
+                            var link = "{{ path('generate_qr_code', {'eventId': event.id}) }}";
+                            var absoluteLink = baseUrl + link;
+
+                            $.ajax({
+                                url: absoluteLink,
+                                method: 'GET',
+                                success: function (qrCodeData) {
+                                    var qrcode{{ event.id }} = new QRCode(document.getElementById("qr-code-{{ event.id }}"), {
+                                        text: qrCodeData,
+                                        width: 100,
+                                        height: 100
+                                    });
+                                },
+                            });
+                        {% endfor %}
+                    });
+
+                    function generatePDF() {
+                        var element = document.getElementById("events-table");
+
+                        html2pdf(element);
+                    }
+                </script>
+            </div>
+        </section>
+    </body>
+    </html>
+{% endblock %}

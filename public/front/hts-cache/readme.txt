@@ -12,6 +12,7 @@ note:	the hts-log.txt file, and hts-cache folder, may contain sensitive informat
 	do not share these files/folders if you want these information to remain private
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 What's in this folder?
 
@@ -29,3 +30,5 @@ note:	the hts-log.txt file, and hts-cache folder, may contain sensitive informat
 >>>>>>> Gestion_Reclamation
 =======
 >>>>>>> gestion-actualité
+=======
+>>>>>>> gestionEvenement

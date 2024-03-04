@@ -1,0 +1,80 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="max-w-[944px] mx-auto">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Gestion</h1> <!-- Titre centré -->
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/uberha.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion UBER</h5>
+                        <p class="card-text">Gérez la partie uber.</p>
+                        <a href="{{ path('voiture_index') }}" class="btn btn-primary">Gérer véhicules</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/user.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion User</h5>
+                        <p class="card-text">Gérez les utilisateurs.</p>
+                        <a href="{{ path('app_chauffeur_index') }}" class="btn btn-primary">Gérer vos chauffeurs</a>
+                    </div>
+                </div>
+            </div>
+  </div>
+           <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/event.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des Evenements</h5>
+                        <p class="card-text">Gérez les evenements.</p>
+                        <a href="{{ path('app_postule_index') }}" class="btn btn-primary">Gérer postulés</a>
+                    </div>
+                </div>
+            </div>
+                 </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/actualite.jpg') }}"class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des Actualaites</h5>
+                        <p class="card-text">Gérez les actualites.</p>
+                        <a href="{{ path('app_postule_index') }}" class="btn btn-primary">Gérer postulés</a>
+                    </div>
+                </div>
+            </div>
+
+
+    <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/reclamation.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des Reclamations </h5>
+                        <p class="card-text">Gérez les reclamations.</p>
+                        <a href="{{ path('app_postule_index') }}" class="btn btn-primary">Gérer postulés</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('/uploads/images/resto.jpg') }}" class="card-img-top" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestion des Etablissements</h5>
+                        <p class="card-text">Gerer les etablissements.</p>
+                        <a href="{{ path('course_index') }}" class="btn btn-primary">Historique des courses</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

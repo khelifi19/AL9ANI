@@ -43,6 +43,10 @@ class Etablissements
     #[ORM\Column]
     private bool $favoris = false;
 
+    #[ORM\ManyToOne(inversedBy: 'etablissements')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
@@ -159,6 +163,18 @@ class Etablissements
     public function setFavoris(bool $favoris): static
     {
         $this->favoris = $favoris;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

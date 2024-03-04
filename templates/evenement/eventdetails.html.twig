@@ -1,0 +1,291 @@
+{% extends "base.html.twig" %}
+
+
+	                                                {% block head %}
+   {{parent()}}
+	  
+           {% endblock %} 
+	                                                {% block css %}
+                                                       {{parent()}}  
+                                                          
+
+       {% endblock %} 
+       	                                                {% block javascript %}
+                                                           {{parent()}}
+
+       {% endblock %} 
+	                                                {% block body %}
+                                                       {{parent()}}
+
+
+    
+	
+		 <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+       <div class="preloader"></div>
+		
+        <!-- ============================================================== -->
+        <!-- Main wrapper - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div id="main-wrapper">
+		
+            <!-- ============================================================== -->
+          
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+<section class="bg-cover position-relative" style="background:red url({{asset('C:\Users\ozzy\Desktop\pidev\AL9ANI-7a88ab2acf0c931b9107a1860fa8d7ea9b8d9cf3\public\front\themezhub.net\goodup-live\goodup\assets\img\banner.jpg')}}) no-repeat;" data-overlay="3">
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+								
+							<div class="dashboard-head-author-clicl">
+								<div class="dashboard-head-author-thumb">
+									<img src="assets/img/t-7.png" class="img-fluid" alt="" />
+								</div>
+								<div class="dashboard-head-author-caption">
+									<div class="dashplJBoio"><h4>Charles D. Robinson</h4></div>
+									<div class="dashploio"><span class="agd-location"><i class="lni lni-map-marker me-1"></i>San Francisco, USA</span></div>
+									<div class="listing-rating high"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+						<!-- Sidebar -->
+			<section class="middle">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+						
+							
+							
+							<div class="d-block mb-4">
+								<div class="svd-01 d-flex align-items-center">
+									<div class="jbd-flex d-flex align-items-center justify-content-start">
+										<div class="jbd-01-thumb">
+											<img src="assets/img/c-1.png" class="img-fluid" width="90" alt="" />
+										</div>
+									</div>
+									<div class="jbd-01-caption ps-3">
+										
+										
+									</div>
+								</div>
+							</div>
+							
+							<div class="rounded mb-4">
+								<div class="jbd-01">
+                                <div class="tbd-title">
+										<h5 class="ft-medium fs-md">Nom evenement:</h5>
+                                        <p>{{ event.nomEvent }}</p>										
+
+										</div>
+                                     
+									<div class="jbd-details mb-4">
+										<h5 class="ft-medium fs-md">Date début:</h5>
+                                     <p>{{ event.dateDebut ? event.dateDebut|date('Y-m-d') :  'N/A' }}</p>										
+									</div>
+                                    <div class="jbd-details mb-4">
+										<h5 class="ft-medium fs-md">Date fin:</h5>
+                                    <p>{{ event.dateFin ? event.dateFin|date('Y-m-d') : 'N/A' }}</p>									
+									</div>				
+
+
+									<div class="jbd-details mb-3">
+    <h5 class="ft-medium fs-md">Passes:</h5>
+
+    {% if passes|length > 0 %}
+        <ul style="list-style-type: none; padding: 2px;">
+            {% for pass in passes %}
+                <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 5px; border-radius: 3px;">
+                    <strong>Pass Type:</strong> {{ pass.type }}<br>
+                    <strong>Price:</strong> {{ pass.prixPass }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Pas de passes</p>
+    {% endif %}
+</div>
+
+	
+									
+									
+								</div>
+								
+								
+							</div>
+							
+						</div>
+                        						<!-- CONTENT -->
+
+						
+						<!-- Sidebar -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+							<!-- Author Box -->
+							<div class="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
+								
+								<div class="Goodup-agent-blocks">
+									<div class="Goodup-agent-thumb"><img src="assets/img/t-1.png" width="90" class="img-fluid circle" alt=""></div>
+									<div class="Goodup-agent-caption">
+										<h4 class="ft-medium mb-0">Mamado dridi</h4>
+										<span class="agd-location"><i class="lni lni-map-marker me-1"></i>tborba</span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								
+								
+								
+								<div class="agent-cnt-info">
+									<div class="row g-4">
+										
+										<div class="col-6">
+											
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-12">
+											
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							
+			</section>
+			<!-- ============================ Job Details End ================================== -->
+			
+			<!-- ======================= Related Listings ======================== -->
+			
+			<!-- ======================= Related Listings ======================== -->
+			
+			<!-- ======================= Newsletter Start ============================ -->
+			<section class="space bg-cover" style="background:#03343b url(assets/img/landing-bg.png) no-repeat;">
+				<div class="container py-5">
+					
+					<div class="row justify-content-center">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+							<div class="sec_title position-relative text-center mb-5">
+								<h6 class="text-light mb-0">Subscribr Now</h6>
+								<h2 class="ft-bold text-light">Get All Updates & Advance Offers</h2>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row align-items-center justify-content-center">
+						<div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
+							<form class="bg-white rounded p-1">
+								<div class="row no-gutters">
+									<div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
+										<div class="form-group mb-0 position-relative">
+											<input type="text" class="form-control b-0" placeholder="Enter Your Email Address">
+										</div>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
+										<div class="form-group mb-0 position-relative">
+											<button class="btn full-width btn-height theme-bg text-light fs-md" type="button">Subscribe</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</section>
+			<!-- ======================= Newsletter Start ============================ -->
+			
+			
+			
+			<!-- Log In Modal -->
+			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginmodal" aria-hidden="true">
+				<div class="modal-dialog login-pop-form" role="document">
+					<div class="modal-content" id="loginmodal">
+						<div class="modal-headers">
+							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+							  <span class="ti-close"></span>
+							</button>
+						  </div>
+					
+						<div class="modal-body p-5">
+							<div class="text-center mb-4">
+								<h4 class="m-0 ft-medium">Login Your Account</h4>
+							</div>
+							
+							<form class="submit-form">				
+								<div class="form-group">
+									<label class="mb-1">User Name</label>
+									<input type="text" class="form-control rounded bg-light" placeholder="Username*">
+								</div>
+								
+								<div class="form-group">
+									<label class="mb-1">Password</label>
+									<input type="password" class="form-control rounded bg-light" placeholder="Password*">
+								</div>
+								
+								<div class="form-group">
+									<div class="d-flex align-items-center justify-content-between">
+										<div class="flex-1">
+											<input id="dd" class="checkbox-custom" name="dd" type="checkbox" checked>
+											<label for="dd" class="checkbox-custom-label">Remember Me</label>
+										</div>	
+										<div class="eltio_k2">
+											<a href="#" class="theme-cl">Lost Your Password?</a>
+										</div>	
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<button type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium">Sign In</button>
+								</div>
+								
+								<div class="form-group text-center mb-0">
+									<p class="extra">Or login with</p>
+									<div class="option-log">
+										<div class="single-log-opt"><a href="javascript:void(0);" class="log-btn"><img src="assets/img/c-1.png" class="img-fluid" alt="" />Login with Google</a></div>
+										<div class="single-log-opt"><a href="javascript:void(0);" class="log-btn"><img src="assets/img/facebook.png" class="img-fluid" alt="" />Login with Facebook</a></div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Modal -->
+			
+			<a id="tops-button" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+			
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Wrapper -->
+		<!-- ============================================================== -->
+
+		<!-- ============================================================== -->
+		<!-- All Jquery -->
+		<!-- ============================================================== -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/slick.js"></script>
+		<script src="assets/js/jquery.magnific-popup.min.js"></script>
+		<script src="assets/js/dropzone.js"></script>
+		<script src="assets/js/counterup.js"></script>
+		<script src="assets/js/lightbox.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/daterangepicker.js"></script>
+		<script src="assets/js/lightbox.js"></script>		
+		<script src="assets/js/jQuery.style.switcher.js"></script>
+		<script src="assets/js/custom.js"></script>
+		<!-- ============================================================== -->
+		<!-- This page plugins -->
+		<!-- ============================================================== -->
+
+       {% endblock %} 

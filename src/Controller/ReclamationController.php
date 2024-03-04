@@ -7,7 +7,7 @@ use App\Entity\User;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Snappy\Pdf;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -98,5 +98,5 @@ class ReclamationController extends AbstractController
         return $this->redirectToRoute('app_home_page');
     }
 
-  
+    
 }

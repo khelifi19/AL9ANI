@@ -18,7 +18,7 @@ class HomePageController extends AbstractController
     #[Route('/admin', name: 'app_home_admin')]
     public function homeBack(): Response
     {
-        return $this->render('home_page/index.html.twig', [
+        return $this->render('back/homepageBack.html.twig', [
             'controller_name' => 'HomePageController',
         ]);
     }

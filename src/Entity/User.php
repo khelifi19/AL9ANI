@@ -64,6 +64,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $commentaires;
 
+    #[ORM\OneToMany(targetEntity: Etablissements::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $etablissements;
+
     
 
 
@@ -76,6 +79,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->CoursesUser = new ArrayCollection();
         $this->reclamations = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->etablissements = new ArrayCollection();
     }
 
     
@@ -314,6 +318,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($commentaire->getUser() === $this) {
                 $commentaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Etablissements>
+     */
+    public function getEtablissements(): Collection
+    {
+        return $this->etablissements;
+    }
+
+    public function addEtablissement(Etablissements $etablissement): static
+    {
+        if (!$this->etablissements->contains($etablissement)) {
+            $this->etablissements->add($etablissement);
+            $etablissement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtablissement(Etablissements $etablissement): static
+    {
+        if ($this->etablissements->removeElement($etablissement)) {
+            // set the owning side to null (unless already changed)
+            if ($etablissement->getUser() === $this) {
+                $etablissement->setUser(null);
             }
         }
 
