@@ -15,7 +15,6 @@ class FormPassType extends AbstractType
         $builder
             ->add('prixPass')
             ->add('type')
-            // Adjust the 'choice_label' based on your Evenement entity properties
             ->add('evenement', ChoiceType::class, [
                 'choices' => $options['evenements'],
                 'choice_label' => 'nomEvent', // Adjust this based on your Evenement entity properties

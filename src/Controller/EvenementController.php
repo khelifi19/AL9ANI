@@ -8,6 +8,7 @@ use App\Form\FormEvenementType;
 use Endroid\QrCode\QrCode;
 use App\Form\ReservationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -96,26 +98,7 @@ public function deleteEvent(Evenement $event, EntityManagerInterface $entityMana
 
     return $this->redirectToRoute('app_evenement_etb');
 }
-#[Route('/reserver', name: 'app_reserver')]
-public function reserver(Request $request): Response
-{
-    $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
-    $passes = $this->getDoctrine()->getRepository(Pass::class)->findAll();
 
-    $form = $this->createForm(ReservationFormType::class, null, [
-        'evenements' => $evenements,
-        'passes' => $passes,
-    ]);
-
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-    }
-
-    return $this->render('evenement/reserver.html.twig', [
-        'form' => $form->createView(),
-    ]);
-}
 
 #[Route('/eventdetails/{id}', name: 'app_event_details')]
 public function showEventDetails(int $id): Response
@@ -227,4 +210,6 @@ public function deletegerantEvent(Evenement $event, EntityManagerInterface $enti
 
     return $this->redirectToRoute('app_gerantevenement');
 }
+
+
 }
