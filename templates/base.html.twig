@@ -60,7 +60,9 @@
 									 {% endif %}
 										</li>
 										  
-									
+									  <li><a href="{{ path('app_post_index')}}">Actualite</a>
+										
+										</li>
 									
 										
 									
@@ -97,7 +99,7 @@
 									{% endif %}
 								{% if 'ROLE_ADMIN' in app.user.roles %}
                     <li class="add-listing gray">
-                        <a href="{{ path('app_user_index') }}">
+                        <a href="{{ path('app_home_admin') }}">
                             <i class="lni lni-dashboard mr-1"></i> Dashboard
                         </a>
                     </li>

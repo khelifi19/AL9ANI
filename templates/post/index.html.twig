@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+   <br><br><br><br>
+  <center><h1>posts</h1></center>
+  <br><br>
+  <div style="text-align: center;">
+    <form action="{{ path('app_post_index') }}" method="get" style="display: inline-block;">
+      <input type="text" name="q" placeholder="Search..." value="{{ searchQuery }}">
+      <button class="btn btn-primary btn-sm" type="submit">Search</button>
+    </form>
+  </div>
+ <br><br>
+  <div class="row justify-content-center">
+
+					
+						<!-- Single -->
+                        {% for post in posts %}
+			            {% if post.enable==0 %}
+						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+							<div class="Goodup-grid-wrap">
+								<div class="Goodup-grid-upper">
+									<div class="Goodup-bookmark-btn"><button type="button"><i class="lni lni-heart-filled position-absolute"></i></button></div>
+									
+									<div class="Goodup-grid-thumb">
+										<a href="single-listing-detail-3.html" class="d-block text-center m-auto"><img src="{{ asset('uploads/' ~ post.image) }}" alt=""></a>
+									</div>
+									<div class="Goodup-rating overlay">
+										
+									</div>
+								</div>
+								<div class="Goodup-grid-fl-wrap">
+									<div class="Goodup-caption px-3 py-2">
+										
+										<h4 class="mb-0 ft-medium medium"><a href="single-listing-detail-3.html" class="text-dark fs-md">{{ post.titre }}</i></span></a></h4>
+										<div class="Goodup-middle-caption mt-2">
+											<p>{{ post.description }}</p>
+											<div class="Goodup-facilities-wrap mb-0">
+												<div class="Goodup-facility-title">{{ post.datepost ? post.datepost|date('Y-m-d') : '' }}</div>
+												
+											</div>
+										</div>
+									</div>
+									<div class="Goodup-grid-footer py-2 px-3">
+										<div class="Goodup-ft-first">
+											<div class="Goodup-location"><i class="fas fa-map-marker-alt me-1 theme-cl"></i>{{ post.localisation }}</div>
+										</div>
+										<div class="Goodup-ft-last">
+											<div class="Goodup-inline">
+												<div class="Goodup-bookmark-btn"><button type="button"><a href="{{ path('app_postcom', {'idPost': post.id}) }}"><i class="lni lni-envelope position-absolute"></a></i></button></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+{% endif %}
+
+						{% endfor %}
+					</div>
+					  {# Manual pagination controls #}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if pagination.currentPage > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('app_post_index', {'page': pagination.currentPage - 1, 'q': searchQuery}) }}">Previous</a>
+            </li>
+        {% endif %}
+
+        {% for page in 1..pagination.totalPages %}
+            <li class="page-item{% if page == pagination.currentPage %} active{% endif %}">
+                <a class="page-link" href="{{ path('app_post_index', {'page': page, 'q': searchQuery}) }}">{{ page }}</a>
+            </li>
+       {% endfor %}
+
+        {% if pagination.currentPage < pagination.totalPages %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('app_post_index', {'page': pagination.currentPage + 1, 'q': searchQuery}) }}">Next</a>
+            </li>
+        {% endif %}
+    </ul>
+	                 
+                    {% endblock %}

@@ -21,7 +21,7 @@ class Reclamation
     #[ORM\Column(length: 255)]
     private ?string $text = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $etat = null;
 
     #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'reclamation')]

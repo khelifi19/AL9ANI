@@ -127,7 +127,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                         <div class="notify-icon">
-                                            <img src="{{asset("assets/admin/images/users/user-1.jpg") }} class="img-fluid rounded-circle" alt="" /> </div>
+                                            <img src="{{asset("assets/admin/images/users/user-1.jpg") }}" class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Cristina Pride</p>
                                         <p class="text-muted mb-0 user-msg">
                                             <small>Hi, How are you? What about our next meeting</small>
@@ -260,13 +260,13 @@
                         </ul>
                     </div>
 
-                    <!--- Sidemenu -->
+                         <!--- Sidemenu -->
                     <div id="sidebar-menu">
 
                         <ul id="side-menu">
 
                             <li class="menu-title">Navigation</li>
-                
+              
                             <li>
                                 <a href="index.html">
                                     <i class="mdi mdi-view-dashboard-outline"></i>
@@ -276,19 +276,87 @@
                             </li>
 
                             <li class="menu-title mt-2">Apps</li>
-
-                            <li>
-                                <a href="#">
+                                 <li>
+                                <a href="{{path('app_user_index')}}">
                                     <i class="mdi mdi-calendar-blank-outline"></i>
-                                    <span>Reclamation</span>
+                                    <span> Users </span>
                                 </a>
                             </li>
-
-                            <li>
-                                <a href="#">
-                                    <i class="mdi mdi-forum-outline"></i>
-                                    <span>Commentaires </span>
+                             <li>
+                                <a href="{{path('back')}}">
+                                    <i class="mdi mdi-calendar-blank-outline"></i>
+                                    <span> Reclamations </span>
                                 </a>
+                            </li>
+                            <li>
+                                <a href="#uber" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-email-outline"></i>
+                                    <span> Uber </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="uber">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{path('app_uber_page')}}">list</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('calendrier_index')}}">Calendar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                              <li>
+                                <a href="#etablissement" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-email-outline"></i>
+                                    <span> Etablissements </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="etablissement">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{path('app_etablissements_back_index')}}">Etablissements</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('app_reservation_back_index')}}">Reservation</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            
+                              <li>
+                                <a href="#actualite" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-email-outline"></i>
+                                    <span> Actualite </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="actualite">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{path('app_postback_index')}}">Post</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('app_commentaire_index')}}">Commentaires</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                             <li>
+                                <a href="#evenement" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-email-outline"></i>
+                                    <span> Evenement </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="evenement">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="{{path('app_postback_index')}}">Evenement</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('app_commentaire_index')}}">Pass</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             

@@ -15,13 +15,16 @@ class HomePageController extends AbstractController
             'controller_name' => 'HomePageController',
         ]);
     }
-    #[Route('/admin/dashboard', name: 'admin_home_page')]
-    public function dashboard(): Response
+    #[Route('/admin', name: 'app_home_admin')]
+    public function homeBack(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        
-        return $this->render('home_page/indexBack.html.twig', [
+        return $this->render('home_page/index.html.twig', [
             'controller_name' => 'HomePageController',
         ]);
+    }
+    #[Route('/admin/uber',name: 'app_uber_page')]
+    public function back(): Response
+    {
+        return $this->render('back/index.html.twig');
     }
 }

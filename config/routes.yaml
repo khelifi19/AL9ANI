@@ -262,3 +262,9 @@ app_reponse_pdf:
     path: '/back/pdf'
     controller: 'App\Controller\ReponseController::generatePdf'
     methods: ['GET']
+print_pdf:
+    path: /printpdf
+    controller: App\Controller\PostController::printPdf
+search_by_titre:
+    path: /searchByTitre
+    controller: App\Controller\PostController::searchByTitre
