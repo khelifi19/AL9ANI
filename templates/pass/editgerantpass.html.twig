@@ -45,6 +45,13 @@
         /* Additional style for centering */
         .form-center {
             text-align: center;
+            margin: 0 auto; /* Centering the box horizontally */
+            width: 50%; /* Adjust the width as needed */
+        }
+
+        /* Center text inside form controls */
+        .form-control {
+            text-align: center;
         }
     </style>
 {% endblock %}
@@ -61,11 +68,11 @@
     {{ parent() }}
     <br><br><br><br><br><br><br>
 
-    <div class="text-center">
+    <div class="form-center">
         {{ form_start(form) }}
-        {{ form_row(form.prixPass) }}<br>
-        {{ form_row(form.type) }}<br>
-        {{ form_row(form.evenement) }} {# Adjust this line to include the evenement field #}
+        {{ form_row(form.prixPass, {'attr': {'class': 'form-control'}}) }}<br>
+        {{ form_row(form.type, {'attr': {'class': 'form-control'}}) }}<br>
+        {{ form_row(form.evenement, {'attr': {'class': 'form-control'}}) }} {# Adjust this line to include the evenement field #}
     </div>
 
     <br>

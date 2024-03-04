@@ -28,12 +28,11 @@
                 {{ form_start(form, {'attr': {'class': 'text-center'}}) }}
                 {{ form_errors(form) }}
 
-                {{ form_row(form.nomEvent, {'attr': {'class': 'form-control mb-3'}}) }}
-                {{ form_row(form.typeEvent, {'attr': {'class': 'form-control mb-3'}}) }}
-                {{ form_row(form.nbrParticipants, {'attr': {'class': 'form-control mb-3'}}) }}
-                {{ form_row(form.dateDebut, ) }}
-                {{ form_row(form.dateFin, ) }}
-                <br>
+                {{ form_row(form.nomEvent, {'attr': {'class': 'form-control mb-3', 'style': 'text-align: center;' }}) }}
+                {{ form_row(form.typeEvent, {'attr': {'class': 'form-control mb-3', 'style': 'text-align: center;' }}) }}
+                {{ form_row(form.nbrParticipants, {'attr': {'class': 'form-control mb-3', 'style': 'text-align: center;' }}) }}
+                {{ form_row(form.dateDebut, {'attr': {'style': 'text-align: center;' }}) }}
+                {{ form_row(form.dateFin, {'attr': {'style': 'text-align: center;' }}) }}
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">
