@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Entity\Pass;
 use App\Form\FormEvenementType;
+use Endroid\QrCode\QrCode;
 use App\Form\ReservationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Snappy\Pdf;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Test\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class EvenementController extends AbstractController
 {
    
-    #[Route('/evenement/etb', name: 'app_evenement_etb')]
+    #[Route('/admin/evenement', name: 'app_evenement_etb')]
 public function showEventsEtb(): Response
 {
     $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
@@ -39,7 +41,7 @@ public function showAllEvents(): Response
     ]);
 }
 
-    #[Route('/evenement/create', name: 'app_evenement_create')]
+    #[Route('/admin/evenement/create', name: 'app_evenement_create')]
     public function addEvent(Request $request): Response
     {
         $evenement = new Evenement();
@@ -66,7 +68,7 @@ public function showAllEvents(): Response
 
 
 
-    #[Route('/edit/{id}', name: 'edit_event')]
+    #[Route('admin/edit/{id}', name: 'edit_event')]
 public function editEvent(Evenement $event, Request $request, EntityManagerInterface $entityManager): Response
 {
     $form = $this->createForm(FormEvenementType::class, $event);
@@ -114,34 +116,7 @@ public function reserver(Request $request): Response
         'form' => $form->createView(),
     ]);
 }
-#[Route('/evenement/pdf', name: 'app_evenement_pdf')]
-public function generatePdf(Pdf $pdf): Response
-{
-    $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-    $html = $this->renderView('evenement/eventspdf.html.twig', [
-        'events' => $events,
-        
-    ]);
-
-    $filename = 'events_' . time() . '.pdf';
-
-    $pdf->generateFromHtml($html, $filename, [
-        'lowquality' => true,
-        'images' => true,
-    
-    ]);
-
-    $response = new Response(file_get_contents($filename));
-    $response->headers->set('Content-Type', 'application/pdf');
-    $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
-
-    register_shutdown_function(function () use ($filename) {
-        @unlink($filename);
-    });
-
-    return $response;
-}   
 #[Route('/eventdetails/{id}', name: 'app_event_details')]
 public function showEventDetails(int $id): Response
 {
@@ -160,5 +135,96 @@ public function showEventDetails(int $id): Response
         'passes' => $passes,
     ]);
 }
+#[Route('/generate-qr-code/{eventId}', name: 'generate_qr_code')]
+    public function generateQRCode(int $eventId): JsonResponse
+    {
+        // QR NA3MLOH PAR ID 
+        $baseUrl = $this->generateUrl('app_event_details', ['id' => $eventId], UrlGeneratorInterface::ABSOLUTE_URL);
+        $qrCodeData = $baseUrl;
 
+        return $this->json($qrCodeData);
+    }
+    #[Route('/admin/evenement/sort', name: 'app_evenement_sort', methods: ['GET'])]
+    public function sortEvents(Request $request): JsonResponse
+    {
+        $column = $request->query->get('column', 'nomEvent');
+        $order = $request->query->get('order', 'asc');
+
+        // Get sorted events from the database (adjust this part based on your sorting logic)
+        $events = $this->getDoctrine()->getRepository(Evenement::class)->findBy([], [$column => $order]);
+
+        // Render the events as HTML (adjust this part based on your HTML structure)
+        $html = $this->renderView('evenement/sorted_events.html.twig', [
+            'events' => $events,
+        ]);
+
+        return new JsonResponse(['html' => $html]);
+    }
+   
+   
+    #[Route('/gerant/evenement', name: 'app_gerantevenement')]
+public function showEventsgerant(): Response
+{
+    $events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+
+    return $this->render('evenement/listgerant.html.twig', [
+        'events' => $events,
+    ]);
+}
+
+
+#[Route('/gerant/evenement/edit/{id}', name: 'editeventgerant')]
+public function editEventgerant(Evenement $event, Request $request, EntityManagerInterface $entityManager): Response
+{
+    $form = $this->createForm(FormEvenementType::class, $event);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Event updated successfully.');
+
+        return $this->redirectToRoute('app_gerantevenement');
+    }
+
+    return $this->render('evenement/editgerantevent.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
+#[Route('/gerant/evenement/create', name: 'app_gerantevenement_create')]
+public function gerantaddEvent(Request $request): Response
+{
+    $evenement = new Evenement();
+
+    
+    $form = $this->createForm(FormEvenementType::class, $evenement);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($evenement);
+        $entityManager->flush();
+
+        // Redirect pass bech yzid pass tebe3 levent
+        return $this->redirectToRoute('app_gerantpass_create');
+    }
+
+    return $this->render('evenement/gerantformevent.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
+#[Route('/deletegerant/{id}', name: 'delete_gerantevent')]
+public function deletegerantEvent(Evenement $event, EntityManagerInterface $entityManager): Response
+{
+    $entityManager->remove($event);
+    $entityManager->flush();
+
+    $this->addFlash('success', 'Event deleted successfully.');
+
+    return $this->redirectToRoute('app_gerantevenement');
+}
 }

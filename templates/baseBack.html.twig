@@ -17,6 +17,8 @@
     <link href="{{ asset('/back/coderthemes.com/adminto/layouts/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
    
     <link href="{{ asset('/back/coderthemes.com/adminto/layouts/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Sweet Alert-->
+        <link "{{ asset('/back/coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.min.css') }}"  rel="stylesheet" type="text/css" />
    {% endblock %} 
    {% endblock %}
 </head>
@@ -37,60 +39,7 @@
                                             <i class="fe-search"></i>
                                         </button>
                                     </div>
-                                    <div class="dropdown-menu dropdown-lg" id="search-dropdown">
-                                        <!-- item-->
-                                        <div class="dropdown-header noti-title">
-                                            <h5 class="text-overflow mb-2">Found 22 results</h5>
-                                        </div>
-            
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <i class="fe-home me-1"></i>
-                                            <span>Analytics Report</span>
-                                        </a>
-            
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <i class="fe-aperture me-1"></i>
-                                            <span>How can I help you?</span>
-                                        </a>
-                            
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <i class="fe-settings me-1"></i>
-                                            <span>User profile settings</span>
-                                        </a>
-
-                                        <!-- item-->
-                                        <div class="dropdown-header noti-title">
-                                            <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
-                                        </div>
-
-                                        <div class="notification-list">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="d-flex align-items-start">
-                                                    <img class="d-flex me-2 rounded-circle" src="/back/coderthemes.com/adminto/layouts/assets/images/users/user-2.jpg" alt="Generic placeholder image" height="32">
-                                                    <div class="w-100">
-                                                        <h5 class="m-0 font-14">Erwin E. Brown</h5>
-                                                        <span class="font-12 mb-0">UI Designer</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="d-flex align-items-start">
-                                                    <img class="d-flex me-2 rounded-circle" src="/back/admin/assets/images/users/user-5.jpg" alt="Generic placeholder image" height="32">
-                                                    <div class="w-100">
-                                                        <h5 class="m-0 font-14">Jacob Deo</h5>
-                                                        <span class="font-12 mb-0">Developer</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-            
-                                    </div> 
+                                   
                                 </div>
                             </form>
                         </li>
@@ -200,7 +149,7 @@
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 	{% if app.user %}
-                                <img src="/back/admin/assets/images/users/{{app.user.img}}" alt="user-image" class="rounded-circle">
+                                <img src= "{{asset('uploads/' ~ app.user.img) }}" alt="user-image" class="rounded-circle">
                                 <span class="pro-user-name ms-1">
                                   {{app.user.username}} <i class="mdi mdi-chevron-down"></i> 
                                 </span>
@@ -250,7 +199,7 @@
                                 <img src="{{ asset('/back/coderthemes.com/adminto/layouts/assets/admin/images/logo-sm.png') }}" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('/back/coderthemes.com/adminto/layouts/assets/admin/images/logo-light.png') }}" alt="" height="16">
+                                <img src="{{asset('front/themezhub.net/goodup-live/goodup/assets/img/al9aniwhite.png')}}" alt="" height="16">
                             </span>
                         </a>
                         <a href="index.html" class="logo logo-dark text-center">
@@ -271,7 +220,7 @@
                         </li>
     
                         <li>
-                            <h4 class="page-title-main">Gestion Uber</h4>
+                            <h4 class="page-title-main">Gestion Evenement</h4>
                         </li>
             
                     </ul>
@@ -289,11 +238,11 @@
 
                      <!-- User box -->
                     <div class="user-box text-center">
-{% if app.user %}
-                        <img src="{{ asset("/back/coderthemes.com/adminto/layouts/assets/admin/images/users/ {{app.user.img}}") }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
+
+                        <img src="" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
                             <div class="dropdown">
-                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">{{app.user.username}}</a>
-                                {% endif %}
+                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false"></a>
+                              
                                 <div class="dropdown-menu user-pro-dropdown">
 
                                     <!-- item-->
@@ -315,7 +264,7 @@
                                     </a>
         
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="" class="dropdown-item notify-item">
                                         <i class="fe-log-out me-1"></i>
                                         <span>Logout</span>
                                     </a>
@@ -869,4 +818,25 @@
 
  
     <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/js/app.min.js") }}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net/js/jquery.dataTables.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.html5.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.flash.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.print.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/datatables.net-select/js/dataTables.select.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/pdfmake.min.js")}}"></script>
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/vfs_fonts.js")}}"></script>
+        <!-- third party js ends -->
+  <!-- Sweet Alerts js -->
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.all.min.js")}}"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/js/pages/sweet-alerts.init.js")}}"></script>
+        <!-- Datatables init -->
+        <script src="{{asset("/back/coderthemes.com/adminto/layouts/assets/js/pages/datatables.init.js")}}"></script>
 </html>

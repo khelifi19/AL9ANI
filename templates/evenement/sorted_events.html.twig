@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th class="align-center" data-column="nomEvent"> Nom</th>
+            <th class="align-center"> Date début</th>
+            <th class="align-center"> Date fin</th>
+            <th class="align-center"> Type</th>
+            <th class="align-center"> QR Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+            <tr>
+                <td class="align-center">{{ event.nomEvent }}</td>
+                <td class="align-center">{{ event.dateDebut ? event.dateDebut|date('d-m-Y') : '' }}</td>
+                <td class="align-center">{{ event.dateFin ? event.dateFin|date('d-m-Y') : '' }}</td>
+                <td class="align-center">{{ event.typeEvent }}</td>
+                <td class="align-center qr-code-container" id="qr-code-{{ event.id }}"></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

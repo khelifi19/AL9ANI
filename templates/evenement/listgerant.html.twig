@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+                                                {% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include your CSS files and other head content here -->
+
+    <style>
+        h2 {
+            color: #444444
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer; /* lpointeur nhoto 3la header eli nnzl alih */
+        }
+
+        .qr-code-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <br> <br> <br>
+    <section class="space min">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="sec_title position-relative text-center mb-5">
+                        <h2 class="ft-bold">List d'evenements</h2>
+                    </div>
+                </div>
+            </div>
+<table class="align-right">
+        <thead>
+            <tr>
+                <th class="align-center"> Id</th>
+                <th class="align-center"> Nom</th>
+                <th class="align-center"> Date début</th>
+                <th class="align-center"> Date fin</th>
+                <th class="align-center"> Type</th>
+                <th class="align-center"> Participants</th>
+                <th class="align-center"> Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td class="align-center">{{ event.id }}</td>
+                    <td class="align-center">{{ event.nomEvent }}</td>
+                    <td class="align-center">{{ event.dateDebut ? event.dateDebut|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.dateFin ? event.dateFin|date('d-m-Y') : '' }}</td>
+                    <td class="align-center">{{ event.typeEvent }}</td>
+                    <td class="align-center">{{ event.nbrParticipants }}</td>
+                    <td class="align-center">
+                        <form action="{{ path('editeventgerant', {'id': event.id}) }}" method="get">
+                            <button type="submit">Modifier</button>
+                        </form>
+                        <div>
+                        <form action="{{ path('delete_gerantevent', {'id': event.id}) }}" method="post" onsubmit="return confirm('Supprimer l'evenement?');">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+    
+        <form action="{{ path('app_gerantevenement_create')}}" method="get">
+            <button type="submit">Ajouter</button>
+                                    </div>
+    
+                                </div>
+                               
+                            </div>
+
+                           
+               
+
+            </div>            
+
+</body>
+</html>
+       {% endblock %} 
