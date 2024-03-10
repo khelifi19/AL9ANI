@@ -6,6 +6,9 @@ use App\Repository\ReclamationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as AppAssert;
+
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -17,9 +20,10 @@ class Reclamation
 
     #[ORM\Column(length: 255)]
     private ?string $objet = null;
-
+ 
     #[ORM\Column(length: 255)]
     private ?string $text = null;
+
 
     #[ORM\Column(nullable: true)]
     private ?int $etat = null;

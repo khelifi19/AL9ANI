@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Course;
 use App\Repository\VoitureRepository;
-
+use App\Repository\EtablissementsRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -16,13 +16,18 @@ class CourseUserForm extends AbstractType
 
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {$etablissements = [
-        'baguette&baguette', 'Plan B', 'KFC', 'Compoz', 'cafe 716', 'cafe 33', 'Baristas', 'Ettounsi', 'le Gourmed' ];
+    {$etablissementsRepository = $options['etablissements_repository'];
+        $etablissements = $etablissementsRepository->findAll();
+        $choices = [];
+        foreach ($etablissements as $etablissement) {
+            $choices[$etablissement->getNom()] = $etablissement->getNom();
+        }
+    
         $builder
-            ->add('destination', ChoiceType::class, [
-                'choices' => array_combine($etablissements, $etablissements),
-                'placeholder' => 'Choisir votre destination',
-            ])
+        ->add('destination', ChoiceType::class, [
+            'choices' => $choices,
+            'placeholder' => 'Choisir votre destination',
+        ])
             ->add('depart')
      
             ->add('nbPersonne')
@@ -43,6 +48,7 @@ class CourseUserForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Course::class,
+            'etablissements_repository' => null, 
         ]);
     }
 }

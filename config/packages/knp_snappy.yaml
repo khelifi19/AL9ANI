@@ -1,9 +1,9 @@
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     '%env(WKHTMLTOPDF_PATH)%'
+        binary:     '"%env(WKHTMLTOPDF_PATH)%"' # Add double quotes around the binary path
         options:    []
     image:
-        enabled:    true
-        binary:     '%env(WKHTMLTOIMAGE_PATH)%'
-        options:    []
+        enabled: true
+        binary: '%env(WKHTMLTOIMAGE_PATH)%'
+        options: []

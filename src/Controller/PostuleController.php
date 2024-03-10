@@ -6,6 +6,7 @@ use App\Entity\Postule;
 use App\Form\PostuleType;
 use App\Repository\PostuleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +64,7 @@ $email = (new TemplatedEmail())
 
 // Set a "subject"
 ->subject('Postule')
-->attachFromPath('/Users/yass/Desktop/back/index.html')
+->attachFromPath('C:\Users\ozzy\Desktop\AL9ANI\templates\back\postule\index.html.twig')
 ->htmlTemplate('emails/postule.html.twig')
 ->context([
     'postule'=>$postule
@@ -78,7 +79,7 @@ $email = (new TemplatedEmail())
     $mailer->send($email);
 
 
-    
+
 
 
             return $this->redirectToRoute('afficher', ['id' => $postule->getId()]);
@@ -88,7 +89,7 @@ $email = (new TemplatedEmail())
             'postule' => $postule,
             'form' => $form,
         ]);
-    
+
     }
     #[Route('/{id}', name: 'app_postule_show', methods: ['GET'])]
     public function show(Postule $postule): Response
@@ -97,7 +98,7 @@ $email = (new TemplatedEmail())
             'postule' => $postule,
         ]);
     }
-    
+
     #[Route('/{id}', name: 'afficher', methods: ['GET'])]
     public function afficher(Postule $postule): Response
     {
@@ -105,7 +106,7 @@ $email = (new TemplatedEmail())
             'postule' => $postule,
         ]);
     }
-    
+
     #[Route('/{id}/edit', name: 'app_postule_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Postule $postule, EntityManagerInterface $entityManager): Response
     {
@@ -137,6 +138,6 @@ $email = (new TemplatedEmail())
     }
 
 
-    
+
 
 }

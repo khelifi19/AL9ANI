@@ -112,7 +112,7 @@
                     </li>
                 {% elseif 'ROLE_GERANT' in app.user.roles %}
                     <li class="add-listing gray">
-                        <a href="#">
+                        <a href="{{ path('app_etablissements_new') }}">
                             <i class="fas fa-plus me-1"></i> Add Listing
                         </a>
                     </li>

@@ -64,7 +64,7 @@
                         <td>{{ reclamation.text }}</td>
                         <td>
                             {% for r in reponses %}
-                                {% if r.idRec == reclamation %}
+                                {% if r.reclamation == reclamation %}
                                     {{ r.text }}   
                                 {% endif %}                                                             
                             {% endfor %}

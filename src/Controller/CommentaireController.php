@@ -103,7 +103,7 @@ class CommentaireController extends AbstractController
      * @Route("/new/{idPost}", name="app_commentaire_new_one", methods={"GET", "POST"}, requirements={"idPost":"\d+"})
      * 
      */
-    public function new1(Request $request, CommentaireRepository $commentaireRepository,PostRepository $postRepository,$idPost): Response
+    public function new1(Request $request, CommentaireRepository $commentaireRepository,PostRepository $postRepository,$idPost, EntityManagerInterface $entityManager): Response
     {   $post = $postRepository->find($idPost);
         $commentaire = new Commentaire();
         $commentaire->setPost($post);

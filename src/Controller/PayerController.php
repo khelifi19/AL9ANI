@@ -34,7 +34,7 @@ class PayerController extends AbstractController
                     'currency' => 'EUR',
                     'unit_amount' => $subscription->getPrice() * 80,
                     'product_data' => [
-                        'name' => 'Subscription de Foulen Foulen'],
+                        'name' => 'Welcome'],
                 ],
                 'quantity' => 1
             ];
@@ -50,7 +50,7 @@ class PayerController extends AbstractController
                             'currency' => 'EUR',
                             'unit_amount' => $subscription->getPrice() * 8,
                             'product_data' => [
-                                'name' => 'Subscription de Foulen Foulen'      ],
+                                'name' => 'Welcome'      ],
                         ],
                         'quantity' => 1
                     ]

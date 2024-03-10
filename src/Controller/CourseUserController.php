@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\Voiture;
 use App\Form\CourseUserForm;
 use App\Repository\CourseRepository;
+use App\Repository\EtablissementsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,10 +29,12 @@ class CourseUserController extends AbstractController
     }
 
     #[Route('/user/course/new/{user}', name: 'courseUser_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager ,User $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager ,User $user,EtablissementsRepository $repo): Response
 {
     $course = new Course();
-    $form = $this->createForm(CourseUserForm::class, $course);
+    $form = $this->createForm(CourseUserForm::class, $course,[
+        'etablissements_repository' => $repo,
+    ]);
     $form->handleRequest($request);
     $errorMessage = '';
 
@@ -101,7 +104,7 @@ class CourseUserController extends AbstractController
     }
 
     #[Route('/user/course/{id}/edit', name: 'courseUser_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $entityManager, int $id): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, int $id,EtablissementsRepository $repo): Response
     {   
        
         $course = $entityManager->getRepository(Course::class)->find($id);
@@ -115,7 +118,9 @@ class CourseUserController extends AbstractController
 
     
         // Créer le formulaire d'édition
-        $form = $this->createForm(CourseUserForm::class, $course);
+        $form = $this->createForm(CourseUserForm::class, $course,[
+            'etablissements_repository' => $repo,
+        ]);
         $form->handleRequest($request);
     
         // Traiter la soumission du formulaire

@@ -41,7 +41,7 @@
 
                     <td>
                         {% for r in reponses %}
-                        {% if r.idRec == reclamation %}
+                        {% if r.reclamation == reclamation %}
                         {{ r.text }}
                         {% endif %}
                         {% endfor %}
@@ -51,7 +51,7 @@
                         <a href="addreponse?id={{ reclamation.id }}"  class="btn btn-primary">Repondre</a>
                         {% else %}
                         {% for r in reponses %}
-                        {% if r.idRec == reclamation %}
+                        {% if r.reclamation == reclamation %}
                         <a href={{ path('app_reponse_edit', {'id': r.id}) }} style=" font-size: 15px;"  class="btn btn-primary"> Modifier reponse</a>
                         {% endif %}
                         {% endfor %}
@@ -66,7 +66,7 @@
 </div>
 <div>
 
-        <a href="{{ path('app_reponse_pdf') }}" class="btn btn-primary">Download PDF</a>
+    
 </div>
 
 {% endblock %}

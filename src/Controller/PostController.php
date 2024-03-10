@@ -9,6 +9,7 @@ use App\Form\PostType;
 use App\Form\CommentaireType;
 use App\Repository\PostRepository;
 use App\Repository\CommentaireRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,11 +25,12 @@ class PostController extends AbstractController
     private $transactionRepository;
     private $myEmail;
     private $security;
-   
+    private $userRepository;
 
-    public function __construct(PostRepository $transactionRepository,Security $security)
+    public function __construct(PostRepository $transactionRepository,Security $security, UserRepository $userRepository)
     {
         $this->transactionRepository = $transactionRepository;
+        $this->userRepository = $userRepository;
         $this->security = $security;
     }
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
@@ -115,7 +117,7 @@ class PostController extends AbstractController
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('post')['image'];
                 // $file=$jeux->getImagejeux();
@@ -129,11 +131,17 @@ class PostController extends AbstractController
 
             $entityManager->persist($post);
             $entityManager->flush();
-
-            $recipient = 'mohamed.sandid@esprit.tn';
-            $subject = 'New Post';
-            $context = ['postTitle' => $post->getTitre(), 'postContent' => $post->getDescription()]; 
-            $myEmail->sendEmail($recipient, $subject, $context);
+            $users = $this->userRepository->findAll(); 
+            foreach ($users as $user) {
+                $recipient = $user->getEmail(); // Assuming you have a method like getEmail() in your User entity
+                $subject = 'New Post';
+                $context = [
+                    'postTitle' => $post->getTitre(),
+                    'postContent' => $post->getDescription(),
+                    'username' => $user->getUsername(), // Add any user-specific information you want to include
+                ];
+                $myEmail->sendEmail($recipient, $subject, $context);
+            }
 
             return $this->redirectToRoute('app_postback_index', [], Response::HTTP_SEE_OTHER);
         }

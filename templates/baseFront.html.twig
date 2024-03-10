@@ -41,8 +41,10 @@
                 </div>
                 <div class="nav-menus-wrapper" style="transition-property: none;">
                     <ul class="nav-menu">
-                        <li><a href="javascript:void(0);">Home</a></li>
-                        <li><a href="javascript:void(0);">Etablissements</a></li>
+                     <li class="active"><a href="{{ path('app_home_page') }}">Home</a>
+                     <li><a href="{{ path('app_etablissements_index')}}">Etablissements</a>
+									
+										</li>
                         <li><a href="javascript:void(0);">Events</a></li>
                         <li class="active"><a href="javascript:void(0);">Uber</a></li>
                         <li><a href="javascript:void(0);">Reclamations</a></li>

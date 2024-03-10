@@ -30,12 +30,44 @@
 			  
 			
 
-				
+				<div class="jbd-details mb-4">
+										
+										<div class="reviews-comments-wrap">
+										
+											<!-- reviews-comments-item -->  
+											
+											<!--reviews-comments-item end-->  
+											
+											<!-- reviews-comments-item -->  
+											<div class="reviews-comments-item">
+												<div class="review-comments-avatar">
+													<img src="{{ asset('uploads/images/' ~ p.user.img) }}" class="img-fluid" alt=""> 
+												</div>
+												<div class="reviews-comments-item-text">
+													<h4><a href="#">{{p.user.username}}</a><span ><br><i class="ti-calendar theme-cl me-1"></i>{{p.datecom ? p.datecom|date('Y-m-d') : '' }}</span></h4>
+													
+													<div class="clearfix"></div>
+													
+													<div class="clearfix"></div>
+													<br>
+													<p>"{{p.description}}"</p>
+													<div class="pull-left reviews-reaction">
+														
+													</div>
+												</div>
+											</div>
+
+											<!--reviews-comments-item end-->
+											
+											<!-- reviews-comments-item -->  
+											
+											<!--reviews-comments-item end-->
+											
+											
+										
+										</div>
+									</div>
 							
-							
-							<p style="font-size:10px">{{p.datecom ? p.datecom|date('Y-m-d') : '' }}</p>
-<h4>{{p.description}}</h4> 
-                 
 					{% endfor %}
                     
 		              
@@ -43,11 +75,11 @@
 <div class="article_detail_wrapss single_article_wrap format-standard">
    
 <br>
-           <h1 style="color:red">veuillez saisir un commentaire </h1>
+           
 						{{ include('commentaire/_form.html.twig') }}
 						<br>
 						
-						<button class="btn" style="background-color:red;border-color: black; color: red"><a href="{{path('app_post_index')}}">back to Posts</a></button>
+						<button class="btn btn-primary btn-sm"style="background-color:orange;border-color: white;color:white;"><a href="{{path('app_post_index')}}">back to Posts</a></button>
 					
 					</div>
 

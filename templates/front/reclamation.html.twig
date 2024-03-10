@@ -59,7 +59,7 @@
                                                     <br>
                                                     {% if reclamation.etat == 1 %}
                                                                 {% for reponse in reponses %}
-                                                                    {% if reclamation == reponse.idrec %}
+                                                                    {% if reclamation == reponse.reclamation %}
                                                                         <h5  style="color : red ">La reponse a votre reclamation : </h5>
                                                                       <h6> {{reponse.text}} </h6>
                                                                     {% endif %}

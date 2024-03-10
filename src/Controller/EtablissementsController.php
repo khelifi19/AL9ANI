@@ -11,15 +11,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/etablissements')]
 class EtablissementsController extends AbstractController
-{
+{private $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     #[Route('/', name: 'app_etablissements_index', methods: ['GET'])]
     public function index(EtablissementsRepository $etablissementsRepository, PaginatorInterface $paginator, Request $request): Response
 
     {
+    
         $etablissements = $etablissementsRepository->findAll();
 
         $pagination = $paginator->paginate($etablissements, $request->query->getInt('page', 1), // numéro de page par défaut
@@ -44,12 +49,13 @@ class EtablissementsController extends AbstractController
 
     #[Route('/gerant/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    {  $user = $this->security->getUser();
         $etablissement = new Etablissements();
         $form = $this->createForm(EtablissementsType::class, $etablissement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $etablissement->setUser($user);
             $entityManager->persist($etablissement);
             $entityManager->flush();
 
@@ -101,14 +107,14 @@ class EtablissementsController extends AbstractController
 
     #[Route('/premium/ajouter-favoris/{id}', name: 'ajouter_favoris')]
     public function ajouterFavoris(int $id, Request $request): Response
-    {
+    {  
         $entityManager = $this->getDoctrine()->getManager();
         $etablissement = $entityManager->getRepository(Etablissements::class)->find($id);
     
         if (!$etablissement) {
             throw $this->createNotFoundException('Etablissement non trouvée.');
         }
-    
+        
         // Marquer l'établissement comme favori
         $etablissement->setFavoris(true);
         $entityManager->flush();
